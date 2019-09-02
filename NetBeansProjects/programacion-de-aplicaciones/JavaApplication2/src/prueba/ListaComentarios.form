@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="82" max="-2" attributes="0"/>
+              <EmptySpace pref="66" max="32767" attributes="0"/>
+              <Component id="Volver" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="Volver" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTree" name="jTree1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTree()"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*Sistema s = prueba.Inicio.sistema;&#xa;DefaultMutableTreeNode root = new DefaultMutableTreeNode(&quot;Video 1&quot;);&#xa;String nick = prueba.ListaVideos.txtusr.getText();&#xa;String nomVideo = prueba.ListaVideos2.txtnomvideo.getText();&#xa;DtVideo v = s.getDataVideo(nomVideo, nick);&#xa;Collection&lt;DtComentario&gt; c = v.getComentarios();&#xa;Iterator&lt;DtComentario&gt; it = c.iterator();&#xa;while(it.hasNext()){&#xa;    DtComentario data = it.next();&#xa;    DefaultMutableTreeNode ini = new DefaultMutableTreeNode(data.getTexto());&#xa;    root.add(ini);&#xa;}&#xa;DefaultMutableTreeNode root = new DefaultMutableTreeNode(&quot;Root&quot;);&#xa;DefaultMutableTreeNode son = new DefaultMutableTreeNode(&quot;son&quot;);&#xa;DefaultMutableTreeNode dau = new DefaultMutableTreeNode(&quot;dau&quot;);&#xa;DefaultMutableTreeNode dau2 = new DefaultMutableTreeNode(&quot;dau2&quot;);&#xa;root.add(son);&#xa;root.add(dau);&#xa;dau.add(dau2);&#xa;Comentarios = new JTree(root);&#xa;add(Comentarios);*/&#xa; Collection&lt;String&gt; c = new ArrayList&lt;&gt;();&#xa;        Collection&lt;String&gt; b = new ArrayList&lt;&gt;();&#xa;        String b1 = &quot;b&quot;;&#xa;        String b2 = &quot;b1&quot;;&#xa;        String test = &quot;test&quot;;&#xa;        c.add(test);&#xa;        String tes2 = &quot;test2&quot;;&#xa;        c.add(tes2);&#xa;        b.add(b1);&#xa;        b.add(b2);&#xa;        DefaultMutableTreeNode root = new DefaultMutableTreeNode(&quot;Inicio&quot;);&#xa;        Iterator&lt;String&gt; it = c.iterator();&#xa;        &#xa;        while(it.hasNext()){&#xa;Iterator&lt;String&gt; it2 = b.iterator();&#xa;            String g = it.next();&#xa;            DefaultMutableTreeNode ini = new DefaultMutableTreeNode(g);&#xa;            root.add(ini);&#xa;            while(it2.hasNext()){&#xa;                String g1 = it2.next();&#xa;                DefaultMutableTreeNode ini1 = new DefaultMutableTreeNode(g1);&#xa;                ini.add(ini1);&#xa;            }&#xa;        }&#xa;        jTree1 = new JTree(root);&#xa;add(jTree1);"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="Volver">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Volver"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VolverActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
