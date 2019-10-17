@@ -20,6 +20,10 @@
         <servlet-name>Busqueda</servlet-name>
         <servlet-class>Busqueda</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModDataServlet</servlet-name>
+        <servlet-class>ModDataServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Busqueda</servlet-name>
         <url-pattern>/Busqueda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModDataServlet</servlet-name>
+        <url-pattern>/ModDataServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -6,6 +6,8 @@
 
 import Controladores.Sistema;
 import Entidades.Fecha;
+import Fabrica.FabricaSistema;
+import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -59,7 +61,8 @@ public class AltaUsrServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        Sistema s = Sistema.getInstance();
+        FabricaSistema fa = new FabricaSistema();
+        ISistema s = fa.getSistema();
         String username = request.getParameter("NickIns");
         String nom = request.getParameter("NameIns");
         String mail = request.getParameter("CorreoIns");
@@ -86,7 +89,7 @@ public class AltaUsrServlet extends HttpServlet {
                     request.getRequestDispatcher("AltaUsr.jsp").include(request, response);
                     out.print("<p style='color: red; font-size: larger;'>Contraseñas no coinciden</p>");
                 } else {
-                    s.AltaUsuarioWeb(username, nom, ape, mail, pass, f, nomC, descC, img,true);
+                    s.AltaUsuarioWeb(username, nom, ape, mail, pass, f, nomC, descC, img, true);
                     RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                     rd.forward(request, response);
                 }

@@ -22,13 +22,11 @@
         <link rel="stylesheet" type="text/css" href="AltaUsrS.css">
     </head>
     <body>
-        <h1 align="center">Crear Usuario</h1>
-        <form action="AltaUsrServlet" method="post"> 
+        <h1 align="center">Modificar Datos</h1>
+        <form action="ModDataServlet" method="post"> 
             <div class="wrap">
                 <div class="Inserts">
                     <ul>
-                        <li class="Campo">Nick : <input type="text" name="NickIns"></li> 
-                        <li class="Campo">Mail : <input type="email" name="CorreoIns"></li>
                         <li class="Campo">Nombre : <input type="text" name="NameIns"></li>
                         <li class="Campo">Apellido : <input type="text" name="ApeIns"></li>
                         <li class="Campo">Fecha de Nacimiento: 
@@ -60,7 +58,7 @@
                         <li class="Campo">Privacidad Canal: <input type="radio" name="privado" value="publico" checked> Publico <input type="radio" name="privado" value="privado"> Privado</li>
                         <li class="Campo">Ingresar Imagen <input type="file" name="IngImg"></li>
                         <li class="Campo"><input type="submit" class="BtnConfirmar" name="Confirmar" value="Confirmar"></li>
-                        <a href="Login.html" class="BtnCancelar">Cancelar</a>
+                        <li><a href="MiPerfil.jsp" class="BtnCancelar">Cancelar</a></li>
                     </ul>
                 </div>
             </div>

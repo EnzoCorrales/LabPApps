@@ -4,6 +4,8 @@
     Author     : gabrixstar
 --%>
 
+<%@page import="Interfaz.ISistema"%>
+<%@page import="Fabrica.FabricaSistema"%>
 <%@page import="Entidades.Fecha"%>
 <%@page import="Controladores.Sistema"%>
 <%@page import="java.util.ArrayList"%>
@@ -41,8 +43,8 @@
                         <li class="Campo">Categoria Canal :
                             <select name="categories">
                                 <%
-                                    Sistema s = Sistema.getInstance();
-                                    s.CargarDatosPrueba();
+                                    FabricaSistema fa = new FabricaSistema();
+                                    ISistema s = fa.getSistema();
                                     Collection<DtCategoria> dtCategorias = s.ListaCategorias();
                                     Iterator<DtCategoria> it = dtCategorias.iterator();
                                     String c = "test";

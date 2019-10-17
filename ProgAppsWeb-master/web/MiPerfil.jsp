@@ -44,6 +44,7 @@
                 }
             %>
         <h2 class="titulo2"><%=c%></h2>
+        <h3 class="titlo2"><a href="ModDataUsr.jsp?value=<%=nick%>">Modificar datos</a></h3>
         <div class="tabs">
             <div class="tab">
                 <input type="radio" id="tab-1" name="tab-group-1" checked>

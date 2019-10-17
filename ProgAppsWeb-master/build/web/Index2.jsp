@@ -65,8 +65,7 @@
             <li><a href="AltaVideo.jsp" target="iFrame">Subir Video</a></li>
             <li><a href="contact.asp" class="a1">Ver Videos</a></li>
             <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
-            <li><a href="about.asp">Ver más tarde</a></li>
-            <li><a href="about.asp">Me gusta</a></li>
+            <li><a href="Lista.jsp?value=Megusta">Me gusta</a></li>
                 <%
                     FabricaSistema f = new FabricaSistema();
                     ISistema s = f.getSistema();
