@@ -13,15 +13,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <center>
+        <li>
             <%
-                Collection<String> videos = (Collection<String>) session.getAttribute("Resultados");
-                Iterator<String> it = videos.iterator();
-                while(it.hasNext()){
-                    String nom = it.next();%>
+            Collection<String> videos = (Collection<String>) session.getAttribute("Resultados");
+            Iterator<String> it = videos.iterator();
+            while(it.hasNext()){
+                String nom = it.next();%>
+            <table class="titulo2">
+                <tr>
                     <a href="Video.jsp?value=<%=nom%>"><%=nom%></a>
-                <%}%>
-            
-        </center>
+                </tr>
+             </table>
+            <%}%>
+        </li>
     </body>
 </html>
