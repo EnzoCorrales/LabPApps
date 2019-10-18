@@ -3,6 +3,7 @@
 body{
   background: #f2f2f2;
   font-family: 'Open Sans', sans-serif;
+  display: in-line;
 }
 .search {
   width: 100%;
@@ -119,3 +120,9 @@ li a:hover {
     width: 50px;
     height: 50px;
 }
+.nombres{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+

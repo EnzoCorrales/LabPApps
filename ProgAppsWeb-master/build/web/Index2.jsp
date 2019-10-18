@@ -22,7 +22,7 @@
         <form action="Busqueda" method="post" target="iFrame">
             <div class="wrap">
                 <div class="search">
-                    <input type="text" class="searchTerm" placeholder="Buscar">
+                    <input type="text" class="searchTerm" placeholder="Buscar" name="Buscar">
                     <button type="submit" class="searchButton" >
                         Buscar
                     </button>
@@ -80,7 +80,7 @@
                 <% }%>
             <li><a href="musica.jsp?value=Música" target="iFrame">Música</a></li>
             <li><a href="musica.jsp?value=Videojuegos" target="iFrame">Juegos</a></li>
-            <li><a href="musica.jsp?value=Deportes" target="iFrame" class="a1">Deportes</a></li>
+            <li><a href="musica.jsp?value=Deporte" target="iFrame" class="a1">Deportes</a></li>
             <li><a href="Login.html">Salir</a></li>
         </ul>
         <div class="Iframes">

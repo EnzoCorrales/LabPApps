@@ -96,7 +96,6 @@ public class AltaVideoServlet extends HttpServlet {
             } else {
                 s.AltaVideo(nomVideo, dura, url, descV, f, nick, cate);
                 RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-                rd.forward(request, response);
             }
         } else {
             out.print("<p style='color: red; font-size: larger;'>Username = null </p>");

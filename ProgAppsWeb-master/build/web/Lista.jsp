@@ -25,6 +25,7 @@
                 HttpSession sesion = request.getSession();
                 String nick = (String) sesion.getAttribute("username");
                 String url;
+                log(nick);
                 String Auxurl;
                 String name;
                 FabricaSistema f = new FabricaSistema();

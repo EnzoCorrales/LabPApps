@@ -43,11 +43,11 @@
                         url = Auxurl.substring(17, 28);
                         name = dtvids.getNomVideo();
                 %>   
-                <div>
+                <div class="nombres">
                     <%=name%>
+                <iframe width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%><br>"></iframe> 
+                <% }%> 
                 </div>
-                <iframe width="200" height="105" src="https://www.youtube.com/embed/<%=url%>"></iframe>
-                    <% }%> 
             </div>
         </div>
     </body>

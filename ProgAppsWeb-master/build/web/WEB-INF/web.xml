@@ -24,6 +24,22 @@
         <servlet-name>ModDataServlet</servlet-name>
         <servlet-class>ModDataServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PuntuarServlet</servlet-name>
+        <servlet-class>PuntuarServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PuntuarVideo</servlet-name>
+        <servlet-class>PuntuarVideo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MeGustaServlet</servlet-name>
+        <servlet-class>MeGustaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NoMeGustaServlet</servlet-name>
+        <servlet-class>NoMeGustaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -47,6 +63,22 @@
     <servlet-mapping>
         <servlet-name>ModDataServlet</servlet-name>
         <url-pattern>/ModDataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PuntuarServlet</servlet-name>
+        <url-pattern>/PuntuarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PuntuarVideo</servlet-name>
+        <url-pattern>/PuntuarVideo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MeGustaServlet</servlet-name>
+        <url-pattern>/MeGustaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoMeGustaServlet</servlet-name>
+        <url-pattern>/NoMeGustaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
