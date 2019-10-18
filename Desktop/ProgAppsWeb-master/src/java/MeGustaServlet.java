@@ -87,8 +87,10 @@ public class MeGustaServlet extends HttpServlet {
         String nomVideo=vid.getNomVideo();
         String nickV = (String) session.getAttribute("username");
         s.ValorarVideo(nick, nomVideo, nickV, true);
-        RequestDispatcher rd = request.getRequestDispatcher("");
-        //rd.forward(request, response);
+        session.setAttribute("value", nomVideo);
+        session.setAttribute("usr",nick );
+        RequestDispatcher rd = request.getRequestDispatcher("Video.jsp");
+        rd.forward(request, response);
     }
 
     /**

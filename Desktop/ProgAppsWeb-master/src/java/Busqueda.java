@@ -255,41 +255,7 @@ public class Busqueda extends HttpServlet {
             }
         } 
         else {
-            //request.getRequestDispatcher("Busqueda.jsp").include(request, response);
-            /*Collection<DtVideo> video = s.ListaTVideos();
-            Iterator<DtVideo> it = video.iterator();
-            while (it.hasNext()) {
-                DtVideo v = it.next();
-                videos.add(v.getNomVideo());
-                videos1.add(v);
-                resultado.add(v.getNomVideo());
-            }
-            request.setAttribute("Videos", videos1);
-            request.setAttribute("ListaVideos", videos);
-
-            Collection<DtLR> lr = s.ListaTLR();
-            Iterator<DtLR> it2 = lr.iterator();
-            while (it2.hasNext()) {
-                DtLR data = it2.next();
-                listas.add(data.getNombre());
-                listas1.add(data);
-                resultado.add(data.getNombre());
-            }
-            request.setAttribute("Listas", listas1);
-            request.setAttribute("ListaLR", listas);
-
-            Collection<DtCanal> canal = s.ListaCanales();
-            Iterator<DtCanal> it3 = canal.iterator();
-            while (it3.hasNext()) {
-                DtCanal can = it3.next();
-                canales.add(can.getNombre());
-                canales1.add(can);
-                resultado.add(can.getNombre());
-            }
-            request.setAttribute("Canales", canales1);
-            request.setAttribute("ListaCanales", canales);
-            request.setAttribute("Resultados", resultado);
-            request.getRequestDispatcher("Busqueda.jsp").include(request, response);*/
+            
         }
     }
 

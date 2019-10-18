@@ -22,8 +22,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% String nombre = request.getParameter("value");
-           String nick = request.getParameter("usr");
+        <% String nombre = (String) session.getAttribute("nom");
+           String nick = (String) session.getAttribute("nick");
         %>
         
         <h1><%=nombre%></h1>
@@ -32,7 +32,7 @@
             ISistema s = fa.getSistema();
             DtVideo vid = s.getDataVideo(nombre, nick);
             String url = vid.getURL();;
-            String desc = "test";
+            String desc = vid.getDescripcion();
             String Auxurl = null;
             
              /*while (it2.hasNext()) {

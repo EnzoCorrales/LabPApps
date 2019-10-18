@@ -83,7 +83,9 @@ public class NoMeGustaServlet extends HttpServlet {
         String nomVideo=vid.getNomVideo();
         String nickV = (String) session.getAttribute("username");
         s.ValorarVideo(nick, nomVideo, nickV, false);
-        RequestDispatcher rd = request.getRequestDispatcher("Index2.jsp");
+        session.setAttribute("value", nomVideo);
+        session.setAttribute("usr",nick );
+        RequestDispatcher rd = request.getRequestDispatcher("Video.jsp");
         rd.forward(request, response);
     }
 

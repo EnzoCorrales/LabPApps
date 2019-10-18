@@ -29,11 +29,11 @@
                 DtVideo dtvid = s.getDataVideo(dt.getNombre(), dt.getPropietario());
                 String nom = dtvid.getNomVideo();
                 String nick = dtvid.getPropietario();
+                session.setAttribute("nom", nom);
+                session.setAttribute("nick", nick);
                 %>
                 <a class="links" href="Video.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
                 <%
-                //out.print(nom);
-               // out.print(url);
             }
         %>
         <div class="Iframes">
