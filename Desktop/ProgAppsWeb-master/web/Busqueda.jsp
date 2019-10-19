@@ -25,15 +25,23 @@
             ISistema s = f.getSistema();
             while (it.hasNext()) {
                 DtTipo dt = it.next();
-                //if(dt.gettipo==lista){}elseif(gettipo==canal){}else{}
-                DtVideo dtvid = s.getDataVideo(dt.getNombre(), dt.getPropietario());
-                String nom = dtvid.getNomVideo();
-                String nick = dtvid.getPropietario();
-                session.setAttribute("nom", nom);
-                session.setAttribute("nick", nick);
-                %>
+                String nom = dt.getNombre();
+                String nick = dt.getPropietario();
+                if(dt.getTipo().equalsIgnoreCase("Video")){
+        %>
                 <a class="links" href="Video.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
-                <%
+        <%
+                }
+                if(dt.getTipo().equalsIgnoreCase("Lista")){
+        %>
+                <a class="links" href="Lista.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
+        <%
+                }
+                if(dt.getTipo().equalsIgnoreCase("Canal")){
+        %>
+                <a class="links" href="PerfilUsr.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
+        <%
+                }
             }
         %>
         <div class="Iframes">

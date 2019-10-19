@@ -42,11 +42,12 @@
                         Auxurl = dtvids.getURL();
                         url = Auxurl.substring(17, 28);
                         name = dtvids.getNomVideo();
+                        String usr = dtvids.getPropietario();
                 %>   
                 <div class="nombres">
-                    <%=name%>
-                <iframe width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%><br>"></iframe> 
-                <% }%> 
+                    <br><a class="links" href="Video.jsp?value=<%=name%>&usr=<%=usr%>"><%=name%></a><br>
+                    <iframe width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%>"></iframe> 
+                    <% }%> 
                 </div>
             </div>
         </div>

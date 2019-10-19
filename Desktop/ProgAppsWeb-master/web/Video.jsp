@@ -4,15 +4,13 @@
     Author     : tecnologo
 --%>
 
+<%@page import="DT.*"%>
 <%@page import="Interfaz.ISistema"%>
 <%@page import="Fabrica.FabricaSistema"%>
-<%@page import="DT.DtUsuario"%>
-<%@page import="DT.DtValoracion"%>
 <%@page import="Entidades.Fecha"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
 <%@page import="Controladores.Sistema"%>
-<%@page import="DT.DtVideo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,8 +20,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% String nombre = (String) session.getAttribute("nom");
-           String nick = (String) session.getAttribute("nick");
+        <% 
+            String nombre = request.getParameter("value");
+            String nick = request.getParameter("usr");
         %>
         
         <h1><%=nombre%></h1>
@@ -31,28 +30,46 @@
             FabricaSistema fa = new FabricaSistema();
             ISistema s = fa.getSistema();
             DtVideo vid = s.getDataVideo(nombre, nick);
-            String url = vid.getURL();;
+            String url = vid.getURL();
             String desc = vid.getDescripcion();
             String Auxurl = null;
-            
-             /*while (it2.hasNext()) {
-                if (it2.next().getValoracion()) {
-                    likes++;
-                } else {
-                    dislikes++;
-                }
-            }*/
             Auxurl = url.substring(17, 28);
-            session.setAttribute("vid", vid);
         %>
         <iframe id="iFrame" name="iFrame" width="600" height="400" src="https://www.youtube.com/embed/<%=Auxurl%>" ></iframe> 
         <p>Descripcion:
             <%=desc%></p>
-        <form action="MeGustaServlet" method="post">
-            <input type="submit" value="Like"/>
+        <%
+            if(request.getParameter("Like") != null){
+                if(session.getAttribute("username") != null)
+                    s.ValorarVideo(nick, nombre,(String) session.getAttribute("username"), true);
+                else
+                    out.println("Inicie sesión");
+            }
+            if(request.getParameter("Dislike") != null){
+                s.ValorarVideo(nick, nombre, (String) session.getAttribute("username"), false);
+            }
+        %>
+        <form name="form" method="post">
+            <input type="hidden" name="Like">
+            <input type="button" value="Like" onclick="buttonL()">
         </form>
-        <form action="NoMeGustaServlet" method="post">
-            <input type="submit" value="Dislike"/>
-        </form>
+        <form name="form1" method="post">
+            <input type="hidden" name="Dislike">
+            <input type="button" value="Dislike" onclick="buttonDL()">
+        </form>    
+        <script language="JavaScript">
+            function buttonL()
+            {
+                document.form.Like.value = "yes";
+                form.submit();
+            }
+        </script>
+        <script language="JavaScript">
+            function buttonDL()
+            {
+                document.form1.Dislike.value = "yes";
+                form1.submit();
+            }
+        </script>
     </body>
 </html>

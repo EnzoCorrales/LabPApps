@@ -16,6 +16,7 @@
             <h2>Iniciar Sesión</h2> 
             <br/>
             <%
+                session.setAttribute("username", null);
                 out.print("<p style='color: red; font-size: larger;'>Cuenta creada con exito!</p>");
             %>
             <form action="LoginServlet" method="post"> 
