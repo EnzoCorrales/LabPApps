@@ -57,6 +57,7 @@
                         Iterator<DtVideo> it = dtvids.iterator();
                         String url = "https://www.youtube.com/embed/SlPhMPnQ58k";//M5
                         String name = "null";
+                        String Auxurl = null;
                         if (!it.hasNext()) {
                             url = "https://www.youtube.com/embed/CevxZvSJLk8";//KP
                         }
@@ -64,9 +65,10 @@
                             DtVideo dtvid = it.next();
                             if (dtvid != null) {
                                 url = dtvid.getURL();
+                                Auxurl = url.substring(17, 28);
                                 name = dtvid.getNomVideo();
                             }%>   
-                    <iframe width="200" height="105" src="<%=url%>"></iframe>
+                    <iframe width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
                         <%}%>
                 </div> 
             </div>

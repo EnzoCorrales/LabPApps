@@ -15,6 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="BusquedaStyle.css"> 
         <title>JSP Page</title>
     </head>
     <body>
@@ -29,15 +30,15 @@
                 DtVideo dtvid = s.getDataVideo(dt.getNombre(), dt.getPropietario());
                 String nom = dtvid.getNomVideo();
                 String nick = dtvid.getPropietario();
+                String url = dtvid.getURL();
+                String auxurl = url.substring(17, 28);
                 %>
-                <a class="links" href="Video.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
-                <%
-                //out.print(nom);
-               // out.print(url);
-            }
-        %>
+                <a class="links" href="Video.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%>
+        
         <div class="Iframes">
-            <!--<iframe id="iFrame" name="iFrame" width="98%" height="700" src="https://www.youtube.com/embed/<br>" ></iframe>-->
+            <iframe id="iFrame" name="iFrame" width="200" height="100" src="https://www.youtube.com/embed/<%=auxurl%>" ></iframe>-
         </div>
+                </a>
+         <%}%>
     </body>
 </html>

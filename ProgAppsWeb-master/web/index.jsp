@@ -37,17 +37,21 @@
                     String url = null;
                     String Auxurl = "https://www.youtube.com/embed/iR1sAex__VA";//M5
                     String name = "null";
+                    String nick = null;
                     while (it.hasNext()) {
                         DtVideo dtvids = it.next();
                         Auxurl = dtvids.getURL();
                         url = Auxurl.substring(17, 28);
                         name = dtvids.getNomVideo();
+                        nick = dtvids.getPropietario();
                 %>   
-                <div class="nombres">
-                    <%=name%>
-                <iframe width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%><br>"></iframe> 
-                <% }%> 
-                </div>
+                 <a class="nombres" href="Video.jsp?value=<%=name%>&usr=<%=nick%>">
+                     <p class="nombres"><%=name%></p>
+                        
+                        <iframe id="iFrame" width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%><br>"></iframe> 
+                            <% }%> 
+                    
+                </a>
             </div>
         </div>
     </body>
