@@ -4,10 +4,6 @@
     Author     : kangaru
 --%>
 
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="Controladores.Sistema"%>
-<%@page import="Entidades.Fecha"%>
 <%@page import="java.util.*"%>
 <%@page import="DT.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,8 +17,6 @@
         <%
             ArrayList<DtTipo> videos = (ArrayList<DtTipo>) request.getAttribute("Resultados");
             Iterator<DtTipo> it = videos.iterator();
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
             while (it.hasNext()) {
                 DtTipo dt = it.next();
                 String nom = dt.getNombre();
