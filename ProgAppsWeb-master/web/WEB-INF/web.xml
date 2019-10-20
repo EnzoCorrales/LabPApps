@@ -40,6 +40,10 @@
         <servlet-name>NoMeGustaServlet</servlet-name>
         <servlet-class>NoMeGustaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AgregarVideoServlet</servlet-name>
+        <servlet-class>AgregarVideoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>NoMeGustaServlet</servlet-name>
         <url-pattern>/NoMeGustaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarVideoServlet</servlet-name>
+        <url-pattern>/AgregarVideoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
