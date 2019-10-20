@@ -81,13 +81,5 @@
                 form1.submit();
             }
         </script>
-        <div class="botones">
-            <form action="MeGustaServlet" method="post">
-                <input type="submit" value="Like"/>
-            </form>
-            <form action="NoMeGustaServlet" method="post">
-                <input type="submit" value="Dislike"/>
-            </form>
-        </div>
     </body>
 </html>
