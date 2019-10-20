@@ -46,7 +46,10 @@
                     out.println("Inicie sesión");
             }
             if(request.getParameter("Dislike") != null){
-                s.ValorarVideo(nick, nombre, (String) session.getAttribute("username"), false);
+                if(session.getAttribute("username") != null)
+                    s.ValorarVideo(nick, nombre, (String) session.getAttribute("username"), false);
+                else
+                    out.println("Inicie sesión");
             }
         %>
         <form name="form" method="post">
