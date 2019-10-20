@@ -41,8 +41,13 @@
         <servlet-class>NoMeGustaServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>AgregarVideoServlet</servlet-name>
         <servlet-class>AgregarVideoServlet</servlet-class>
+=======
+        <servlet-name>SuscribirseServlet</servlet-name>
+        <servlet-class>SuscribirseServlet</servlet-class>
+>>>>>>> origin/master
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -85,8 +90,13 @@
         <url-pattern>/NoMeGustaServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>AgregarVideoServlet</servlet-name>
         <url-pattern>/AgregarVideoServlet</url-pattern>
+=======
+        <servlet-name>SuscribirseServlet</servlet-name>
+        <url-pattern>/SuscribirseServlet</url-pattern>
+>>>>>>> origin/master
     </servlet-mapping>
     <session-config>
         <session-timeout>

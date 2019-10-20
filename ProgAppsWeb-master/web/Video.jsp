@@ -23,7 +23,8 @@
     </head>
     <body>
         <% String nombre = request.getParameter("value");
-            String nick = request.getParameter("usr");
+           String nick = request.getParameter("usr");
+           String usuario = (String) session.getAttribute("username");
         %>
 
         <h1 class="titulo"><%=nombre%></h1> <br>
@@ -31,7 +32,7 @@
             FabricaSistema fa = new FabricaSistema();
             ISistema s = fa.getSistema();
             DtVideo vid = s.getDataVideo(nombre, nick);
-            String url = vid.getURL();;
+            String url = vid.getURL();
             String desc = vid.getDescripcion();
             String Auxurl = null;
             String prop = vid.getPropietario();
@@ -40,7 +41,15 @@
             session.setAttribute("value", prop);
         %>
         <iframe id="iFrame" class="frame" name="iFrame" width="600" height="400" src="https://www.youtube.com/embed/<%=Auxurl%>" ></iframe> 
-        <p>Propietario: <a class="prop" href="PerfilUsr.jsp?value=<%=prop%>"><%=prop%></a></p>
+        <p>Propietario:
+            <%if(!prop.equalsIgnoreCase(usuario)){%>
+                <a class="prop" href="PerfilUsr.jsp?value=<%=prop%>"><%=prop%></a>
+                <%}else if(prop.equalsIgnoreCase(usuario)){%>
+                <a class="prop" href="MiPerfil.jsp"><%=prop%></a>
+                <%}else if(usuario.equalsIgnoreCase(null)){%>
+                <a class="prop" href="PerfilUsr.jsp"><%=prop%></a>
+                <%}%>
+        </p>
         <p>Descripcion:
             <%=desc%></p>
             <%
