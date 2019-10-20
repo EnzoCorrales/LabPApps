@@ -22,23 +22,34 @@
         <%
             ArrayList<DtTipo> videos = (ArrayList<DtTipo>) request.getAttribute("Resultados");
             Iterator<DtTipo> it = videos.iterator();
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
+            String user = (String) session.getAttribute("username");
             while (it.hasNext()) {
                 DtTipo dt = it.next();
-                //if(dt.gettipo==lista){}elseif(gettipo==canal){}else{}
-                DtVideo dtvid = s.getDataVideo(dt.getNombre(), dt.getPropietario());
-                String nom = dtvid.getNomVideo();
-                String nick = dtvid.getPropietario();
-                String url = dtvid.getURL();
-                String auxurl = url.substring(17, 28);
-                %>
-                <a class="links" href="Video.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%>
-        
-        <div class="Iframes">
-            <iframe id="iFrame" name="iFrame" width="200" height="100" src="https://www.youtube.com/embed/<%=auxurl%>" ></iframe>-
-        </div>
-                </a>
-         <%}%>
+                String nom = dt.getNombre();
+                String nick = dt.getPropietario();
+                if(dt.getTipo().equalsIgnoreCase("Video")){
+        %>
+                <a class="links" href="Video.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
+        <%
+                }
+                if(dt.getTipo().equalsIgnoreCase("Lista")){
+        %>
+                <a class="links" href="Lista.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
+        <%
+                }
+                if(dt.getTipo().equalsIgnoreCase("Canal")){
+                    if(nick.equalsIgnoreCase(user)){
+        %>
+                        <a class="links" href="MiPerfil.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
+        <%
+                    }
+                    else{
+        %>
+                        <a class="links" href="PerfilUsr.jsp?value=<%=nom%>&usr=<%=nick%>"><%=nom%></a>
+        <%
+                    }
+                }
+            }
+        %>
     </body>
 </html>

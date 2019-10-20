@@ -23,9 +23,9 @@
     </head>
     <body>
         <% String nombre = request.getParameter("value");
-           String nick = request.getParameter("usr");
+            String nick = request.getParameter("usr");
         %>
-        
+
         <h1 class="titulo"><%=nombre%></h1> <br>
         <%
             FabricaSistema fa = new FabricaSistema();
@@ -37,19 +37,57 @@
             String prop = vid.getPropietario();
             Auxurl = url.substring(17, 28);
             session.setAttribute("vid", vid);
-            session.setAttribute("value",prop);
+            session.setAttribute("value", prop);
         %>
         <iframe id="iFrame" class="frame" name="iFrame" width="600" height="400" src="https://www.youtube.com/embed/<%=Auxurl%>" ></iframe> 
         <p>Propietario: <a class="prop" href="PerfilUsr.jsp?value=<%=prop%>"><%=prop%></a></p>
         <p>Descripcion:
             <%=desc%></p>
+            <%
+                if (request.getParameter("Like") != null) {
+                    if (session.getAttribute("username") != null) {
+                        s.ValorarVideo(nick, nombre, (String) session.getAttribute("username"), true);
+                    } else {
+                        out.println("Inicie sesión");
+                    }
+                }
+                if (request.getParameter("Dislike") != null) {
+                    if (session.getAttribute("username") != null) {
+                        s.ValorarVideo(nick, nombre, (String) session.getAttribute("username"), false);
+                    } else {
+                        out.println("Inicie sesión");
+                    }
+                }
+            %>
+        <form name="form" method="post">
+            <input type="hidden" name="Like">
+            <input type="button" value="Like" onclick="buttonL()">
+        </form>
+        <form name="form1" method="post">
+            <input type="hidden" name="Dislike">
+            <input type="button" value="Dislike" onclick="buttonDL()">
+        </form>    
+        <script language="JavaScript">
+            function buttonL()
+            {
+                document.form.Like.value = "yes";
+                form.submit();
+            }
+        </script>
+        <script language="JavaScript">
+            function buttonDL()
+            {
+                document.form1.Dislike.value = "yes";
+                form1.submit();
+            }
+        </script>
         <div class="botones">
-        <form action="MeGustaServlet" method="post">
-            <input type="submit" value="Like"/>
-        </form>
-        <form action="NoMeGustaServlet" method="post">
-            <input type="submit" value="Dislike"/>
-        </form>
+            <form action="MeGustaServlet" method="post">
+                <input type="submit" value="Like"/>
+            </form>
+            <form action="NoMeGustaServlet" method="post">
+                <input type="submit" value="Dislike"/>
+            </form>
         </div>
     </body>
 </html>

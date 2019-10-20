@@ -81,7 +81,6 @@ public class Busqueda extends HttpServlet {
         String ord = request.getParameter("Ordenamiento");
         String filtro = request.getParameter("Filtro");
 
-        
         request.setAttribute("ord", ord);
         request.setAttribute("filtro", filtro);
         FabricaSistema f = new FabricaSistema();
@@ -91,7 +90,6 @@ public class Busqueda extends HttpServlet {
         Collection<DtLR> listas1 = new ArrayList<>();
         Collection<DtCanal> canales1 = new ArrayList<>();
         ArrayList<DtTipo> resultado = new ArrayList<>();
-        
 
         if (buscar != null) {
             Collection<DtVideo> video = s.ListaTVideos();
@@ -99,10 +97,10 @@ public class Busqueda extends HttpServlet {
             while (it.hasNext()) {
                 DtVideo v = it.next();
                 DtTipo tipo = v.getTipo();
-                if(v.getNomVideo().contains(buscar))
+                if (v.getNomVideo().contains(buscar)){
                     videos1.add(v);
-                    resultado.add(tipo);
-                
+                }
+                resultado.add(tipo);
             }
 
             Collection<DtLR> lr = s.ListaTLR();
@@ -218,7 +216,7 @@ public class Busqueda extends HttpServlet {
 
                 }
                 if (filtro.equalsIgnoreCase("Videos")) {
-                    Collections.sort(videos1,Collections.reverseOrder());
+                    Collections.sort(videos1, Collections.reverseOrder());
                     resultado.clear();
                     Iterator<DtVideo> itv = videos1.iterator();
                     while (itv.hasNext()) {
@@ -233,13 +231,12 @@ public class Busqueda extends HttpServlet {
                     videos1.clear();
                     resultado.clear();
                     Iterator<DtLR> itlr = listas1.iterator();
-                    while(itlr.hasNext()){
+                    while (itlr.hasNext()) {
                         DtLR dtlr = itlr.next();
-                        if(s.TieneVideosLR(dtlr.getId()))
+                        if (s.TieneVideosLR(dtlr.getId()))
                             videos1.add(s.OrdenoVideosLR(dtlr.getId()));
-                        
                     }
-                    Collections.sort(videos1,Collections.reverseOrder());
+                    Collections.sort(videos1, Collections.reverseOrder());
                     Iterator<DtVideo> itv = videos1.iterator();
                     while (itv.hasNext()) {
                         DtVideo dtv = itv.next();
@@ -250,46 +247,165 @@ public class Busqueda extends HttpServlet {
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
                 if (filtro.equalsIgnoreCase("Canales")) {
-                    
+
                 }
             }
         } 
         else {
-            //request.getRequestDispatcher("Busqueda.jsp").include(request, response);
-            /*Collection<DtVideo> video = s.ListaTVideos();
+            Collection<DtVideo> video = s.ListaTVideos();
             Iterator<DtVideo> it = video.iterator();
             while (it.hasNext()) {
                 DtVideo v = it.next();
-                videos.add(v.getNomVideo());
+                DtTipo tipo = v.getTipo();
                 videos1.add(v);
-                resultado.add(v.getNomVideo());
+                resultado.add(tipo);
             }
-            request.setAttribute("Videos", videos1);
-            request.setAttribute("ListaVideos", videos);
 
             Collection<DtLR> lr = s.ListaTLR();
             Iterator<DtLR> it2 = lr.iterator();
             while (it2.hasNext()) {
                 DtLR data = it2.next();
-                listas.add(data.getNombre());
+                DtTipo tipo = data.getTipo();
                 listas1.add(data);
-                resultado.add(data.getNombre());
+                resultado.add(tipo);
             }
-            request.setAttribute("Listas", listas1);
-            request.setAttribute("ListaLR", listas);
 
             Collection<DtCanal> canal = s.ListaCanales();
             Iterator<DtCanal> it3 = canal.iterator();
             while (it3.hasNext()) {
                 DtCanal can = it3.next();
-                canales.add(can.getNombre());
+                DtTipo tipo = can.getTipo();
                 canales1.add(can);
-                resultado.add(can.getNombre());
+                resultado.add(tipo);
             }
-            request.setAttribute("Canales", canales1);
-            request.setAttribute("ListaCanales", canales);
-            request.setAttribute("Resultados", resultado);
-            request.getRequestDispatcher("Busqueda.jsp").include(request, response);*/
+
+            if (ord.equalsIgnoreCase("Opcion")) {
+                if (filtro.equalsIgnoreCase("Opcion")) {
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+
+                if (filtro.equalsIgnoreCase("Videos")) {
+                    resultado.clear();
+                    Iterator<DtVideo> itv = videos1.iterator();
+                    while (itv.hasNext()) {
+                        DtVideo dtv = itv.next();
+                        DtTipo dtt = dtv.getTipo();
+                        resultado.add(dtt);
+                    }
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+
+                if (filtro.equalsIgnoreCase("Listas")) {
+                    resultado.clear();
+                    Iterator<DtLR> itlr = listas1.iterator();
+                    while (itlr.hasNext()) {
+                        DtLR dtlr = itlr.next();
+                        DtTipo dtt = dtlr.getTipo();
+                        resultado.add(dtt);
+                    }
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+                if (filtro.equalsIgnoreCase("Canales")) {
+                    resultado.clear();
+                    Iterator<DtCanal> itc = canales1.iterator();
+                    while (itc.hasNext()) {
+                        DtCanal dtc = itc.next();
+                        DtTipo dtt = dtc.getTipo();
+                        resultado.add(dtt);
+                    }
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+            }
+
+            if (ord.equalsIgnoreCase("Alfabeticamente")) {
+                if (filtro.equalsIgnoreCase("Opcion")) {
+                    Collections.sort(resultado);
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+                if (filtro.equalsIgnoreCase("Videos")) {
+                    resultado.clear();
+                    Iterator<DtVideo> itv = videos1.iterator();
+                    while (itv.hasNext()) {
+                        DtVideo dtv = itv.next();
+                        DtTipo dtt = dtv.getTipo();
+                        resultado.add(dtt);
+                    }
+                    Collections.sort(resultado);
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+                if (filtro.equalsIgnoreCase("Listas")) {
+                    resultado.clear();
+                    Iterator<DtLR> itlr = listas1.iterator();
+                    while (itlr.hasNext()) {
+                        DtLR dtlr = itlr.next();
+                        DtTipo dtt = dtlr.getTipo();
+                        resultado.add(dtt);
+                    }
+                    Collections.sort(resultado);
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+                if (filtro.equalsIgnoreCase("Canales")) {
+                    resultado.clear();
+                    Iterator<DtCanal> itc = canales1.iterator();
+                    while (itc.hasNext()) {
+                        DtCanal dtc = itc.next();
+                        DtTipo dtt = dtc.getTipo();
+                        resultado.add(dtt);
+                    }
+                    Collections.sort(resultado);
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+            }
+
+            if (ord.equalsIgnoreCase("Anio")) {
+                if (filtro.equalsIgnoreCase("Opcion")) {
+
+                }
+                if (filtro.equalsIgnoreCase("Videos")) {
+                    Collections.sort(videos1, Collections.reverseOrder());
+                    resultado.clear();
+                    Iterator<DtVideo> itv = videos1.iterator();
+                    while (itv.hasNext()) {
+                        DtVideo dtv = itv.next();
+                        DtTipo dtt = dtv.getTipo();
+                        resultado.add(dtt);
+                    }
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+                if (filtro.equalsIgnoreCase("Listas")) {
+                    videos1.clear();
+                    resultado.clear();
+                    Iterator<DtLR> itlr = listas1.iterator();
+                    while (itlr.hasNext()) {
+                        DtLR dtlr = itlr.next();
+                        if (s.TieneVideosLR(dtlr.getId())) {
+                            videos1.add(s.OrdenoVideosLR(dtlr.getId()));
+                        }
+
+                    }
+                    Collections.sort(videos1, Collections.reverseOrder());
+                    Iterator<DtVideo> itv = videos1.iterator();
+                    while (itv.hasNext()) {
+                        DtVideo dtv = itv.next();
+                        DtTipo dtt = dtv.getTipo();
+                        resultado.add(dtt);
+                    }
+                    request.setAttribute("Resultados", resultado);
+                    request.getRequestDispatcher("Busqueda.jsp").include(request, response);
+                }
+                if (filtro.equalsIgnoreCase("Canales")) {
+
+                }
+            }
         }
     }
 
