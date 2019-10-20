@@ -19,6 +19,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="MiPerfilstyle.css">
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <title>MiPerfil</title>
     </head>
     <body>
@@ -32,7 +33,6 @@
                     FabricaSistema f = new FabricaSistema();
                     ISistema s = f.getSistema();
                 %>
-                <input type="submit" class="titulos" value="Suscribirse">
             </form>
         </h1>
             <%
@@ -60,17 +60,24 @@
                         String Auxurl = null;
                         if (!it.hasNext()) {
                             url = "https://www.youtube.com/embed/CevxZvSJLk8";//KP
-                        }
-                        while (it.hasNext()) {
-                            DtVideo dtvid = it.next();
-                            if (dtvid != null) {
-                                url = dtvid.getURL();
-                                Auxurl = url.substring(17, 28);
-                                name = dtvid.getNomVideo();
-                            }%>   
-                    <iframe width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
-                        <%}%>
-                </div> 
+                        }%>
+                        <div class="container-fluid">
+                            <div class="row justify-content-around">
+                                <%
+                                    while (it.hasNext()) {
+                                        DtVideo dtvid = it.next();
+                                        if (dtvid != null) {
+                                            url = dtvid.getURL();
+                                            Auxurl = url.substring(17, 28);
+                                            name = dtvid.getNomVideo();
+                                }%>   
+                                <a class="no" href="Video.jsp?value=<%=name%>&usr=<%=nick%>">
+                                    <p class="no"><%=name%></p>
+                                    <iframe class="no" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
+                                </a>
+                                <%}%>
+                            </div>
+                        </div> 
             </div>
 
             <div class="tab">

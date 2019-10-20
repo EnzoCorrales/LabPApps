@@ -33,12 +33,12 @@
         String prop = request.getParameter("value");
         %>
         <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%>
-            <form action="PerfilUsr.jsp">
+            <form action="SuscribirseServlet" method="post">
                 <%
                     FabricaSistema f = new FabricaSistema();
                     ISistema s = f.getSistema();
                 %>
-                <input class="no" type="submit" class="titulos" value="Suscribirse">
+                <input class="no" name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
             </form>
         </h1>
             <%
@@ -68,7 +68,6 @@
                         }%>
                     <div class="container-fluid">
                         <div class="row">
-                             <!--<div class="col-md-4">-->
                         <%
                         while (it.hasNext()) {
                             DtVideo dtvid = it.next();
