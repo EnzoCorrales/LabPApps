@@ -63,7 +63,26 @@ public class AgregarVideoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String nomVideo = request.getParameter("nombre");
+        String prop = request.getParameter("prop");
+        FabricaSistema f = new FabricaSistema();
+        ISistema s = f.getSistema();
+        DtVideo dtvid = s.getDataVideo(nomVideo, prop);
+        String lista = request.getParameter("lista");
+        String usr = request.getParameter("usr");
+        DtLR dtlista = s.getDataLR(usr, lista);
+        //if (dtlista != null && dtvid != null) {
+            if (!s.ExisteVideoLR(dtvid.getId(), dtlista.getId())) {
+                s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
+            } else {
+                request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
+                out.print("<p style='color: red; font-size: larger;'>Username o mail ya esta en uso!</p>");
+            }
+       // } else {
+         //   request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
+        //}
     }
 
     /**
@@ -77,35 +96,26 @@ public class AgregarVideoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String nomVideo = request.getParameter("video");
+        String nomVideo = request.getParameter("nombre");
+        String prop = request.getParameter("prop");
         FabricaSistema f = new FabricaSistema();
         ISistema s = f.getSistema();
-        Collection<DtVideo> videos = s.ListaTVideos();
-        Iterator<DtVideo> it = videos.iterator();
-        DtVideo dtvid = null;
-        while (it.hasNext()) {
-            if (it.next().getNomVideo().equalsIgnoreCase(nomVideo)) {
-                dtvid = it.next();
-            }
-        }
-        Collection<DtLR> listas = s.ListaTLR();
+        DtVideo dtvid = s.getDataVideo(nomVideo, prop);
         String lista = request.getParameter("lista");
-        Iterator<DtLR> it2 = listas.iterator();
-        DtLR dtlista = null;
-        while (it2.hasNext()) {
-            if (it2.next().getNombre().equalsIgnoreCase(lista)) {
-                dtlista = it2.next();
+        String usr = request.getParameter("usr");
+        DtLR dtlista = s.getDataLR(usr, lista);
+        //if ((nomVideo != null) || (prop != null) || (lista != null) || (usr != null)) {
+            if (!s.ExisteVideoLR(dtvid.getId(), dtlista.getId())) {
+                s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
+            } else {
+                request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
+                out.print("<p style='color: red; font-size: larger;'>Username o mail ya esta en uso!</p>");
             }
-        }
-        if (!s.ExisteLista(dtlista.getPropietario(), lista)) {
-            s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
-            RequestDispatcher rd = request.getRequestDispatcher("Lista.jsp?value=<%=lista%>");
-            rd.forward(request, response);
-        } else {
-            request.getRequestDispatcher("AgregarVideo.jsp").include(request, response);
-            out.print("<p style='color: red; font-size: larger;'>Username o mail ya esta en uso!</p>");
-        }
+        //} else {
+            //request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
+        //}
     }
 
     /**

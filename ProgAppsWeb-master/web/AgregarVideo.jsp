@@ -19,36 +19,35 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="AgregarVideoServlet" method="post">
-            <div class="container-fluid">
-                <div class="row">
-                    <!--<div class="col-md-4">-->
-                    <%
-                        String lista = request.getParameter("value");
-                        FabricaSistema f = new FabricaSistema();
-                        ISistema s = f.getSistema();
-                        Collection<DtVideo> videos = s.ListaTVideos();
-                        Iterator<DtVideo> it = videos.iterator();
-                        String url;
-                        String Auxurl;
-                        request.setAttribute("lista", lista);
-                        while (it.hasNext()) {
-                            DtVideo dtvid = it.next();
-                            String nombrevid = dtvid.getNomVideo();
-                            url = dtvid.getURL();
-                            Auxurl = url.substring(17, 28);%>
-                            
-                    <div>
-                        <input class="nombrenormal" type="radio" name="video" value="<%=nombrevid%>"><%=nombrevid%><br>
+        <%
+            String lista = request.getParameter("value");
+            String usr = request.getParameter("usr");
+        %>
+        <div class="container-fluid">
+            <div class="row">
+                <!--<div class="col-md-4">-->
+                <%
+                    FabricaSistema f = new FabricaSistema();
+                    ISistema s = f.getSistema();
+                    Collection<DtVideo> videos = s.ListaTVideos();
+                    Iterator<DtVideo> it = videos.iterator();
+                    String url;
+                    String Auxurl;
+                    while (it.hasNext()) {
+                        DtVideo dtvid = it.next();
+                        String nombrevid = dtvid.getNomVideo();
+                        url = dtvid.getURL();
+                        Auxurl = url.substring(17, 28);
+                        String prop = dtvid.getPropietario();%>
+                <div>
+                    <a class="nombrenormal" href="AgregarVideoServlet?nombre=<%=nombrevid%>&prop=<%=prop%>&usr=<%=usr%>&lista=<%=lista%>"><%=nombrevid%><br>
                         <iframe class="nombrenormal" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
-                    </div>
-                    <%
-                        }
-                    %>
-
                 </div>
+                <%
+                    }
+                %>
+
             </div>
-            <input type="submit" value="confirmar">
-        </form>
+        </div>
     </body>
 </html>
