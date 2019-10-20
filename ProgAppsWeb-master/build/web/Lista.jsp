@@ -20,7 +20,7 @@
     <body>
         <%String valor = request.getParameter("value");%>
         <h1><%=valor%></h1>
-
+        <p><a href="AgregarVideo.jsp?value=<%=valor%>">Agregar video a la lista</a></p>
             <%
                 HttpSession sesion = request.getSession();
                 String nick = (String) sesion.getAttribute("username");
