@@ -63,7 +63,6 @@
             <li><a href="index.jsp?value=todos" target="iFrame" class="a1">Inicio</a></li>  
             <li><a href="MiPerfil.jsp" target="iFrame" class="a1">Mi Perfil</a></li>
             <li><a href="AltaVideo.jsp" target="iFrame">Subir Video</a></li>
-            <li><a href="contact.asp" class="a1">Ver Videos</a></li>
             <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
             <li><a href="Lista.jsp?value=Megusta">Me gusta</a></li>
                 <%

@@ -48,7 +48,7 @@
                  <a class="nombres" href="Video.jsp?value=<%=name%>&usr=<%=nick%>">
                      <p class="nombres"><%=name%></p>
                         
-                        <iframe id="iFrame" width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%><br>"></iframe> 
+                        <iframe id="iFrame" width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%>"><br></iframe> 
                             <% }%> 
                     
                 </a>
