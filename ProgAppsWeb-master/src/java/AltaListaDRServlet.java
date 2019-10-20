@@ -4,12 +4,20 @@
  * and open the template in the editor.
  */
 
+import DT.DtCategoria;
+import Fabrica.FabricaSistema;
+import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,11 +80,34 @@ public class AltaListaDRServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
-        Controladores.Sistema s = Controladores.Sistema.getInstance();
+        HttpSession sesion = request.getSession();
+        String user = (String) sesion.getAttribute("username");
+        FabricaSistema fa = new FabricaSistema();
+        ISistema s = fa.getSistema();
         String NLista = request.getParameter("NombreLDRPpart");
-        
-
+        String[] Categoria = request.getParameterValues("Categoria");
+        String priv = request.getParameter("privado");
+        Collection<String> cat = new ArrayList<>();
+        boolean es = false;
+        if (priv.equalsIgnoreCase("privado")) {
+            es = true;
+        }
+        if (Categoria == null) {
+            request.getRequestDispatcher("AltaListaDR.jsp").include(request, response);
+            out.print("<p style='color: red; font-size: larger;'>No eligio categoria!</p>");
+        } else {
+            for (int i = 0; i < Categoria.length; i++) {
+                cat.add(Categoria[i]);
+            }
+            if (!s.ExisteLista(user, NLista)) {
+                s.CrearListaParticular(user, NLista, es, cat);
+                RequestDispatcher rd = request.getRequestDispatcher("MiPerfil.jsp");
+                rd.forward(request, response);
+            } else {
+                request.getRequestDispatcher("AltaListaDR.jsp").include(request, response);
+                out.print("<p style='color: red; font-size: larger;'>Esta lista ya existe!</p>");
+            }
+        }
     }
 
     /**
