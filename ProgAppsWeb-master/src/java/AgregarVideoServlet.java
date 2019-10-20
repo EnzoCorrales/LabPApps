@@ -4,8 +4,16 @@
  * and open the template in the editor.
  */
 
+import DT.DtLR;
+import DT.DtVideo;
+import Fabrica.FabricaSistema;
+import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.util.Collection;
+import java.util.Iterator;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +42,7 @@ public class AgregarVideoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AgregarVideoServlet</title>");            
+            out.println("<title>Servlet AgregarVideoServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AgregarVideoServlet at " + request.getContextPath() + "</h1>");
@@ -69,10 +77,35 @@ public class AgregarVideoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        
-        
+
+        String nomVideo = request.getParameter("video");
+        FabricaSistema f = new FabricaSistema();
+        ISistema s = f.getSistema();
+        Collection<DtVideo> videos = s.ListaTVideos();
+        Iterator<DtVideo> it = videos.iterator();
+        DtVideo dtvid = null;
+        while (it.hasNext()) {
+            if (it.next().getNomVideo().equalsIgnoreCase(nomVideo)) {
+                dtvid = it.next();
+            }
+        }
+        Collection<DtLR> listas = s.ListaTLR();
+        String lista = request.getParameter("lista");
+        Iterator<DtLR> it2 = listas.iterator();
+        DtLR dtlista = null;
+        while (it2.hasNext()) {
+            if (it2.next().getNombre().equalsIgnoreCase(lista)) {
+                dtlista = it2.next();
+            }
+        }
+        if (!s.ExisteLista(dtlista.getPropietario(), lista)) {
+            s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
+            RequestDispatcher rd = request.getRequestDispatcher("Lista.jsp?value=<%=lista%>");
+            rd.forward(request, response);
+        } else {
+            request.getRequestDispatcher("AgregarVideo.jsp").include(request, response);
+            out.print("<p style='color: red; font-size: larger;'>Username o mail ya esta en uso!</p>");
+        }
     }
 
     /**

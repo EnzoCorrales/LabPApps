@@ -31,11 +31,13 @@
                         Iterator<DtVideo> it = videos.iterator();
                         String url;
                         String Auxurl;
+                        request.setAttribute("lista", lista);
                         while (it.hasNext()) {
                             DtVideo dtvid = it.next();
                             String nombrevid = dtvid.getNomVideo();
                             url = dtvid.getURL();
                             Auxurl = url.substring(17, 28);%>
+                            
                     <div>
                         <input class="nombrenormal" type="radio" name="video" value="<%=nombrevid%>"><%=nombrevid%><br>
                         <iframe class="nombrenormal" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
