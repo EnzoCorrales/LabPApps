@@ -30,7 +30,7 @@
     </head>
     <body>
         <%
-        String prop = (String) session.getAttribute("value");
+        String prop = request.getParameter("value");
         %>
         <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%>
             <form action="PerfilUsr.jsp">
@@ -120,18 +120,20 @@
                     <ul>
                         <%
                             Collection<DtUsuario> seguidos = s.ListaSeguidos(prop);
-                            Iterator<DtUsuario> it3 = seguidos.iterator();
+                            Iterator<DtUsuario> it4 = seguidos.iterator();
                             String seguido = "null";
-                            if (!it3.hasNext()) {
+                            if (!it4.hasNext()) {
                                 seguido = "no tiene";
                             }
-                            while (it3.hasNext()) {
-                                DtUsuario dtusr = it3.next();
+                            while (it4.hasNext()) {
+                                DtUsuario dtusr = it4.next();
                                 if (dtusr != null) {
                                     seguido = dtusr.getNick();
                                 }
+                                DtCanal dtc = dtusr.getDataCanal();
+                                String nomC2 = dtc.getNombre();
                         %>   
-                        <li><%=seguido%></li>
+                        <li><a href="PerfilUsr.jsp?value=<%=seguido%>"><%=seguido%></a></li>
                             <%}%>
                     </ul>
                 </div> 
@@ -142,24 +144,26 @@
                 <label for="tab-4">Seguidores</label>
 
                 <div class="content">
-                    <ul>
+                    <ul>    
                         <%
                             Collection<DtUsuario> seguidores = s.ListaSeguidores(prop);
-                            Iterator<DtUsuario> it4 = seguidores.iterator();
+                            Iterator<DtUsuario> it5 = seguidores.iterator();
                             String seguidor = "null";
-                            if (!it4.hasNext()) {
+                            if (!it5.hasNext()) {
                                 seguidor = "no tiene";
                             }
-                            while (it4.hasNext()) {
-                                DtUsuario dtusr = it4.next();
-                                if (dtusr != null) {
-                                    seguidor = dtusr.getNick();
-                                }
+                            while (it5.hasNext()) {
+                                DtUsuario dtusr = it5.next();
+                                //if (dtusr != null) {
+                                seguidor = dtusr.getNick();
+                                //}
+                                DtCanal dtc = dtusr.getDataCanal();
+                                String nomC2 = dtc.getNombre();
 
                         %>   
-                        <li><%=seguidor%></li>
+                        <li><a href="PerfilUsr.jsp?value=<%=seguidor%>"><%=seguidor%></a></li>
                             <%}%>
-                    </ul>
+                    </ul> 
                 </div> 
             </div>
 
