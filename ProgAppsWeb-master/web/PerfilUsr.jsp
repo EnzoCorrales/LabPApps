@@ -30,7 +30,7 @@
     </head>
     <body>
         <%
-        String prop = request.getParameter("value");
+        String prop = request.getParameter("usr");
         %>
         <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%>
             <form action="SuscribirseServlet" method="post">
@@ -110,7 +110,6 @@
                             <%}%>
                     </ul>
                 </div> 
-                    2
             </div>
             <div class="tab">
                 <input type="radio" id="tab-3" name="tab-group-1">
@@ -133,7 +132,7 @@
                                 DtCanal dtc = dtusr.getDataCanal();
                                 String nomC2 = dtc.getNombre();
                         %>   
-                        <li><a href="PerfilUsr.jsp?value=<%=seguido%>"><%=seguido%></a></li>
+                        <li><a href="PerfilUsr.jsp?usr=<%=seguido%>"><%=seguido%></a></li>
                             <%}%>
                     </ul>
                 </div> 
@@ -161,7 +160,7 @@
                                 String nomC2 = dtc.getNombre();
 
                         %>   
-                        <li><a href="PerfilUsr.jsp?value=<%=seguidor%>"><%=seguidor%></a></li>
+                        <li><a href="PerfilUsr.jsp?usr=<%=seguidor%>"><%=seguidor%></a></li>
                             <%}%>
                     </ul> 
                 </div> 

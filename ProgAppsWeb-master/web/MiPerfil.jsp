@@ -125,12 +125,11 @@
                                 String nomC2 = dtc.getNombre();
                                 
                         %>   
-                        <li><a href="PerfilUsr.jsp?value=<%=seguido%>"><%=seguido%></a></li>
+                        <li><a href="PerfilUsr.jsp?usr=<%=seguido%>"><%=seguido%></a></li>
                             <%}%>
                     </ul>
                 </div> 
             </div>
-
             <div class="tab">
                 <input type="radio" id="tab-4" name="tab-group-1">
                 <label for="tab-4">Seguidores</label>
@@ -149,7 +148,7 @@
                                 seguidor = dtusr.getNick();
                                 DtCanal dtc = dtusr.getDataCanal();
                         %>   
-                        <li><a href="PerfilUsr.jsp?value=<%=seguidor%>"><%=seguidor%></a></li>
+                        <li><a href="PerfilUsr.jsp?usr=<%=seguidor%>"><%=seguidor%></a></li>
                             <%}%>
                     </ul> 
                 </div> 

@@ -18,30 +18,28 @@
         <title>UyTube-ListaContent</title>
     </head>
     <body>
-        <%
-            String valor = request.getParameter("value");
-            String usr = request.getParameter("usr");
-        %>
-        <h1><%=valor%></h1>
-        <p><a href="AgregarVideo.jsp?value=<%=valor%>&usr=<%=usr%>">Agregar video a la lista</a></p>
-        <%
-            HttpSession sesion = request.getSession();
-            String nick = (String) sesion.getAttribute("username");
-            String url;
-            String Auxurl;
-            String name;
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
-            Collection<DtVideo> videosLR = s.getDataVideosLR(nick, valor);
-            Iterator<DtVideo> it = videosLR.iterator();
-            while (it.hasNext()) {
-                DtVideo dtvid = it.next();
-                Auxurl = dtvid.getURL();
-                url = Auxurl.substring(17, 28);
-                name = dtvid.getNomVideo();
-                String cat = dtvid.getCategoria();%>
-        <p><%=name%></p><iframe width="200" height="105" src="https://www.youtube.com/embed/<%=url%>"></iframe>
+        <%String nombre = request.getParameter("value");%>
+        <h1><%=nombre%></h1>
+        <p><a href="AgregarVideo.jsp?value=<%=nombre%>">Agregar video a la lista</a></p>
             <%
+                String nick = request.getParameter("usr");
+                String Auxurl;
+                String name;
+                FabricaSistema f = new FabricaSistema();
+                ISistema s = f.getSistema();
+                Collection<DtVideo> videosLR = s.getDataVideosLR(nick, nombre);
+                Iterator<DtVideo> it = videosLR.iterator();
+                while (it.hasNext()) {
+                    DtVideo dtvid = it.next();
+                    Auxurl = dtvid.getURL();
+                    String url = Auxurl.substring(17, 28);
+                    name = dtvid.getNomVideo();
+                    String prop = dtvid.getPropietario();
+                    String cat = dtvid.getCategoria();%>
+                    <p><a class="links" href="Video.jsp?value=<%=name%>&usr=<%=prop%>"><%=name%></a></p><iframe width="200" height="105" src="https://www.youtube.com/embed/<%=url%>"></iframe>
+                <%
+                    }
+                %>
                 }
             %>
 
