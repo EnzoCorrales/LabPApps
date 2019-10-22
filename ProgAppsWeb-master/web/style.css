@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body{
-  background: #f2f2f2;
+  background: #1b2d2a;
   font-family: 'Open Sans', sans-serif;
   display: in-line;
 }
@@ -22,7 +22,15 @@ body{
   outline: none;
   color: black;
 }
-
+.inicio{
+    background-color: #00B4CC;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
 .searchTerm:focus{
   color: #00B4CC;
 }
@@ -92,7 +100,7 @@ li a:hover {
 	top: 0px;
 	margin-left: 10%;
         width: 200px;
-        height: 100px;
+        height: 80px;
 
 }
 
@@ -124,7 +132,7 @@ li a:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    color: black;
+    color: white;
     text-decoration: none;
 }
 

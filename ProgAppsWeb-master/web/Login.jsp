@@ -9,14 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="LogInStyle.css"> 
+
+        <title>Log In</title>
     </head>
     <body>
-        <center> 
+        <!--<center>--> 
+        <div class="cuerpo">
             <h2>Iniciar Sesión</h2> 
             <br/>
+
             <%
-                out.print("<p style='color: red; font-size: larger;'>Cuenta creada con exito!</p>");
+                String si = (String) request.getAttribute("conf");
+                if (si != null) {
+                    out.print("<p style='color: red; font-size: larger;'>Cuenta creada con exito!</p>");
+                }
             %>
             <form action="LoginServlet" method="post"> 
                 <br/>Username:<input type="text" name="username"> 
@@ -27,9 +34,10 @@
             </form>
             <br/>
             <a href="AltaUsr.jsp">No tienes cuenta? Crear una aquí</a>
-        </center>
+            <!--</center>-->
             <form action="index.html">
-            <input type="submit" value="Volver al inicio!" />
-         </form>
+                <input class="inicio" type="submit" value="Volver al inicio!" />
+            </form>
+        </div>
     </body>
 </html>

@@ -53,11 +53,11 @@
                 <h2 class="derecha"><%=user%></h2>
                 <%} else {%>
             </a>
-            <a href="Login.html">
+            <a href="/UyTube2/Login_v2/Login2.jsp">
                 <input type="button" value="Iniciar Sesión"/>
             </a>
             <%}%>
-            <a href="Index2.jsp" class="izquierda"><img src="logo.png" class="izquierda"></a>
+            <a href="Index2.jsp" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
         </div>
         <ul>
             <li><a href="index.jsp?value=todos" target="iFrame" class="a1">Inicio</a></li>  
@@ -80,7 +80,7 @@
             <li><a href="musica.jsp?value=Música" target="iFrame">Música</a></li>
             <li><a href="musica.jsp?value=Videojuegos" target="iFrame">Juegos</a></li>
             <li><a href="musica.jsp?value=Deporte" target="iFrame" class="a1">Deportes</a></li>
-            <li><a href="Login.html">Salir</a></li>
+            <li><a href="/UyTube2/Login_v2/Login2.jsp">Salir</a></li>
         </ul>
         <div class="Iframes">
             <iframe id="iFrame" name="iFrame" width="98%" height="700" src="index.jsp" ></iframe>

@@ -27,7 +27,7 @@
     </head>
     <body>
         <div class="tab">
-            <h1>Videos</h1>
+            <h1 class="nombres">Videos</h1>
             <div class="content">
                 <%
                     FabricaSistema f = new FabricaSistema();

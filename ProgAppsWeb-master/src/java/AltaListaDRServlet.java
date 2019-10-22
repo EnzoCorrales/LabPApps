@@ -96,8 +96,8 @@ public class AltaListaDRServlet extends HttpServlet {
             request.getRequestDispatcher("AltaListaDR.jsp").include(request, response);
             out.print("<p style='color: red; font-size: larger;'>No eligio categoria!</p>");
         } else {
-            for (int i = 0; i < Categoria.length; i++) {
-                cat.add(Categoria[i]);
+            for (String Categoria1 : Categoria) {
+                cat.add(Categoria1);
             }
             if (!s.ExisteLista(user, NLista)) {
                 s.CrearListaParticular(user, NLista, es, cat);
