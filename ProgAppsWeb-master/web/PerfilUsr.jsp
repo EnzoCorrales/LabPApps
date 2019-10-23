@@ -30,25 +30,32 @@
     </head>
     <body>
         <%
-        String prop = request.getParameter("value");
+            String prop = request.getParameter("usr");
+            HttpSession sesion = request.getSession();
+            String nick = (String) sesion.getAttribute("username");
         %>
         <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%>
+
+            <% if(!nick.equalsIgnoreCase(null)){%>
             <form action="SuscribirseServlet" method="post">
-                <%
-                    FabricaSistema f = new FabricaSistema();
-                    ISistema s = f.getSistema();
-                %>
                 <input class="no" name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
             </form>
+            <%} else {%> 
+            <a href="/UyTube2/Login_v2/Login2.jsp"><input class="no" name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>
+            <%}%>
+
+
         </h1>
-            <%
-                String c = null;
-                if (prop != null) {
-                    DtUsuario dtusr = s.getDataUsuario(prop);
-                    DtCanal dtcusr = dtusr.getDataCanal();
-                    c = dtcusr.getNombre();
-                }
-            %>
+        <%
+            FabricaSistema f = new FabricaSistema();
+            ISistema s = f.getSistema();
+            String c = null;
+            if (prop != null) {
+                DtUsuario dtusr = s.getDataUsuario(prop);
+                DtCanal dtcusr = dtusr.getDataCanal();
+                c = dtcusr.getNombre();
+            }
+        %>
         <h2 class="titulo2"><%=c%></h2>
         <div class="tabs">
             <div class="tab">
@@ -57,7 +64,7 @@
 
                 <div class="content">
                     <%
-                        DtUsuario dtusrr = s.getDataUsuario(prop);
+                        DtUsuario dtusrr = s.getDataUsuario("cachilas");
                         Collection<DtVideo> dtvids = dtusrr.getDtVideos();
                         Iterator<DtVideo> it = dtvids.iterator();
                         String url = "https://www.youtube.com/embed/SlPhMPnQ58k";//M5
@@ -68,23 +75,23 @@
                         }%>
                     <div class="container-fluid">
                         <div class="row">
-                        <%
-                        while (it.hasNext()) {
-                            DtVideo dtvid = it.next();
-                            if (dtvid != null) {
-                                url = dtvid.getURL();
-                                Auxurl = url.substring(17, 28);
-                                name = dtvid.getNomVideo();
-                            }%>                               
-                                 <a class="no" href="Video.jsp?value=<%=name%>&usr=<%=prop%>">
-                                    <p class="no"><%=name%></p>
-                                    <iframe class="no" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
-                                </a>
-                            
-                        <%}%>
-                            
-                    </div>
+                            <%
+                            while (it.hasNext()) {
+                                DtVideo dtvid = it.next();
+                                if (dtvid != null) {
+                                    url = dtvid.getURL();
+                                    Auxurl = url.substring(17, 28);
+                                    name = dtvid.getNomVideo();
+                                }%>                               
+                            <a class="no" href="Video.jsp?value=<%=name%>&usr=<%=prop%>">
+                                <p class="no"><%=name%></p>
+                                <iframe class="no" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
+                            </a>
+
+                            <%}%>
+
                         </div>
+                    </div>
                 </div> 
             </div>
 
@@ -94,7 +101,7 @@
                 <div class="content">
                     <ul>
                         <%
-                            Collection<DtLR> dtlr = s.ListaListaReproducion(prop);
+                            Collection<DtLR> dtlr = s.ListaListaReproducion("cachilas");
                             Iterator<DtLR> it2 = dtlr.iterator();
                             String lista = "null";
                             if (!it2.hasNext()) {
@@ -110,7 +117,6 @@
                             <%}%>
                     </ul>
                 </div> 
-                    2
             </div>
             <div class="tab">
                 <input type="radio" id="tab-3" name="tab-group-1">
@@ -119,7 +125,7 @@
                 <div class="content">
                     <ul>
                         <%
-                            Collection<DtUsuario> seguidos = s.ListaSeguidos(prop);
+                            Collection<DtUsuario> seguidos = s.ListaSeguidos("cachilas");
                             Iterator<DtUsuario> it4 = seguidos.iterator();
                             String seguido = "null";
                             if (!it4.hasNext()) {
@@ -133,7 +139,7 @@
                                 DtCanal dtc = dtusr.getDataCanal();
                                 String nomC2 = dtc.getNombre();
                         %>   
-                        <li><a href="PerfilUsr.jsp?value=<%=seguido%>"><%=seguido%></a></li>
+                        <li><a href="PerfilUsr.jsp?usr=<%=seguido%>"><%=seguido%></a></li>
                             <%}%>
                     </ul>
                 </div> 
@@ -146,7 +152,7 @@
                 <div class="content">
                     <ul>    
                         <%
-                            Collection<DtUsuario> seguidores = s.ListaSeguidores(prop);
+                            Collection<DtUsuario> seguidores = s.ListaSeguidores("cachilas");
                             Iterator<DtUsuario> it5 = seguidores.iterator();
                             String seguidor = "null";
                             if (!it5.hasNext()) {
@@ -161,7 +167,7 @@
                                 String nomC2 = dtc.getNombre();
 
                         %>   
-                        <li><a href="PerfilUsr.jsp?value=<%=seguidor%>"><%=seguidor%></a></li>
+                        <li><a href="PerfilUsr.jsp?usr=<%=seguidor%>"><%=seguidor%></a></li>
                             <%}%>
                     </ul> 
                 </div> 

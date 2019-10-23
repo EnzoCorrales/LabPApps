@@ -23,8 +23,8 @@
     </head>
     <body>
         <% String nombre = request.getParameter("value");
-           String nick = request.getParameter("usr");
-           String usuario = (String) session.getAttribute("username");
+            String nick = request.getParameter("usr");
+            String usuario = (String) session.getAttribute("username");
         %>
 
         <h1 class="titulo"><%=nombre%></h1> <br>
@@ -42,13 +42,13 @@
         %>
         <iframe id="iFrame" class="frame" name="iFrame" width="600" height="400" src="https://www.youtube.com/embed/<%=Auxurl%>" ></iframe> 
         <p>Propietario:
-            <%if(!prop.equalsIgnoreCase(usuario)){%>
-                <a class="prop" href="PerfilUsr.jsp?value=<%=prop%>"><%=prop%></a>
-                <%}else if(prop.equalsIgnoreCase(usuario)){%>
-                <a class="prop" href="MiPerfil.jsp"><%=prop%></a>
-                <%}else if(usuario.equalsIgnoreCase(null)){%>
-                <a class="prop" href="PerfilUsr.jsp"><%=prop%></a>
-                <%}%>
+            <%if (!prop.equalsIgnoreCase(usuario)) {%>
+            <a class="prop" href="PerfilUsr.jsp?value=<%=prop%>"><%=prop%></a>
+            <%} else if (prop.equalsIgnoreCase(usuario)) {%>
+            <a class="prop" href="MiPerfil.jsp"><%=prop%></a>
+            <%} else if (usuario.equalsIgnoreCase(null)) {%>
+            <a class="prop" href="PerfilUsr.jsp"><%=prop%></a>
+            <%}%>
         </p>
         <p>Descripcion:
             <%=desc%></p>
@@ -70,15 +70,39 @@
             %>
         <form name="form" method="post">
             <input type="hidden" name="Like">
-            <input type="button" value="Like" onclick="buttonL()">
+            <input backgroundcolor="blue" type="button" value="Like" onclick="buttonL()">
         </form>
         <form name="form1" method="post">
             <input type="hidden" name="Dislike">
             <input type="button" value="Dislike" onclick="buttonDL()">
-        </form>    
+        </form>  
+        <style>
+            input:focus{
+                background-color: blue;
+                color: white;
+                border-color: blue;
+            }
+        </style>
         <script language="JavaScript">
             function buttonL()
             {
+                $(function () {
+
+                    $('input:required,textarea:required').on('blur', function () {
+
+                        if ($(this).val() !== '') {
+
+                            $(this).addClass('yellow-background');
+
+                        } else if($(this).val() !== 'yellow-background'){
+
+                            $(this).removeClass('yellow-background');
+
+                        }
+
+                    });
+
+                });
                 document.form.Like.value = "yes";
                 form.submit();
             }

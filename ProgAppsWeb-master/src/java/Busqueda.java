@@ -87,7 +87,7 @@ public class Busqueda extends HttpServlet {
         ISistema s = f.getSistema();
 
         ArrayList<DtVideo> videos1 = new ArrayList<>();
-        Collection<DtLR> listas1 = new ArrayList<>();
+        ArrayList<DtLR> listas1 = new ArrayList<>();
         Collection<DtCanal> canales1 = new ArrayList<>();
         ArrayList<DtTipo> resultado = new ArrayList<>();
 
@@ -97,10 +97,10 @@ public class Busqueda extends HttpServlet {
             while (it.hasNext()) {
                 DtVideo v = it.next();
                 DtTipo tipo = v.getTipo();
-                if (v.getNomVideo().contains(buscar)){
+                if (v.getNomVideo().contains(buscar)) {
                     videos1.add(v);
+                    resultado.add(tipo);
                 }
-                resultado.add(tipo);
             }
 
             Collection<DtLR> lr = s.ListaTLR();
@@ -127,6 +127,7 @@ public class Busqueda extends HttpServlet {
 
             if (ord.equalsIgnoreCase("Opcion")) {
                 if (filtro.equalsIgnoreCase("Opcion")) {
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -139,6 +140,7 @@ public class Busqueda extends HttpServlet {
                         DtTipo dtt = dtv.getTipo();
                         resultado.add(dtt);
                     }
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -151,6 +153,7 @@ public class Busqueda extends HttpServlet {
                         DtTipo dtt = dtlr.getTipo();
                         resultado.add(dtt);
                     }
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -162,6 +165,7 @@ public class Busqueda extends HttpServlet {
                         DtTipo dtt = dtc.getTipo();
                         resultado.add(dtt);
                     }
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -170,6 +174,7 @@ public class Busqueda extends HttpServlet {
             if (ord.equalsIgnoreCase("Alfabeticamente")) {
                 if (filtro.equalsIgnoreCase("Opcion")) {
                     Collections.sort(resultado);
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -182,6 +187,7 @@ public class Busqueda extends HttpServlet {
                         resultado.add(dtt);
                     }
                     Collections.sort(resultado);
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -194,6 +200,7 @@ public class Busqueda extends HttpServlet {
                         resultado.add(dtt);
                     }
                     Collections.sort(resultado);
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -206,6 +213,7 @@ public class Busqueda extends HttpServlet {
                         resultado.add(dtt);
                     }
                     Collections.sort(resultado);
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -224,6 +232,7 @@ public class Busqueda extends HttpServlet {
                         DtTipo dtt = dtv.getTipo();
                         resultado.add(dtt);
                     }
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -233,21 +242,47 @@ public class Busqueda extends HttpServlet {
                     Iterator<DtLR> itlr = listas1.iterator();
                     while (itlr.hasNext()) {
                         DtLR dtlr = itlr.next();
-                        if (s.TieneVideosLR(dtlr.getId()))
+                        if (s.TieneVideosLR(dtlr.getId())) {
                             videos1.add(s.OrdenoVideosLR(dtlr.getId()));
+                        }
                     }
                     Collections.sort(videos1, Collections.reverseOrder());
                     Iterator<DtVideo> itv = videos1.iterator();
+                    Map<Integer, DtTipo> r = new HashMap<>();
                     while (itv.hasNext()) {
                         DtVideo dtv = itv.next();
-                        DtTipo dtt = dtv.getTipo();
-                        resultado.add(dtt);
+                        /*Collection<DtLR> c = s.ListasLDRVideos(dtv.getId(), dtv.getPropietario());
+                        itlr = c.iterator();
+                        while(itlr.hasNext()){
+                            DtLR dtlr = itlr.next();
+                            DtVideo dtv1 = s.OrdenoVideosLR(dtlr.getId());
+                            if(dtv1.getId() == dtv.getId()){
+                                DtTipo dtt = dtlr.getTipo();
+                                if(!resultado.contains(dtt))
+                                    resultado.add(dtt);
+                            }
+                        }
                     }
+                    request.setAttribute("Resultados",null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
                 if (filtro.equalsIgnoreCase("Canales")) {
-
+                    videos1.clear();
+                    resultado.clear();
+                    Iterator<DtCanal> itc = canales1.iterator();
+                    while(itc.hasNext()){
+                        DtCanal dtc = itc.next();
+                        DtVideo dtv = s.VideoRecienteLRyV(dtc.getId());
+                        videos1.add(dtv);
+                    }
+                    request.setAttribute("Resultados", null);
+                    Collections.sort(videos1, Collections.reverseOrder());
+                    Iterator<DtVideo> itv = videos1.iterator();
+                    while(itv.hasNext()){
+                        DtVideo dtv = itv.next();
+                        
+                    }
                 }
             }
         } 
@@ -404,6 +439,9 @@ public class Busqueda extends HttpServlet {
                 }
                 if (filtro.equalsIgnoreCase("Canales")) {
 
+                }
+            }*/
+                    }
                 }
             }
         }

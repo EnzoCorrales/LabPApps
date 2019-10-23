@@ -64,7 +64,7 @@
             <li><a href="MiPerfil.jsp" target="iFrame" class="a1">Mi Perfil</a></li>
             <li><a href="AltaVideo.jsp" target="iFrame">Subir Video</a></li>
             <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
-            <li><a href="Lista.jsp?value=Megusta">Me gusta</a></li>
+            <li><a href="Lista.jsp?value=Megusta" target="iFrame">Me gusta</a></li>
                 <%
                     FabricaSistema f = new FabricaSistema();
                     ISistema s = f.getSistema();
@@ -74,8 +74,9 @@
                     while (it.hasNext()) {
                         DtLR dtlr = it.next();
                         String nombreLR = dtlr.getNombre();
+                        String prop = dtlr.getPropietario();
                 %>
-            <li><a href="Lista.jsp?value=<%=nombreLR%>" target="iFrame"><%=nombreLR%></a></li>
+            <li><a href="Lista.jsp?value=<%=nombreLR%>&usr=<%=prop%>" target="iFrame"><%=nombreLR%></a></li>
                 <% }%>
             <li><a href="musica.jsp?value=Música" target="iFrame">Música</a></li>
             <li><a href="musica.jsp?value=Videojuegos" target="iFrame">Juegos</a></li>
