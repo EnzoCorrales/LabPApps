@@ -20,11 +20,11 @@
         <title>UyTube-ListaContent</title>
     </head>
     <body>
-        <%String nombre = request.getParameter("value");%>
+        <%String nombre = request.getParameter("value");
+        String nick = request.getParameter("usr");%>
         <h1><%=nombre%></h1>
-        <p><a href="AgregarVideo.jsp?value=<%=nombre%>">Agregar video a la lista</a></p>
+        <p><a href="AgregarVideo.jsp?value=<%=nombre%>&usr=<%=nick%>">Agregar video a la lista</a></p>
         <%
-            String nick = request.getParameter("usr");
             String Auxurl;
             String name;
             FabricaSistema f = new FabricaSistema();

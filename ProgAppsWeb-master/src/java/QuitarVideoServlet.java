@@ -11,8 +11,6 @@ import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
-import java.util.Collection;
-import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author tecnologo
+ * @author gabrixstar
  */
-public class AgregarVideoServlet extends HttpServlet {
+public class QuitarVideoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +40,10 @@ public class AgregarVideoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AgregarVideoServlet</title>");
+            out.println("<title>Servlet QuitarVideoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AgregarVideoServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet QuitarVideoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,29 +61,12 @@ public class AgregarVideoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nomVideo = request.getParameter("nombre");
-        String prop = request.getParameter("prop");
+        String nomVideo = request.getParameter("nombre");//nombre del video a eliminar
+        String lista = request.getParameter("lista");//lista de la cual se elimina el video
+        String usr = request.getParameter("usr");//dueño de la lista que es el usuario logeado
         FabricaSistema f = new FabricaSistema();
         ISistema s = f.getSistema();
-        DtVideo dtvid = s.getDataVideo(nomVideo, prop);
-        String lista = request.getParameter("lista");
-        String usr = request.getParameter("usr");
-        DtLR dtlista = null;
-        if (usr != null && lista != null) {
-             dtlista = s.getDataLR(usr, lista);
-        }
-        if (dtlista != null && dtvid != null) {
-            if (!s.ExisteVideoLR(dtvid.getId(), dtlista.getId())) {
-                s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
-            } else {
-                request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
-                out.print("<p style='color: red; font-size: larger;'>Username o mail ya esta en uso!</p>");
-            }
-        } else {
-            request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
-        }
+        s.QuitarVideoLR(usr, lista, nomVideo);
     }
 
     /**
@@ -99,26 +80,7 @@ public class AgregarVideoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nomVideo = request.getParameter("nombre");
-        String prop = request.getParameter("prop");
-        FabricaSistema f = new FabricaSistema();
-        ISistema s = f.getSistema();
-        DtVideo dtvid = s.getDataVideo(nomVideo, prop);
-        String lista = request.getParameter("lista");
-        String usr = request.getParameter("usr");
-        DtLR dtlista = s.getDataLR(usr, lista);
-        //if ((nomVideo != null) || (prop != null) || (lista != null) || (usr != null)) {
-        if (!s.ExisteVideoLR(dtvid.getId(), dtlista.getId())) {
-            s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
-        } else {
-            request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
-            out.print("<p style='color: red; font-size: larger;'>Username o mail ya esta en uso!</p>");
-        }
-        //} else {
-        //request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
-        //}
+        processRequest(request, response);
     }
 
     /**

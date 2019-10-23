@@ -15,7 +15,6 @@ body{
 .cuerpo{
     display: flex;
     flex-wrap: wrap;
-    justify-content: ;
 }
 .inicio{
     

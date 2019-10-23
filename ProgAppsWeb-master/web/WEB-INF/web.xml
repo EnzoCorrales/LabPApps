@@ -43,10 +43,18 @@
     <servlet>
         <servlet-name>AgregarVideoServlet</servlet-name>
         <servlet-class>AgregarVideoServlet</servlet-class>
-     </servlet>
-<servlet>
+    </servlet>
+    <servlet>
         <servlet-name>SuscribirseServlet</servlet-name>
         <servlet-class>SuscribirseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuitarVideoServlet</servlet-name>
+        <servlet-class>QuitarVideoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModDataVidServlet</servlet-name>
+        <servlet-class>ModDataVidServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -91,12 +99,19 @@
     <servlet-mapping>
         <servlet-name>AgregarVideoServlet</servlet-name>
         <url-pattern>/AgregarVideoServlet</url-pattern>
-        
     </servlet-mapping>
-	<servlet-mapping>
-	<servlet-name>SuscribirseServlet</servlet-name>
+    <servlet-mapping>
+        <servlet-name>SuscribirseServlet</servlet-name>
         <url-pattern>/SuscribirseServlet</url-pattern>
-	</servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuitarVideoServlet</servlet-name>
+        <url-pattern>/QuitarVideoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModDataVidServlet</servlet-name>
+        <url-pattern>/ModDataVidServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             60

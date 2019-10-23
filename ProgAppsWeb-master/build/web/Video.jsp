@@ -25,13 +25,20 @@
         <% String nombre = request.getParameter("value");
             String nick = request.getParameter("usr");
             String usuario = (String) session.getAttribute("username");
-        %>
-
-        <h1 class="titulo"><%=nombre%></h1> <br>
-        <%
             FabricaSistema fa = new FabricaSistema();
             ISistema s = fa.getSistema();
             DtVideo vid = s.getDataVideo(nombre, nick);
+        %>
+
+        <h1 class="titulo"><%=nombre%></h1> <br>
+        <%if(usuario!=null){
+            if (usuario.equalsIgnoreCase(vid.getPropietario())) {%>
+        <p class="titulo"><a href="ModDataVid.jsp?NombreVideo=<%=nombre%>">Modificar datos</a></p>  
+        <%}
+}%>
+        <%
+            String cat = vid.getCategoria();
+            String dur = vid.getDuracion();
             String url = vid.getURL();
             String desc = vid.getDescripcion();
             String Auxurl = null;
@@ -75,7 +82,7 @@
         <form name="form1" method="post">
             <input type="hidden" name="Dislike">
             <input type="button" value="Dislike" onclick="buttonDL()">
-        </form>  
+        </form>
         <style>
             input:focus{
                 background-color: blue;
@@ -94,7 +101,7 @@
 
                             $(this).addClass('yellow-background');
 
-                        } else if($(this).val() !== 'yellow-background'){
+                        } else if ($(this).val() !== 'yellow-background') {
 
                             $(this).removeClass('yellow-background');
 
@@ -114,5 +121,7 @@
                 form1.submit();
             }
         </script>
+        <p> Duracion: <%=dur%> </p></br></br>
+        <p> Categoria <%=cat%> </p></br></br>
     </body>
 </html>

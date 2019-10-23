@@ -9,6 +9,7 @@
     <head>
         <title>Subir video - UyTube</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="AltaUsrS.css">
     </head>
     <body>
         <script type="text/javascript" src="script.js"></script>
@@ -24,6 +25,11 @@
 
             <p>Descripcion:</p>
             <textarea name="DescVideo" class="field"></textarea> <br/>
+
+            <p>Fecha Publicacion:</p>
+            <input type="number" class="FechaIns" name="Fdia" min="1" max="31">
+            <input type="number" class="FechaIns" name="Fmes" min="1" max="12">
+            <input type="number" class="FechaIns" name="Fanio" min="1919" max="2019">
 
             <p class="Campo">Categoria:
                 <select name="categorias">
@@ -42,7 +48,6 @@
                     <%}%>
                 </select>
             </p>
-
             <p class="center-content">
                 <input type="submit" class="subirVidbtn" value="Subir Video">
             </p>

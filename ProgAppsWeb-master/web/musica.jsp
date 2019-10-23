@@ -35,23 +35,25 @@
         <%
             FabricaSistema f = new FabricaSistema();
             ISistema s = f.getSistema();
-            Collection<DtVideo> dtvids = s.ListaTVideos();
-            Iterator<DtVideo> it = dtvids.iterator();
-            String url = null;
-            String Auxurl = "https://www.youtube.com/embed/iR1sAex__VA";
-            String name = "null";
-            while (it.hasNext()) {
-                DtVideo dtvid = it.next();
-                Auxurl = dtvid.getURL();
-                url = Auxurl.substring(17, 28);
-                name = dtvid.getNomVideo();
-                String cat = dtvid.getCategoria();
-                if (cat.equalsIgnoreCase(valor)) {%>
+            Collection<DtVideo> dtvids = s.ListaVideosxCategoria(valor);
+            if (dtvids != null) {
+                Iterator<DtVideo> it = dtvids.iterator();
+                String url = null;
+                String Auxurl = "https://www.youtube.com/embed/iR1sAex__VA";
+                String name = "null";
+                while (it.hasNext()) {
+                    DtVideo dtvid = it.next();
+                    Auxurl = dtvid.getURL();
+                    url = Auxurl.substring(17, 28);
+                    name = dtvid.getNomVideo();
+                    String cat = dtvid.getCategoria();
+                    if (cat.equalsIgnoreCase(valor)) {%>
         <div>
             <%=name%>
         </div>
         <iframe width="200" height="105" src="https://www.youtube.com/embed/<%=url%>"></iframe>
             <%
+                        }
                     }
                 }
             %>
