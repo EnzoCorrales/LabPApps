@@ -34,26 +34,31 @@
             String nick = (String) session.getAttribute("username");
         %>
         <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%></h1>
-        <%
+            <%
                 if (nick != null) {%>
-                    <form action="SuscribirseServlet" method="post">
-                        <input type="hidden" id="usr" name="usr" value="<%=prop%>">
-                        <input name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
-                    </form>
+        <form action="SuscribirseServlet" method="post">
+            <input type="hidden" id="usr" name="usr" value="<%=prop%>">
+            <input name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
+        </form>
         <%
-            } else {%> 
-                    <a href="Login.jsp" target="_parent"><input name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>
+        } else {%> 
+        <a href="Login.jsp" target="_parent"><input name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>
             <%}%>
-        <%
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
-            String c = null;
-            if (prop != null) {
-                DtUsuario dtusr = s.getDataUsuario(prop);
-                DtCanal dtcusr = dtusr.getDataCanal();
-                c = dtcusr.getNombre();
-            }
-        %>
+            <%
+                FabricaSistema f = new FabricaSistema();
+                ISistema s = f.getSistema();
+                String c = null;
+                String ape = null;
+                String desc = null;
+                int d=0,m=0,a=0;
+                if (prop != null) {
+                    DtUsuario dtusr = s.getDataUsuario(prop);
+                    DtCanal dtcusr = dtusr.getDataCanal();
+                    c = dtcusr.getNombre();
+                    ape = dtusr.getApellido();
+                    desc = dtcusr.getDescripcion();
+                }
+            %>
         <h2 class="titulo2"><%=c%></h2>
         <div class="tabs">
             <div class="tab">
@@ -62,7 +67,7 @@
 
                 <div class="content">
                     <%
-                        DtUsuario dtusrr = s.getDataUsuario("cachilas");
+                        DtUsuario dtusrr = s.getDataUsuario(prop);
                         Collection<DtVideo> dtvids = dtusrr.getDtVideos();
                         Iterator<DtVideo> it = dtvids.iterator();
                         String url = "https://www.youtube.com/embed/SlPhMPnQ58k";//M5
@@ -99,7 +104,7 @@
                 <div class="content">
                     <ul>
                         <%
-                            Collection<DtLR> dtlr = s.ListaListaReproducion("cachilas");
+                            Collection<DtLR> dtlr = s.ListaListaReproducion(prop);
                             Iterator<DtLR> it2 = dtlr.iterator();
                             String lista = "null";
                             if (!it2.hasNext()) {
@@ -124,7 +129,7 @@
                 <div class="content">
                     <ul>
                         <%
-                            Collection<DtUsuario> seguidos = s.ListaSeguidos("cachilas");
+                            Collection<DtUsuario> seguidos = s.ListaSeguidos(prop);
                             Iterator<DtUsuario> it4 = seguidos.iterator();
                             String seguido = "null";
                             if (!it4.hasNext()) {
@@ -145,13 +150,13 @@
             </div>
 
             <div class="tab">
-                <input type="radio" id="tab-4" name="tab-group-1">
+                <input type="radio" id="tab-5" name="tab-group-1">
                 <label for="tab-4">Seguidores</label>
 
                 <div class="content">
                     <ul>    
                         <%
-                            Collection<DtUsuario> seguidores = s.ListaSeguidores("cachilas");
+                            Collection<DtUsuario> seguidores = s.ListaSeguidores(prop);
                             Iterator<DtUsuario> it5 = seguidores.iterator();
                             String seguidor = "null";
                             if (!it5.hasNext()) {
@@ -172,6 +177,30 @@
                 </div> 
             </div>
 
+            <div class="tab">
+                <input type="radio" id="tab-4" name="tab-group-1">
+                <label for="tab-4">Info</label>
+
+                <div class="content">
+                    <ul>    
+                        <%
+                            if (prop != null) {
+                                DtUsuario dtusr = s.getDataUsuario(prop);
+                                DtCanal dtcusr = dtusr.getDataCanal();
+                                c = dtcusr.getNombre();
+                                ape = dtusr.getApellido();
+                                desc = dtcusr.getDescripcion();
+                                d = dtusr.getFecha().getDia();
+                                m = dtusr.getFecha().getMes();
+                                a = dtusr.getFecha().getAnio();
+                            }
+                        %>   
+                        <li><p>Apellido: <%=ape%></p></li>
+                        <li><p>Descripcion: <%=desc%></p></li>
+                        <li><p>Fecha de nacimiento: <%=d%>/<%=m%>/<%=a%></p></li>
+                    </ul> 
+                </div> 
+            </div>
         </div>
     </body>
 </html>
