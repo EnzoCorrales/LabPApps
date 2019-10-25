@@ -3,6 +3,7 @@
     Created on : Oct 12, 2019, 9:28:31 PM
     Author     : kangaru
 --%>
+<%@page import="DT.DtUsuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="DT.DtLR"%>
 <%@page import="java.util.Collection"%>
@@ -45,12 +46,17 @@
         </form>
         <div class="titulos">
             <h4 class="linea">-</h4>
-            <a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">
                 <%
+                    FabricaSistema f = new FabricaSistema();
+                    ISistema s = f.getSistema();
                     HttpSession sesion = request.getSession(false);
+                    String img = null;
                     if (sesion != null) {
-                        String user = (String) sesion.getAttribute("username");%>
-                <h2 class="derecha"><%=user%></h2>
+                        String user = (String) sesion.getAttribute("username");
+                        DtUsuario usrdt = s.getDataUsuario(user);
+                        img = usrdt.getImagen();
+                %>
+                <h2 class="derecha"><a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="Imagenes/<%=img%>" class="imgPerfil"><%=user%></h2>
                 <%} else {%>
             </a>
             <a href="Login.jsp">
@@ -66,8 +72,6 @@
             <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
             <li><a href="Lista.jsp?value=Megusta" target="iFrame">Me gusta</a></li>
                 <%
-                    FabricaSistema f = new FabricaSistema();
-                    ISistema s = f.getSistema();
                     String user = (String) sesion.getAttribute("username");
                     Collection<DtLR> listas = s.ListaListaReproducion(user);
                     Iterator<DtLR> it = listas.iterator();

@@ -30,10 +30,25 @@
     </head>
     <body>
         <%
-            String prop = request.getParameter("usr");
-            String nick = (String) session.getAttribute("username");
+                String prop = request.getParameter("usr");
+                String nick = (String) session.getAttribute("username");
+                FabricaSistema f = new FabricaSistema();
+                ISistema s = f.getSistema();
+                String c = null;
+                String ape = null;
+                String desc = null;
+                String img = null;
+                int d=0,m=0,a=0;
+                if (prop != null) {
+                    DtUsuario dtusr = s.getDataUsuario(prop);
+                    DtCanal dtcusr = dtusr.getDataCanal();
+                    c = dtcusr.getNombre();
+                    ape = dtusr.getApellido();
+                    desc = dtcusr.getDescripcion();
+                    img = dtusr.getImagen();
+                }
         %>
-        <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%></h1>
+        <h1 class="titulos"><img src="Imagenes/<%=img%>" class="imgPerfil">  <%=prop%></h1>
             <%
                 if (nick != null) {%>
         <form action="SuscribirseServlet" method="post">
@@ -44,21 +59,6 @@
         } else {%> 
         <a href="Login.jsp" target="_parent"><input name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>
             <%}%>
-            <%
-                FabricaSistema f = new FabricaSistema();
-                ISistema s = f.getSistema();
-                String c = null;
-                String ape = null;
-                String desc = null;
-                int d=0,m=0,a=0;
-                if (prop != null) {
-                    DtUsuario dtusr = s.getDataUsuario(prop);
-                    DtCanal dtcusr = dtusr.getDataCanal();
-                    c = dtcusr.getNombre();
-                    ape = dtusr.getApellido();
-                    desc = dtcusr.getDescripcion();
-                }
-            %>
         <h2 class="titulo2"><%=c%></h2>
         <div class="tabs">
             <div class="tab">
