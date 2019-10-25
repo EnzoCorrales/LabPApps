@@ -26,23 +26,19 @@
         <%
             HttpSession sesion = request.getSession();
             String nick = (String) sesion.getAttribute("username");
+            FabricaSistema f = new FabricaSistema();
+            ISistema s = f.getSistema();
+            String c = null;
+            String img = null;
+            if (nick != null) {
+                DtUsuario dtusr = s.getDataUsuario(nick);
+                DtCanal dtcusr = dtusr.getDataCanal();
+                c = dtcusr.getNombre();
+                img = dtusr.getImagen();
+            }
         %>
-        <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=nick%>
-            <form action="MiPerfil.jsp">
-                <%
-                    FabricaSistema f = new FabricaSistema();
-                    ISistema s = f.getSistema();
-                %>
-            </form>
-        </h1>
-            <%
-                String c = null;
-                if (nick != null) {
-                    DtUsuario dtusr = s.getDataUsuario(nick);
-                    DtCanal dtcusr = dtusr.getDataCanal();
-                    c = dtcusr.getNombre();
-                }
-            %>
+        <h1 class="titulos"><img src="Imagenes/<%=img%>" class="imgPerfil">  <%=nick%> </h1>
+
         <h2 class="titulo2"><%=c%></h2>
         <h3 class="titlo2"><a href="ModDataUsr.jsp?value=<%=nick%>">Modificar datos</a></h3>
         <div class="tabs">
@@ -61,101 +57,101 @@
                         if (!it.hasNext()) {
                             url = "https://www.youtube.com/embed/CevxZvSJLk8";//KP
                         }%>
-                        <div class="container-fluid">
-                            <div class="row justify-content-around">
-                                <%
-                                    while (it.hasNext()) {
-                                        DtVideo dtvid = it.next();
-                                        if (dtvid != null) {
-                                            url = dtvid.getURL();
-                                            Auxurl = url.substring(17, 28);
-                                            name = dtvid.getNomVideo();
-                                }%>   
-                                <a class="no" href="Video.jsp?value=<%=name%>&usr=<%=nick%>">
-                                    <p class="no"><%=name%></p>
-                                    <iframe class="no" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
-                                </a>
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <%
+                                while (it.hasNext()) {
+                                    DtVideo dtvid = it.next();
+                                    if (dtvid != null) {
+                                        url = dtvid.getURL();
+                                        Auxurl = url.substring(17, 28);
+                                        name = dtvid.getNomVideo();
+                                        }%>   
+                            <a class="no" href="Video.jsp?value=<%=name%>&usr=<%=nick%>">
+                                <p class="no"><%=name%></p>
+                                <iframe class="no" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
+                            </a>
+                            <%}%>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="tab">
+                    <input type="radio" id="tab-2" name="tab-group-1">
+                    <label for="tab-2">Listas</label>
+                    <div class="content">
+                        <ul>
+                            <%
+                                Collection<DtLR> dtlr = s.ListaListaReproducion(nick);
+                                Iterator<DtLR> it2 = dtlr.iterator();
+                                String lista = "null";
+                                String prop = "null";
+                                if (!it2.hasNext()) {
+                                    lista = "no tiene";
+                                }
+                                while (it2.hasNext()) {
+                                    DtLR dtl = it2.next();
+                                    if (dtl != null) {
+                                        lista = dtl.getNombre();
+                                        prop = dtl.getPropietario();
+                                    }
+                            %>   
+                            <li><a class="no" href="Lista.jsp?value=<%=lista%>&usr=<%=prop%>"><%=lista%></a></li>
                                 <%}%>
-                            </div>
-                        </div> 
-            </div>
+                        </ul>
+                    </div> 
+                </div>
+                <div class="tab">
+                    <input type="radio" id="tab-3" name="tab-group-1">
+                    <label for="tab-3">Seguidos</label>
 
-            <div class="tab">
-                <input type="radio" id="tab-2" name="tab-group-1">
-                <label for="tab-2">Listas</label>
-                <div class="content">
-                    <ul>
-                        <%
-                            Collection<DtLR> dtlr = s.ListaListaReproducion(nick);
-                            Iterator<DtLR> it2 = dtlr.iterator();
-                            String lista = "null";
-                            String prop ="null";
-                            if (!it2.hasNext()) {
-                                lista = "no tiene";
-                            }
-                            while (it2.hasNext()) {
-                                DtLR dtl = it2.next();
-                                if (dtl != null) {
-                                    lista = dtl.getNombre();
-                                    prop = dtl.getPropietario();
+                    <div class="content">
+                        <ul>
+                            <%
+                                Collection<DtUsuario> seguidos = s.ListaSeguidos(nick);
+                                Iterator<DtUsuario> it4 = seguidos.iterator();
+                                String seguido = "null";
+                                if (!it4.hasNext()) {
+                                    seguido = "no tiene";
                                 }
-                        %>   
-                        <li><a class="no" href="Lista.jsp?value=<%=lista%>&usr=<%=prop%>"><%=lista%></a></li>
-                            <%}%>
-                    </ul>
-                </div> 
-            </div>
-            <div class="tab">
-                <input type="radio" id="tab-3" name="tab-group-1">
-                <label for="tab-3">Seguidos</label>
+                                while (it4.hasNext()) {
+                                    DtUsuario dtusr = it4.next();
+                                    if (dtusr != null) {
+                                        seguido = dtusr.getNick();
+                                    }
+                                    DtCanal dtc = dtusr.getDataCanal();
+                                    String nomC2 = dtc.getNombre();
 
-                <div class="content">
-                    <ul>
-                        <%
-                            Collection<DtUsuario> seguidos = s.ListaSeguidos(nick);
-                            Iterator<DtUsuario> it4 = seguidos.iterator();
-                            String seguido = "null";
-                            if (!it4.hasNext()) {
-                                seguido = "no tiene";
-                            }
-                            while (it4.hasNext()) {
-                                DtUsuario dtusr = it4.next();
-                                if (dtusr != null) {
-                                    seguido = dtusr.getNick();
+                            %>   
+                            <li><a href="PerfilUsr.jsp?usr=<%=seguido%>"><%=seguido%></a></li>
+                                <%}%>
+                        </ul>
+                    </div> 
+                </div>
+                <div class="tab">
+                    <input type="radio" id="tab-4" name="tab-group-1">
+                    <label for="tab-4">Seguidores</label>
+
+                    <div class="content">
+                        <ul>    
+                            <%
+                                Collection<DtUsuario> seguidores = s.ListaSeguidores(nick);
+                                Iterator<DtUsuario> it5 = seguidores.iterator();
+                                String seguidor = "null";
+                                if (!it5.hasNext()) {
+                                    seguidor = "no tiene";
                                 }
-                                DtCanal dtc = dtusr.getDataCanal();
-                                String nomC2 = dtc.getNombre();
-                                
-                        %>   
-                        <li><a href="PerfilUsr.jsp?usr=<%=seguido%>"><%=seguido%></a></li>
-                            <%}%>
-                    </ul>
-                </div> 
-            </div>
-            <div class="tab">
-                <input type="radio" id="tab-4" name="tab-group-1">
-                <label for="tab-4">Seguidores</label>
+                                while (it5.hasNext()) {
+                                    DtUsuario dtusr = it5.next();
+                                    seguidor = dtusr.getNick();
+                                    DtCanal dtc = dtusr.getDataCanal();
+                            %>   
+                            <li><a href="PerfilUsr.jsp?usr=<%=seguidor%>"><%=seguidor%></a></li>
+                                <%}%>
+                        </ul> 
+                    </div> 
+                </div>
 
-                <div class="content">
-                    <ul>    
-                        <%
-                            Collection<DtUsuario> seguidores = s.ListaSeguidores(nick);
-                            Iterator<DtUsuario> it5 = seguidores.iterator();
-                            String seguidor = "null";
-                            if (!it5.hasNext()) {
-                                seguidor = "no tiene";
-                            }
-                            while (it5.hasNext()) {
-                                DtUsuario dtusr = it5.next();
-                                seguidor = dtusr.getNick();
-                                DtCanal dtc = dtusr.getDataCanal();
-                        %>   
-                        <li><a href="PerfilUsr.jsp?usr=<%=seguidor%>"><%=seguidor%></a></li>
-                            <%}%>
-                    </ul> 
-                </div> 
             </div>
-
-        </div>
     </body>
 </html>
