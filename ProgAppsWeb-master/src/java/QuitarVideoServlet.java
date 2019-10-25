@@ -67,6 +67,7 @@ public class QuitarVideoServlet extends HttpServlet {
         FabricaSistema f = new FabricaSistema();
         ISistema s = f.getSistema();
         s.QuitarVideoLR(usr, lista, nomVideo);
+        request.getRequestDispatcher("Lista.jsp").include(request, response);
     }
 
     /**

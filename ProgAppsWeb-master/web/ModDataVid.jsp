@@ -19,8 +19,6 @@
         <title>Modifcar Datos Video</title>
     </head>
     <body>
-
-        <script type="text/javascript" src="script.js"></script>
         <form action="ModDataVidServlet" method="post">
             <p>Nombre Video:</p>
             <input name="NameVideoIns" type="text" class="field"> <br/>

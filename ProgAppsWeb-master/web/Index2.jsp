@@ -53,7 +53,7 @@
                 <h2 class="derecha"><%=user%></h2>
                 <%} else {%>
             </a>
-            <a href="/UyTube2/Login_v2/Login2.jsp">
+            <a href="Login.jsp">
                 <input type="button" value="Iniciar Sesión"/>
             </a>
             <%}%>
@@ -81,7 +81,7 @@
             <li><a href="musica.jsp?value=Música" target="iFrame">Música</a></li>
             <li><a href="musica.jsp?value=Videojuegos" target="iFrame">Juegos</a></li>
             <li><a href="musica.jsp?value=Deporte" target="iFrame" class="a1">Deportes</a></li>
-            <li><a href="/UyTube2/Login_v2/Login2.jsp">Salir</a></li>
+            <li><a href="Login.jsp">Salir</a></li>
         </ul>
         <div class="Iframes">
             <iframe id="iFrame" name="iFrame" width="98%" height="700" src="index.jsp" ></iframe>

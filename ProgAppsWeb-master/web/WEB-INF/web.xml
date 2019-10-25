@@ -56,6 +56,18 @@
         <servlet-name>ModDataVidServlet</servlet-name>
         <servlet-class>ModDataVidServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Control</servlet-name>
+        <servlet-class>Control</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Comentario</servlet-name>
+        <servlet-class>Comentario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>Controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -111,6 +123,18 @@
     <servlet-mapping>
         <servlet-name>ModDataVidServlet</servlet-name>
         <url-pattern>/ModDataVidServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Control</servlet-name>
+        <url-pattern>/Control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Comentario</servlet-name>
+        <url-pattern>/Comentario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

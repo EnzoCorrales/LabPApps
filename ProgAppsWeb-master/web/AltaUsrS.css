@@ -10,59 +10,48 @@ and open the template in the editor.
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-body{
-  font-family: 'Open Sans', sans-serif;
+body {
+  background: #222;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 105vh;
+}
+.container {
+  background: white;
+  padding: 20px 25px;
+  border: 5px solid #26a69a;
+  width: 600px;
+  height: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+.col.s6 > .btn {
+   width: 100%;
 }
 
-h1{
-    margin-top: 4px;
+radio:required {
+  border-color: red;
 }
-/*Resize the wrap to see the search bar change!*/
-  .wrap{
-    width: 30%;
-    position: absolute;
-    top: 330px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 
-  ul {
-    position: relative;
-    display: table-cell;
-    text-align: left;
-    vertical-align: center;
-    border: 4px solid #131717;
-    border-radius: 0px 5px 5px 0px; 
-    width: 900px;
-    height: 470px;
+@keyframes showUp {
+  0% {
+    transform: scale(0);
   }
+  100% {
+    transoform: scale(1);
+  }
+}
+.row {margin-bottom: 10px;}
 
-  .Campo{
-    display: inline-block;
-    margin-top: 10px;
-    margin-left: 20px;
-    height: 20px;
-  }
-  /* Change the link color on hover */
+.ngl {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+}
 
-  .BtnConfirmar{
-    margin-top: 4%;
-    margin-left: 95%;
-    width: 150px;
-    border-radius: 10px 10px 10px 10px;
-  }
-  a{
-    margin-top: 150px;
-    color: black;
-    width: 150px;
-    margin-right: 200px;
-  }
-  .FechaIns{
-    width: 40px;
-  }
-
-  .InsImg{
-    display: inline-block;
-    margin-left: 20px;
-  }
 

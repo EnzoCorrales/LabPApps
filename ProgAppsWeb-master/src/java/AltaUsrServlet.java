@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -77,6 +78,12 @@ public class AltaUsrServlet extends HttpServlet {
         int mes = Integer.parseInt(request.getParameter("Fmes"));
         int anio = Integer.parseInt(request.getParameter("Fanio"));
         Fecha f = new Fecha(dia, mes, anio);
+        String priv = request.getParameter("privado");
+        boolean privado;
+        if(priv == null)
+            privado = false;
+        else
+            privado = true;
         if (username == null || mail == null) {
             request.getRequestDispatcher("AltaUsr.jsp").include(request, response);
             out.print("<p style='color: red; font-size: larger;'>username null || mail null</p>");
@@ -90,7 +97,7 @@ public class AltaUsrServlet extends HttpServlet {
                     request.getRequestDispatcher("AltaUsr.jsp").include(request, response);
                     out.print("<p style='color: red; font-size: larger;'>Contraseñas no coinciden</p>");
                 } else {
-                    s.AltaUsuarioWeb(username, nom, ape, mail, pass, f, nomC, descC, img, true);
+                    s.AltaUsuarioWeb(username, nom, ape, mail, pass, f, nomC, descC, img, privado);
                     RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                     rd.forward(request, response);
                 }

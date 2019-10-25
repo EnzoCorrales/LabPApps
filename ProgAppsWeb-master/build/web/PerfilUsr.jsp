@@ -31,21 +31,19 @@
     <body>
         <%
             String prop = request.getParameter("usr");
-            HttpSession sesion = request.getSession();
-            String nick = (String) sesion.getAttribute("username");
+            String nick = (String) session.getAttribute("username");
         %>
-        <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%>
-
-            <% if(!nick.equalsIgnoreCase(null)){%>
-            <form action="SuscribirseServlet" method="post">
-                <input class="no" name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
-            </form>
-            <%} else {%> 
-            <a href="/UyTube2/Login_v2/Login2.jsp"><input class="no" name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>
+        <h1 class="titulos"><img src="https://pbs.twimg.com/media/Do4L0ULXUAAbQLZ.png" class="imgPerfil">  <%=prop%></h1>
+        <%
+                if (nick != null) {%>
+                    <form action="SuscribirseServlet" method="post">
+                        <input type="hidden" id="usr" name="usr" value="<%=prop%>">
+                        <input name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
+                    </form>
+        <%
+            } else {%> 
+                    <a href="Login.jsp" target="_parent"><input name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>
             <%}%>
-
-
-        </h1>
         <%
             FabricaSistema f = new FabricaSistema();
             ISistema s = f.getSistema();
@@ -76,18 +74,18 @@
                     <div class="container-fluid">
                         <div class="row">
                             <%
-                            while (it.hasNext()) {
-                                DtVideo dtvid = it.next();
-                                if (dtvid != null) {
-                                    url = dtvid.getURL();
-                                    Auxurl = url.substring(17, 28);
-                                    name = dtvid.getNomVideo();
-                                }%>                               
+                                while (it.hasNext()) {
+                                    DtVideo dtvid = it.next();
+                                    if (dtvid != null) {
+                                        url = dtvid.getURL();
+                                        Auxurl = url.substring(17, 28);
+                                        name = dtvid.getNomVideo();
+                                        prop = dtvid.getPropietario();
+                                    }%>                               
                             <a class="no" href="Video.jsp?value=<%=name%>&usr=<%=prop%>">
                                 <p class="no"><%=name%></p>
                                 <iframe class="no" width="200" height="105" src="https://www.youtube.com/embed/<%=Auxurl%>"></iframe>
                             </a>
-
                             <%}%>
 
                         </div>
@@ -111,9 +109,10 @@
                                 DtLR dtl = it2.next();
                                 if (dtl != null) {
                                     lista = dtl.getNombre();
+                                    prop = dtl.getPropietario();
                                 }
                         %>   
-                        <li><%=lista%></li>
+                        <li><a class="no" href="Lista.jsp?value=<%=lista%>&usr=<%=prop%>"><%=lista%></a></li>
                             <%}%>
                     </ul>
                 </div> 

@@ -89,6 +89,7 @@
                             Collection<DtLR> dtlr = s.ListaListaReproducion(nick);
                             Iterator<DtLR> it2 = dtlr.iterator();
                             String lista = "null";
+                            String prop ="null";
                             if (!it2.hasNext()) {
                                 lista = "no tiene";
                             }
@@ -96,9 +97,10 @@
                                 DtLR dtl = it2.next();
                                 if (dtl != null) {
                                     lista = dtl.getNombre();
+                                    prop = dtl.getPropietario();
                                 }
                         %>   
-                        <li><%=lista%></li>
+                        <li><a class="no" href="Lista.jsp?value=<%=lista%>&usr=<%=prop%>"><%=lista%></a></li>
                             <%}%>
                     </ul>
                 </div> 

@@ -93,7 +93,7 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("Index2.jsp").include(request, response);
         }
         else {
-            RequestDispatcher rd = request.getRequestDispatcher("Login.html");
+            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
             out.print("<p style='color: red; font-size: larger;'>Usuario o Contraseña incorrecta!</p>");
             rd.include(request,response);   
         }

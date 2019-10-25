@@ -78,17 +78,13 @@ public class SuscribirseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
         FabricaSistema fa = new FabricaSistema();
         ISistema s = fa.getSistema();
         HttpSession session = request.getSession();
-        DtVideo vid = (DtVideo) session.getAttribute("vid");
-        String nick = vid.getPropietario();
+        String nick = request.getParameter("usr");
         String nickV = (String) session.getAttribute("username");
         s.SeguirUsuario(nickV, nick);
-        RequestDispatcher rd = request.getRequestDispatcher("Index2.jsp");
-        rd.forward(request, response);
+        request.getRequestDispatcher("Index2.jsp").include(request, response);
     }
 
     /**
