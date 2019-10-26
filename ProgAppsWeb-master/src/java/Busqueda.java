@@ -89,6 +89,7 @@ public class Busqueda extends HttpServlet {
         ArrayList<DtVideo> videos1 = new ArrayList<>();
         ArrayList<DtLR> listas1 = new ArrayList<>();
         Collection<DtCanal> canales1 = new ArrayList<>();
+        ArrayList<DtCategoria> categoria1 = new ArrayList<>();
         ArrayList<DtTipo> resultado = new ArrayList<>();
 
         if (buscar != null) {
@@ -251,19 +252,20 @@ public class Busqueda extends HttpServlet {
                     Map<Integer, DtTipo> r = new HashMap<>();
                     while (itv.hasNext()) {
                         DtVideo dtv = itv.next();
-                        /*Collection<DtLR> c = s.ListasLDRVideos(dtv.getId(), dtv.getPropietario());
+                        Collection<DtLR> c = s.ListasLDRVideos(dtv.getId(), dtv.getPropietario());
                         itlr = c.iterator();
-                        while(itlr.hasNext()){
+                        while (itlr.hasNext()) {
                             DtLR dtlr = itlr.next();
                             DtVideo dtv1 = s.OrdenoVideosLR(dtlr.getId());
-                            if(dtv1.getId() == dtv.getId()){
+                            if (dtv1.getId() == dtv.getId()) {
                                 DtTipo dtt = dtlr.getTipo();
-                                if(!resultado.contains(dtt))
+                                if (!resultado.contains(dtt)) {
                                     resultado.add(dtt);
+                                }
                             }
                         }
                     }
-                    request.setAttribute("Resultados",null);
+                    request.setAttribute("Resultados", null);
                     request.setAttribute("Resultados", resultado);
                     request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                 }
@@ -271,7 +273,7 @@ public class Busqueda extends HttpServlet {
                     videos1.clear();
                     resultado.clear();
                     Iterator<DtCanal> itc = canales1.iterator();
-                    while(itc.hasNext()){
+                    while (itc.hasNext()) {
                         DtCanal dtc = itc.next();
                         DtVideo dtv = s.VideoRecienteLRyV(dtc.getId());
                         videos1.add(dtv);
@@ -279,14 +281,13 @@ public class Busqueda extends HttpServlet {
                     request.setAttribute("Resultados", null);
                     Collections.sort(videos1, Collections.reverseOrder());
                     Iterator<DtVideo> itv = videos1.iterator();
-                    while(itv.hasNext()){
+                    while (itv.hasNext()) {
                         DtVideo dtv = itv.next();
-                        
+
                     }
                 }
             }
-        } 
-        else {
+        } else {
             Collection<DtVideo> video = s.ListaTVideos();
             Iterator<DtVideo> it = video.iterator();
             while (it.hasNext()) {
@@ -439,9 +440,6 @@ public class Busqueda extends HttpServlet {
                 }
                 if (filtro.equalsIgnoreCase("Canales")) {
 
-                }
-            }*/
-                    }
                 }
             }
         }

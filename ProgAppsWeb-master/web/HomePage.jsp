@@ -54,7 +54,7 @@
         <ul>
             <li><a href="Login.jsp" class="a1">Mi Perfil</a></li>
             <li><a href="Login.jsp">Subir Video</a></li>
-            <li><a href="index.html" class="a1">Ver Videos</a></li>
+            <li><a href="HomePage.jsp" class="a1">Ver Videos</a></li>
                 <%
                     FabricaSistema f = new FabricaSistema();
                     ISistema s = f.getSistema();
