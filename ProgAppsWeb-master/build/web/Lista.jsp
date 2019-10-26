@@ -31,12 +31,12 @@
         <%
             String nombre = request.getParameter("value");
             String nick = request.getParameter("usr");%>
-        <h2><%=nombre%> <a href="ModDataLR.jsp?value=<%=nombre%>&usr=<%=nick%>"title="Modificar lista" class="waves-effect waves-teal btn-flat btn-large"><i class="material-icons">edit</i></a></h2>
+        <h2><%=nombre%> <a href="ModDataLR.jsp?value=<%=nombre%>&usr=<%=nick%>" title="Modificar lista" class="waves-effect waves-teal btn-flat btn-large"><i class="material-icons">edit</i></a></h2>
         <%
             String logged = (String) session.getAttribute("username");
             if (logged != null) {
                 if (logged.equalsIgnoreCase(nick)) {%>
-        <p><a href="AgregarVideo.jsp?value=<%=nombre%>&usr=<%=nick%>"title="Agregar video" class="ngl btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a></p>
+        <p><a href="AgregarVideo.jsp?value=<%=nombre%>&usr=<%=nick%>" title="Agregar video" class="ngl btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a></p>
         <%
                 }
             }
@@ -56,7 +56,7 @@
                 String prop = dtvid.getPropietario();
                 String cat = dtvid.getCategoria();%>
         <a href="Video.jsp?value=<%=name%>&usr=<%=prop%>">
-            <p><%=name%> <a href="QuitarVideoServlet?lista=<%=nombre%>&usr=<%=logged%>&nombre=<%=name%>"title="Quitar video" class="ngl btn-floating btn-small waves-effect waves-light red"><i class="material-icons">remove</i></a></p>
+            <p><%=name%> <a href="QuitarVideoServlet?lista=<%=nombre%>&usr=<%=logged%>&nombre=<%=name%>" title="Quitar video" class="ngl btn-floating btn-small waves-effect waves-light red"><i class="material-icons">remove</i></a></p>
             <div class="thumbnail">
                 <iframe src="//img.youtube.com/vi/<%=url%>/0.jpg" frameborder="0" scrolling="no" ></iframe>
             </div>

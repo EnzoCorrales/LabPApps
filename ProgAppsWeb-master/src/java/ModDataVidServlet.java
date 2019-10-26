@@ -74,13 +74,16 @@ public class ModDataVidServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre = request.getParameter("NombreVideo");
+
         Controladores.Sistema s = Controladores.Sistema.getInstance();
-        
+
+        String nombre = request.getParameter("NombreVideo");
+
         String nomVideo = request.getParameter("NameVideoIns");
         String dura = request.getParameter("DuracionIns");
         String url = request.getParameter("URLIns");
         String descV = request.getParameter("DescVideo");
+        String cate = request.getParameter("categorias");
         Fecha f = null;
         if (!request.getParameter("Fdia").equalsIgnoreCase("") && !request.getParameter("Fmes").equalsIgnoreCase("") && !request.getParameter("Fanio").equalsIgnoreCase("")) {
             int dia = Integer.parseInt(request.getParameter("Fdia"));
@@ -94,67 +97,77 @@ public class ModDataVidServlet extends HttpServlet {
         boolean Auxdesc = false;
         boolean Auxf = false;
         boolean Auxcat = false;
-        HttpSession sesion = request.getSession();
-        String nick = (String) sesion.getAttribute("username");
-        String cate = request.getParameter("categorias");
-        DtVideo dtvid = s.getDataVideo(nombre, nick);
-        String cat = dtvid.getCategoria();
-        if (!nomVideo.equalsIgnoreCase("")) {
-            if (!s.ExisteVideo(nick, nomVideo)) {
-                Auxnom = true;
-            } 
-            else {
-                request.setAttribute("NombreVideo", nombre);
-                request.getRequestDispatcher("ModDataVidServlet.jsp").forward(request, response);
-                out.print("<p style='color: red; font-size: larger;'>Nombre de video repetido!</p>");
-            }
-        }
-        if (!dura.equalsIgnoreCase("")) {
-            if (!dura.equalsIgnoreCase(dtvid.getDuracion())) {
-                Auxdur = true;
-            }
-        }
-        if (!url.equalsIgnoreCase("")) {
-            if (!url.equalsIgnoreCase(dtvid.getURL())) {
-                Auxurl = true;
-            }
-        }
-        if (!descV.equalsIgnoreCase("")) {
-            if (!descV.equalsIgnoreCase(dtvid.getDescripcion())) {
-                Auxdesc = true;
-            }
-        }
-        if (f != null) {
-            if (f != dtvid.getFecha()) {
-                Auxf = true;
-            }
-        }
-        if (!cate.equalsIgnoreCase("")) {
-            if (!cate.equalsIgnoreCase(cat)) {
-                Auxcat = true;
-            }
-        }
 
-        if (Auxnom == true) {
-            s.ModificarNomVideo(nick, nombre, nomVideo);
+        try {
+            System.out.println(nombre);
+
+            HttpSession sesion = request.getSession();
+            String nick = (String) sesion.getAttribute("username");
+            System.out.println(nick);
+            DtVideo dtvid = s.getDataVideo(nombre, nick);
+            String cat = dtvid.getCategoria();
+            if (!nomVideo.equalsIgnoreCase("")) {
+                if (!s.ExisteVideo(nick, nomVideo)) {
+                    Auxnom = true;
+                } else {
+                    request.setAttribute("NombreVideo", nombre);
+                    sesion.setAttribute("username", nick);
+                    request.getRequestDispatcher("ModDataVid.jsp").forward(request, response);
+                    out.print("<p style='color: red; font-size: larger;'>Nombre de video repetido!</p>");
+                    return;
+                }
+            }
+            if (!dura.equalsIgnoreCase("")) {
+                if (!dura.equalsIgnoreCase(dtvid.getDuracion())) {
+                    Auxdur = true;
+                }
+            }
+            if (!url.equalsIgnoreCase("")) {
+                if (!url.equalsIgnoreCase(dtvid.getURL())) {
+                    Auxurl = true;
+                }
+            }
+            if (!descV.equalsIgnoreCase("")) {
+                if (!descV.equalsIgnoreCase(dtvid.getDescripcion())) {
+                    Auxdesc = true;
+                }
+            }
+            if (f != null) {
+                if (f != dtvid.getFecha()) {
+                    Auxf = true;
+                }
+            }
+            if (!cate.equalsIgnoreCase("")) {
+                if (!cate.equalsIgnoreCase(cat)) {
+                    Auxcat = true;
+                }
+            }
+
+            if (Auxdur == true) {
+                s.ModificarDurVideo(nick, nombre, dura);
+            }
+            if (Auxdesc == true) {
+                s.ModificarDescVideo(nick, nombre, descV);
+            }
+            if (Auxurl == true) {
+                s.ModificarURLVideo(nick, nombre, url);
+            }
+            if (Auxf == true) {
+                s.ModificarFechaVideo(nick, nombre, f);
+            }
+            if (Auxcat == true) {
+                s.ModificarCatVideo(nick, nombre, cate);
+            }
+            if (Auxnom == true) {
+                s.ModificarNomVideo(nick, nombre, nomVideo);
+            }
+            RequestDispatcher rd = request.getRequestDispatcher("MiPerfil.jsp");
+            rd.forward(request, response);
+            return;
+        } catch (Exception ex) {
+            request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
+            throw new ServletException(ex);
         }
-        if (Auxdur == true) {
-            s.ModificarDurVideo(nick, nombre, dura);
-        }
-        if (Auxdesc == true) {
-            s.ModificarDescVideo(nick, nombre, descV);
-        }
-        if (Auxurl == true) {
-            s.ModificarURLVideo(nick, nombre, url);
-        }
-        if (Auxf == true) {
-            s.ModificarFechaVideo(nick, nombre, f);
-        }
-        if (Auxcat == true) {
-            s.ModificarCatVideo(nick, nombre, cate);
-        }
-        RequestDispatcher rd = request.getRequestDispatcher("MiPerfil.jsp");
-        rd.forward(request, response);
 
     }
 

@@ -52,6 +52,7 @@
                             }%>
                     <option value="<%=c%>"><%=c%></option>
                     <%}%>
+                    <option value="" selected="selected"></option>
                 </select>
             </p>
             <input type="hidden" id="NombreVideo" name="NombreVideo" value="<%=NomVideo%>">
