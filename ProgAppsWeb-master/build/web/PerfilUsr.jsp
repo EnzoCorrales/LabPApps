@@ -58,14 +58,15 @@
             <input type="hidden" id="usr" name="usr" value="<%=prop%>">
             <% if (!s.LoSigue(nick, prop)) {%>
             <input name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
+            <%}%>
         </form>
 
         <form action="DejarDeSeguirServlet" method="post">
             <input type="hidden" id="usr" name="usr" value="<%=prop%>">
-            <%} else {%>
+            <% if (s.LoSigue(nick, prop)) {%>
             <input name="Desuscribirse" type="submit" class="titulos" value="Desuscribirse">
+            <%}%>
         </form>
-        <%}%>
         <%
         } else {%> 
         <a href="Login.jsp" target="_parent"><input name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>

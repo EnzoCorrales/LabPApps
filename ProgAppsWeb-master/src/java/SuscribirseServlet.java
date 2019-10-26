@@ -84,7 +84,7 @@ public class SuscribirseServlet extends HttpServlet {
         String nick = request.getParameter("usr");
         String nickV = (String) session.getAttribute("username");
         s.SeguirUsuario(nickV, nick);
-        request.getRequestDispatcher("Index2.jsp").include(request, response);
+        request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
     }
 
     /**

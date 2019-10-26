@@ -72,11 +72,12 @@ public class DejarDeSeguirServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
         FabricaSistema fa = new FabricaSistema();
         ISistema s = fa.getSistema();
         HttpSession session = request.getSession();
         String nick = request.getParameter("usr");
+        System.out.println("ACAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+nick);
         String nickV = (String) session.getAttribute("username");
         s.DejarSeguirUsr(nickV, nick);
         request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
