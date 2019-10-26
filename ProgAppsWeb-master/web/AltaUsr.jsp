@@ -107,13 +107,13 @@
                             <div class="input-field col s6">
                                 <p>
                                     <label>
-                                        <input class="with_gap" name="privado" type="radio"/>
+                                        <input class="with_gap" name="privado" value="privado" type="radio"/>
                                         <span>Privado</span>
                                     </label>
                                 </p>
                                 <p>
                                     <label>
-                                        <input class="with_gap" name="publico" type="radio"/>
+                                        <input class="with_gap" name="privado" value="publico" type="radio"/>
                                         <span>Publico</span>
                                     </label>
                                 </p>
