@@ -109,7 +109,7 @@ public class AltaUsrServlet extends HttpServlet {
             String Cpass = null;
             String nomC = null;
             String descC = null;
-            String img = null;
+            String img = "blank-profile-picture-973460_960_720.png";
             String priv = null;
             int dia = 0;
             int mes = 0;
@@ -125,11 +125,13 @@ public class AltaUsrServlet extends HttpServlet {
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
                         String filePath = uploadFolder + File.separator + fileName;
-                        img = fileName;
                         File uploadedFile = new File(filePath);
-                        System.out.println(filePath);
+                        System.out.println("ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+filePath);
                         // saves the file to upload directory
-                        item.write(uploadedFile);
+                        if (!fileName.equalsIgnoreCase("")) {
+                            img = fileName;
+                            item.write(uploadedFile);
+                        }
                     } else {
                         if (item.getFieldName().equalsIgnoreCase("NickIns")) {
                             username = item.getString();
@@ -138,8 +140,9 @@ public class AltaUsrServlet extends HttpServlet {
                             nom = item.getString();
                         }
                         if (item.getFieldName().equalsIgnoreCase("CorreoIns")) {
-                            if(item.getString()!=null)
-                            mail = item.getString();
+                            if (item.getString() != null) {
+                                mail = item.getString();
+                            }
                         }
                         if (item.getFieldName().equalsIgnoreCase("ApeIns")) {
                             ape = item.getString();
@@ -151,7 +154,9 @@ public class AltaUsrServlet extends HttpServlet {
                             Cpass = item.getString();
                         }
                         if (item.getFieldName().equalsIgnoreCase("NombreCanal")) {
-                            nomC = item.getString();
+                            if (!item.getString().equalsIgnoreCase("")) {
+                                nomC = item.getString();
+                            }
                         }
                         if (item.getFieldName().equalsIgnoreCase("DescCanal")) {
                             descC = item.getString();
@@ -172,11 +177,13 @@ public class AltaUsrServlet extends HttpServlet {
                     }
                 }
                 Fecha f = new Fecha(dia, mes, anio);
-                boolean privado;
-                if (priv == null) {
-                    privado = false;
-                } else {
-                    privado = true;
+                boolean privado = true;
+                if (priv != null) {
+                    if (priv.equalsIgnoreCase("privado")) {
+                        privado = true;
+                    } else {
+                        privado = false;
+                    }
                 }
                 if (username == null || mail == null) {
                     request.getRequestDispatcher("AltaUsr.jsp").include(request, response);
@@ -191,6 +198,9 @@ public class AltaUsrServlet extends HttpServlet {
                             request.getRequestDispatcher("AltaUsr.jsp").include(request, response);
                             out.print("<p style='color: red; font-size: larger;'>Contraseñas no coinciden</p>");
                         } else {
+                            if(nomC==null){
+                                nomC=username;
+                            }
                             s.AltaUsuarioWeb(username, nom, ape, mail, pass, f, nomC, descC, img, privado);
                             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                             rd.forward(request, response);

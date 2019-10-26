@@ -85,6 +85,7 @@ public class ModDataVidServlet extends HttpServlet {
         String descV = request.getParameter("DescVideo");
         String cate = request.getParameter("categorias");
         Fecha f = null;
+        String priv = request.getParameter("privado");
         if (!request.getParameter("Fdia").equalsIgnoreCase("") && !request.getParameter("Fmes").equalsIgnoreCase("") && !request.getParameter("Fanio").equalsIgnoreCase("")) {
             int dia = Integer.parseInt(request.getParameter("Fdia"));
             int mes = Integer.parseInt(request.getParameter("Fmes"));
@@ -97,6 +98,8 @@ public class ModDataVidServlet extends HttpServlet {
         boolean Auxdesc = false;
         boolean Auxf = false;
         boolean Auxcat = false;
+        boolean Auxpriv = false;
+        boolean privado = true;
 
         try {
             System.out.println(nombre);
@@ -127,6 +130,10 @@ public class ModDataVidServlet extends HttpServlet {
                     Auxurl = true;
                 }
             }
+            if (!priv.equalsIgnoreCase("")) {
+                Auxpriv = true;
+            }
+            
             if (!descV.equalsIgnoreCase("")) {
                 if (!descV.equalsIgnoreCase(dtvid.getDescripcion())) {
                     Auxdesc = true;
@@ -141,6 +148,17 @@ public class ModDataVidServlet extends HttpServlet {
                 if (!cate.equalsIgnoreCase(cat)) {
                     Auxcat = true;
                 }
+            }
+            
+            if(Auxpriv == true){
+                if(priv.equalsIgnoreCase("privado")){
+                    privado = true;
+                }
+                else
+                {
+                    privado = false;
+                }
+                s.ModificarPrivVideo(nick, nombre, privado);
             }
 
             if (Auxdur == true) {

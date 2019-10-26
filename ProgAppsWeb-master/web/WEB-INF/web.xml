@@ -68,6 +68,10 @@
         <servlet-name>Controller</servlet-name>
         <servlet-class>Controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModLDRP</servlet-name>
+        <servlet-class>ModLDRP</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModLDRP</servlet-name>
+        <url-pattern>/ModLDRP</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
