@@ -49,7 +49,7 @@
                     <input class="inicio" type="button" value="Iniciar Sesión"/>
                 </a>
             </h4>
-            <a href="index.html" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
+            <a href="HomePage.jsp" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
         </div>
         <ul>
             <li><a href="Login.jsp" class="a1">Mi Perfil</a></li>

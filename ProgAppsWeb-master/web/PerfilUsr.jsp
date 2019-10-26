@@ -191,7 +191,7 @@
 
             <div class="tab">
                 <input type="radio" id="tab-5" name="tab-group-1">
-                <label for="tab-4">Info</label>
+                <label for="tab-5">Info</label>
 
                 <div class="content">
                     <ul>    

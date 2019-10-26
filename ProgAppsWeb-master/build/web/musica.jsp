@@ -65,7 +65,7 @@
                         }
                         if (dtlr != null) {
                             for (DtLR dtlista : dtlr) {%>
-            <li><a href="ListaUsr.jsp?value=<%=dtlista.getNombre()%>&usr=<%=dtlista.getPropietario()%>"><%=dtlista.getNombre()%></a></li> 
+            <li><a href="Lista.jsp?value=<%=dtlista.getNombre()%>&usr=<%=dtlista.getPropietario()%>"><%=dtlista.getNombre()%></a></li> 
         </ul>
         <%}
             }
