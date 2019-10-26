@@ -56,8 +56,16 @@
                 if (nick != null) {%>
         <form action="SuscribirseServlet" method="post">
             <input type="hidden" id="usr" name="usr" value="<%=prop%>">
+            <% if (!s.LoSigue(nick, prop)) {%>
             <input name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
         </form>
+
+        <form action="DejarDeSeguirServlet" method="post">
+            <input type="hidden" id="usr" name="usr" value="<%=prop%>">
+            <%} else {%>
+            <input name="Desuscribirse" type="submit" class="titulos" value="Desuscribirse">
+        </form>
+        <%}%>
         <%
         } else {%> 
         <a href="Login.jsp" target="_parent"><input name="Suscribirse" type="submit" class="titulos" value="Suscribirse"></a>
@@ -153,7 +161,7 @@
             </div>
 
             <div class="tab">
-                <input type="radio" id="tab-5" name="tab-group-1">
+                <input type="radio" id="tab-4" name="tab-group-1">
                 <label for="tab-4">Seguidores</label>
 
                 <div class="content">
@@ -181,7 +189,7 @@
             </div>
 
             <div class="tab">
-                <input type="radio" id="tab-4" name="tab-group-1">
+                <input type="radio" id="tab-5" name="tab-group-1">
                 <label for="tab-4">Info</label>
 
                 <div class="content">
