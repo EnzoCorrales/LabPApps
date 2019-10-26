@@ -61,7 +61,7 @@
                         </div>
                     </form>
                 </div>
-                <a href="index.html" title="Inicio" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a>
+                <a href="HomePage.jsp" title="Inicio" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a>
             </div>
         </form>
     </body>

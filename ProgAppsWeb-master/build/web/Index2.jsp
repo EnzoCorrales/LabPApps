@@ -3,6 +3,7 @@
     Created on : Oct 12, 2019, 9:28:31 PM
     Author     : kangaru
 --%>
+<%@page import="DT.DtCategoria"%>
 <%@page import="DT.DtUsuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="DT.DtLR"%>
@@ -85,9 +86,15 @@
                 %>
             <li><a href="Lista.jsp?value=<%=nombreLR%>&usr=<%=prop%>" target="iFrame"><%=nombreLR%></a></li>
                 <% }%>
-            <li><a href="musica.jsp?value=Música" target="iFrame">Música</a></li>
-            <li><a href="musica.jsp?value=Videojuegos" target="iFrame">Juegos</a></li>
-            <li><a href="musica.jsp?value=Deporte" target="iFrame" class="a1">Deportes</a></li>
+            <%
+                    Collection<DtCategoria> listadtc = s.ListaCategorias();
+                    Iterator<DtCategoria> it2 = listadtc.iterator();
+                    while (it2.hasNext()) {
+                        DtCategoria dtc = it2.next();
+                        String cat = dtc.getCategoria();
+                %>
+            <li><a href="musica.jsp?value=<%=cat%>" target="iFrame"><%=cat%></a></li>
+            <% }%>
             <li><a href="Login.jsp">Salir</a></li>
         </ul>
         <div class="Iframes">
