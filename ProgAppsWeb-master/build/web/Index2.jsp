@@ -74,7 +74,6 @@
             <li><a href="MiPerfil.jsp" target="iFrame" class="a1">Mi Perfil</a></li>
             <li><a href="AltaVideo.jsp" target="iFrame">Subir Video</a></li>
             <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
-            <li><a href="Lista.jsp?value=Megusta" target="iFrame">Me gusta</a></li>
                 <%
                     String user = (String) sesion.getAttribute("username");
                     Collection<DtLR> listas = s.ListaListaReproducion(user);

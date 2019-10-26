@@ -4,6 +4,8 @@
     Author     : gabrixstar
 --%>
 
+<%@page import="DT.DtLR"%>
+<%@page import="DT.DtCategoria"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="DT.DtVideo"%>
 <%@page import="java.util.Collection"%>
@@ -32,8 +34,22 @@
             String nombre = request.getParameter("value");
             String nick = request.getParameter("usr");%>
         <h2><%=nombre%> <a href="ModDataLR.jsp?value=<%=nombre%>&usr=<%=nick%>" title="Modificar lista" class="waves-effect waves-teal btn-flat btn-large"><i class="material-icons">edit</i></a></h2>
+        Categorias:
         <%
-            String logged = (String) session.getAttribute("username");
+            FabricaSistema f = new FabricaSistema();
+            ISistema s = f.getSistema();
+            DtLR dtlr = s.getDataLR(nick, nombre);
+            Collection<String> listacats = dtlr.getCategoria();
+            if (listacats != null) {
+                Iterator<String> itcats = listacats.iterator();
+                while (itcats.hasNext()) {
+                    String cat = itcats.next();%>
+                <%=cat%>/
+                <%}
+        } else {%>
+            no tiene
+        <%}%>
+        <%String logged = (String) session.getAttribute("username");
             if (logged != null) {
                 if (logged.equalsIgnoreCase(nick)) {%>
         <p><a href="AgregarVideo.jsp?value=<%=nombre%>&usr=<%=nick%>" title="Agregar video" class="ngl btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a></p>
@@ -44,8 +60,6 @@
         <%
             String Auxurl;
             String name;
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
             Collection<DtVideo> videosLR = s.getDataVideosLR(nick, nombre);
             Iterator<DtVideo> it = videosLR.iterator();%>
         <%while (it.hasNext()) {
