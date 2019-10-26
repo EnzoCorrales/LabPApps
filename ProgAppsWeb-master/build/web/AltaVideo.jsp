@@ -46,6 +46,7 @@
                             }%>
                     <option value="<%=c%>"><%=c%></option>
                     <%}%>
+                    <option value="" selected="selected"></option>
                 </select>
             </p>
             <p class="center-content">
