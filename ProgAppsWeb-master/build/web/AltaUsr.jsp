@@ -24,12 +24,6 @@
         <link rel="stylesheet" type="text/css" href="AltaUsrS.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type="text/javascript" src="/UyTube2/js/materialize.js"></script>
-        <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('select');
-                var instances = M.FormSelect.init(elems);
-            });
-        </script>
     </head>
     <body>
         <form action="AltaUsrServlet" method="post" enctype="multipart/form-data">
@@ -98,9 +92,14 @@
                         </div>
                         <div class="row">
                             <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="fileChooser" type="file" name="dataFile" class="validate" required>
-                                    <label for="fileChooser">Ingresar Imagen</label>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Ingresar Imagen</span>
+                                        <input id="fileChooser" type="file" name="dataFile" accept="image/*">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
                                 </div>
                             </div>
                         </div>

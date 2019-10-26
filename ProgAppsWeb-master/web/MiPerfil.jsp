@@ -35,6 +35,9 @@
                 DtCanal dtcusr = dtusr.getDataCanal();
                 c = dtcusr.getNombre();
                 img = dtusr.getImagen();
+                if(img==null){
+                    img="blank-profile-picture-973460_960_720.png";
+                }
             }
         %>
         <h1 class="titulos"><img src="Imagenes/<%=img%>" class="imgPerfil">  <%=nick%> </h1>

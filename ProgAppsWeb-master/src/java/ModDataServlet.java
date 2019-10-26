@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import Controladores.Sistema;
 import DT.DtCanal;
 import DT.DtUsuario;
 import Entidades.Fecha;
@@ -19,11 +18,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 /**
  *
  * @author kangaru
  */
 public class ModDataServlet extends HttpServlet {
+
+    private static final String DATA_DIRECTORY = "Imagenes";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,105 +74,196 @@ public class ModDataServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sesion = request.getSession();
-        String nick = (String) sesion.getAttribute("username");
         PrintWriter out = response.getWriter();
-        FabricaSistema fa = new FabricaSistema();
-        ISistema s = fa.getSistema();
-        String nom = request.getParameter("NameIns");
-        String ape = request.getParameter("ApeIns");
-        String pass = request.getParameter("PassIns");
-        String Cpass = request.getParameter("CPassIns");
-        String nomC = request.getParameter("NombreCanal");
-        String descC = request.getParameter("DescCanal");
-        String img = request.getParameter("IngImg");
-        Fecha f = null;
-        if (!request.getParameter("Fdia").equalsIgnoreCase("")) {
-            int dia = Integer.parseInt(request.getParameter("Fdia"));
-            int mes = Integer.parseInt(request.getParameter("Fmes"));
-            int anio = Integer.parseInt(request.getParameter("Fanio"));
-            f = new Fecha(dia, mes, anio);
-        }
-        boolean Auxnom = false;
-        boolean Auxape = false;
-        boolean Auxpass = false;
-        boolean Auxnomc = false;
-        boolean Auxdesc = false;
-        boolean Auximg = false;
-        boolean Auxf = false;
-        DtUsuario dtusr = s.getDataUsuario(nick);
-        DtCanal dtc = dtusr.getDataCanal();
-        if (!nom.equalsIgnoreCase("")) {
-            if (!nom.equalsIgnoreCase(dtusr.getNombre())) {
-                Auxnom = true;
-            }
-        }
-        if (!ape.equalsIgnoreCase("")) {
-            if (!ape.equalsIgnoreCase(dtusr.getApellido())) {
-                Auxape = true;
-            }
-        }
-        if (!pass.equalsIgnoreCase("")) {
-            if (!pass.equalsIgnoreCase(dtusr.getNombre())) {
-                Auxpass = true;
-            }
-        }
-        if (!nomC.equalsIgnoreCase("")) {
-            if (!nomC.equalsIgnoreCase(dtc.getNombre())) {
-                Auxnomc = true;
-            }
-        }
-        if (!descC.equalsIgnoreCase("")) {
-            if (!descC.equalsIgnoreCase(dtc.getDescripcion())) {
-                Auxdesc = true;
-            }
-        }
-        if (!img.equalsIgnoreCase("")) {
-            if (!img.equalsIgnoreCase(dtusr.getImagen())) {
-                Auximg = true;
-            }
-        }
-        if (f != null) {
-            if (f != dtusr.getFecha()) {
-                Auxf = true;
-            }
-        }
 
-        if (Auxnom == true) {
-            s.ModificarNombreU(nick, nom);
-        }
-        if (Auxape == true) {
-            s.ModificarApellidoU(nick, ape);
-        }
-        if (Auxpass == true) {
-            if (!pass.equalsIgnoreCase(Cpass)) {
-                request.getRequestDispatcher("ModDataUsr.jsp").include(request, response);
-                out.print("<p style='color: red; font-size: larger;'>Contraseñas no coinciden</p>");
+        // Check that we have a file upload request
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
-            } else {
-                s.ModificarNombreU(nick, pass);
+        if (isMultipart) {
+
+            // Create a factory for disk-based file items
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            // Sets the size threshold beyond which files are written directly to
+            // disk.
+            //factory.setSizeThreshold(MAX_MEMORY_SIZE);
+            // Sets the directory used to temporarily store files that are larger
+            // than the configured size threshold. We use temporary directory for
+            // java
+            factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+            // constructs the folder where uploaded file will be stored
+            String uploadFolder = getServletContext().getRealPath("")
+                    + File.separator + DATA_DIRECTORY;
+
+            // Create a new file upload handler
+            ServletFileUpload upload = new ServletFileUpload(factory);
+
+            // Set overall request size constraint
+            //upload.setSizeMax(MAX_REQUEST_SIZE);
+            HttpSession sesion = request.getSession();
+            String nick = (String) sesion.getAttribute("username");
+            FabricaSistema fa = new FabricaSistema();
+            ISistema s = fa.getSistema();
+            String nom = null;
+            String ape = null;
+            String pass = null;
+            String Cpass = null;
+            String nomC = null;
+            String descC = null;
+            String img = null;
+            String priv = null;
+            int dia = 0;
+            int mes = 0;
+            int anio = 0;
+            boolean Auxnom = false;
+            boolean Auxape = false;
+            boolean Auxpass = false;
+            boolean Auxnomc = false;
+            boolean Auxdesc = false;
+            boolean Auximg = false;
+            boolean Auxf = false;
+            boolean Auxpriv = false;
+
+            try {
+                // Parse the request
+                List items = upload.parseRequest(request);
+                Iterator iter = items.iterator();
+                while (iter.hasNext()) {
+                    FileItem item = (FileItem) iter.next();
+
+                    if (!item.isFormField()) {
+                        String fileName = new File(item.getName()).getName();
+                        String filePath = uploadFolder + File.separator + fileName;
+                        img = fileName;
+                        File uploadedFile = new File(filePath);
+                        // saves the file to upload directory
+                        if (!fileName.equalsIgnoreCase("")) {
+                            Auximg = true;
+                            item.write(uploadedFile);
+                        }
+                    } else {
+                        if (item.getFieldName().equalsIgnoreCase("NameIns")) {
+                            nom = item.getString();
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("ApeIns")) {
+                            ape = item.getString();
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("PassIns")) {
+                            pass = item.getString();
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("CPassIns")) {
+                            Cpass = item.getString();
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("NombreCanal")) {
+                            nomC = item.getString();
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("DescCanal")) {
+                            descC = item.getString();
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("privado")) {
+                            if (!item.getString().equalsIgnoreCase("")) {
+                                priv = item.getString();
+                            }
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("Fdia")) {
+                            if (!item.getString().equalsIgnoreCase("")) {
+                                dia = Integer.parseInt(item.getString());
+                            }
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("Fmes")) {
+                            if (!item.getString().equalsIgnoreCase("")) {
+                                mes = Integer.parseInt(item.getString());
+                            }
+                        }
+                        if (item.getFieldName().equalsIgnoreCase("Fanio")) {
+                            if (!item.getString().equalsIgnoreCase("")) {
+                                anio = Integer.parseInt(item.getString());
+                            }
+                        }
+
+                    }
+                }
+                Fecha f = null;
+                if (dia != 0 && mes != 0 && anio != 0) {
+                    f = new Fecha(dia, mes, anio);
+                    Auxf = true;
+                }
+                boolean privado = true;
+                if (priv != null) {
+                    Auxpriv = true;
+                    if (priv.equalsIgnoreCase("privado")) {
+                        privado = true;
+                    } else {
+                        privado = false;
+                    }
+                }
+
+                if (!nom.equalsIgnoreCase("")) {
+                    Auxnom = true;
+                }
+                if (!ape.equalsIgnoreCase("")) {
+                    Auxape = true;
+                }
+                if (!pass.equalsIgnoreCase("")) {
+                    Auxpass = true;
+                }
+                if (!nomC.equalsIgnoreCase("")) {
+                    Auxnomc = true;
+                }
+                if (!descC.equalsIgnoreCase("")) {
+                    Auxdesc = true;
+                }
+                if (f != null) {
+                    Auxf = true;
+                }
+
+                if (Auxnom == true) {
+                    s.ModificarNombreU(nick, nom);
+                }
+                if (Auxape == true) {
+                    s.ModificarApellidoU(nick, ape);
+                }
+                if (Auxpass == true) {
+                    if (!pass.equalsIgnoreCase(Cpass)) {
+                        request.getRequestDispatcher("ModDataUsr.jsp").include(request, response);
+                        out.print("<p style='color: red; font-size: larger;'>Contraseñas no coinciden</p>");
+
+                    } else {
+                        s.ModificarNombreU(nick, pass);
+                    }
+                }
+                if (Auxnomc == true) {
+                    s.ModificarNomC(nick, nomC);
+                }
+                if (Auxdesc == true) {
+                    s.ModificarDescC(nick, descC);
+                }
+                if (Auximg == true) {
+                    s.ModificarImagenU(nick, img);
+                }
+                if (Auxf == true) {
+                    s.ModificarFechaU(nick, f);
+                }
+                if (Auxpriv == true) {
+                    s.ModificarPrivC(nick, privado);
+                }
+                RequestDispatcher rd = request.getRequestDispatcher("ModDataUsr.jsp");
+                rd.forward(request, response);
+
+            } catch (FileUploadException ex) {
+                request.getRequestDispatcher("Login.jsp").include(request, response);
+                throw new ServletException(ex);
+            } catch (Exception ex) {
+                request.getRequestDispatcher("Login.jsp").include(request, response);
+                throw new ServletException(ex);
             }
+
         }
-        if (Auxnomc == true) {
-            s.ModificarNomC(nick, nomC);
-        }
-        if (Auxdesc == true) {
-            s.ModificarDescC(nick, descC);
-        }
-        if (Auximg == true) {
-            s.ModificarImagenU(nick, img);
-        }
-        if (Auxf == true) {
-            s.ModificarFechaU(nick, f);
-        }
-        RequestDispatcher rd = request.getRequestDispatcher("MiPerfil.jsp");
-        rd.forward(request, response);
     }
 
-
-@Override
-        public String getServletInfo() {
+    @Override
+    public String getServletInfo() {
         return "Short description";
     }
 }
-

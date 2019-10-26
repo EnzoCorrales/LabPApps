@@ -15,7 +15,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -86,7 +85,6 @@ public class AltaUsrServlet extends HttpServlet {
             // Sets the size threshold beyond which files are written directly to
             // disk.
             //factory.setSizeThreshold(MAX_MEMORY_SIZE);
-
             // Sets the directory used to temporarily store files that are larger
             // than the configured size threshold. We use temporary directory for
             // java
@@ -112,6 +110,7 @@ public class AltaUsrServlet extends HttpServlet {
             String nomC = null;
             String descC = null;
             String img = null;
+            String priv = null;
             int dia = 0;
             int mes = 0;
             int anio = 0;
@@ -139,6 +138,7 @@ public class AltaUsrServlet extends HttpServlet {
                             nom = item.getString();
                         }
                         if (item.getFieldName().equalsIgnoreCase("CorreoIns")) {
+                            if(item.getString()!=null)
                             mail = item.getString();
                         }
                         if (item.getFieldName().equalsIgnoreCase("ApeIns")) {
@@ -165,11 +165,13 @@ public class AltaUsrServlet extends HttpServlet {
                         if (item.getFieldName().equalsIgnoreCase("Fanio")) {
                             anio = Integer.parseInt(item.getString());
                         }
+                        if (item.getFieldName().equalsIgnoreCase("privado")) {
+                            priv = item.getString();
+                        }
 
                     }
                 }
-                Fecha f = new Fecha(9, 9, 2000);
-                String priv = request.getParameter("privado");
+                Fecha f = new Fecha(dia, mes, anio);
                 boolean privado;
                 if (priv == null) {
                     privado = false;

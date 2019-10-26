@@ -30,23 +30,26 @@
     </head>
     <body>
         <%
-                String prop = request.getParameter("usr");
-                String nick = (String) session.getAttribute("username");
-                FabricaSistema f = new FabricaSistema();
-                ISistema s = f.getSistema();
-                String c = null;
-                String ape = null;
-                String desc = null;
-                String img = null;
-                int d=0,m=0,a=0;
-                if (prop != null) {
-                    DtUsuario dtusr = s.getDataUsuario(prop);
-                    DtCanal dtcusr = dtusr.getDataCanal();
-                    c = dtcusr.getNombre();
-                    ape = dtusr.getApellido();
-                    desc = dtcusr.getDescripcion();
-                    img = dtusr.getImagen();
+            String prop = request.getParameter("usr");
+            String nick = (String) session.getAttribute("username");
+            FabricaSistema f = new FabricaSistema();
+            ISistema s = f.getSistema();
+            String c = null;
+            String ape = null;
+            String desc = null;
+            String img = null;
+            int d = 0, m = 0, a = 0;
+            if (prop != null) {
+                DtUsuario dtusr = s.getDataUsuario(prop);
+                DtCanal dtcusr = dtusr.getDataCanal();
+                c = dtcusr.getNombre();
+                ape = dtusr.getApellido();
+                desc = dtcusr.getDescripcion();
+                img = dtusr.getImagen();
+                if (img == null) {
+                    img = "blank-profile-picture-973460_960_720.png";
                 }
+            }
         %>
         <h1 class="titulos"><img src="Imagenes/<%=img%>" class="imgPerfil">  <%=prop%></h1>
             <%

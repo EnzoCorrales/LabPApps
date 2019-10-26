@@ -46,24 +46,27 @@
         </form>
         <div class="titulos">
             <h4 class="linea">-</h4>
-                <%
-                    FabricaSistema f = new FabricaSistema();
-                    ISistema s = f.getSistema();
-                    HttpSession sesion = request.getSession(false);
-                    String img = null;
-                    if (sesion != null) {
-                        String user = (String) sesion.getAttribute("username");
-                        DtUsuario usrdt = s.getDataUsuario(user);
-                        img = usrdt.getImagen();
-                %>
-                <h2 class="derecha"><a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="Imagenes/<%=img%>" class="imgPerfil"><%=user%></h2>
-                <%} else {%>
-            </a>
-            <a href="Login.jsp">
-                <input type="button" value="Iniciar Sesión"/>
-            </a>
-            <%}%>
-            <a href="Index2.jsp" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
+            <%
+                FabricaSistema f = new FabricaSistema();
+                ISistema s = f.getSistema();
+                HttpSession sesion = request.getSession(false);
+                String img = null;
+                if (sesion != null) {
+                    String user = (String) sesion.getAttribute("username");
+                    DtUsuario usrdt = s.getDataUsuario(user);
+                    img = usrdt.getImagen();
+                    if (img == null) {
+                        img = "blank-profile-picture-973460_960_720.png";
+                    }
+            %>
+            <h2 class="derecha"><a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="Imagenes/<%=img%>" class="imgPerfil"><%=user%></h2>
+                    <%} else {%>
+                </a>
+                <a href="Login.jsp">
+                    <input type="button" value="Iniciar Sesión"/>
+                </a>
+                <%}%>
+                <a href="Index2.jsp" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
         </div>
         <ul>
             <li><a href="index.jsp?value=todos" target="iFrame" class="a1">Inicio</a></li>  
