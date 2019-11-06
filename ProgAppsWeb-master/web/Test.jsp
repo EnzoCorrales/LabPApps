@@ -4,6 +4,7 @@
     Author     : luke
 --%>
 
+<%@page import="java.io.IOException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,8 +18,14 @@
     <%
 	WebClient.SistemaService service = new WebClient.SistemaService();
 	WebClient.Sistema port = service.getSistemaPort();
+        
 	java.util.List<WebClient.DtCanal> result = port.listaCanales();
-	out.println("Result = " + result);
+	for(WebClient.DtCanal canal : result) {
+            try {
+                out.print(canal.getNombre() + "<br>");    
+            }
+            catch(IOException ex) { }
+        }
     %>
     <%-- end web service invocation --%><hr/>
 
