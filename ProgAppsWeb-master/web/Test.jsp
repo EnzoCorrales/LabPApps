@@ -16,11 +16,11 @@
         <h1>Hello World!</h1>
          <%-- start web service invocation --%><hr/>
     <%
-	WebClient.SistemaService service = new WebClient.SistemaService();
-	WebClient.Sistema port = service.getSistemaPort();
+	WSClient.SistemaService service = new WSClient.SistemaService();
+	WSClient.Sistema port = service.getSistemaPort();
         
-	java.util.List<WebClient.DtCanal> result = port.listaCanales();
-	for(WebClient.DtCanal canal : result) {
+	java.util.List<WSClient.DtCanal> result = port.listaCanales();
+	for(WSClient.DtCanal canal : result) {
             try {
                 out.print(canal.getNombre() + "<br>");    
             }

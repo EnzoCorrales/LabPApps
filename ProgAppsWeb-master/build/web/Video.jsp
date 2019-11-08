@@ -4,8 +4,12 @@
     Author     : tecnologo
 --%>
 
+<%@page import="java.lang.String"%>
+<%@page import="com.sun.enterprise.web.connector.grizzly.standalone.Main.port"%>
+<%@page import="org.glassfish.external.amx.AMXUtil.prop(String, String)"%>
+<%@page import="sun.net.www.http.KeepAliveCache.result"%>
 <%@page import="Entidades.*"%>
-<%@page import="DT.*"%>
+<%@page import="WSClient.*"%>
 <%@page import="Interfaz.ISistema"%>
 <%@page import="Fabrica.FabricaSistema"%>
 <%@page import="java.util.*"%>
@@ -26,40 +30,84 @@
             String nombre = request.getParameter("value");
             String nick = request.getParameter("usr");
             String usuario = (String) session.getAttribute("username");
-            FabricaSistema fa = new FabricaSistema();
+            /*FabricaSistema fa = new FabricaSistema();
             ISistema s = fa.getSistema();
-            DtVideo vid = s.getDataVideo(nombre, nick);
-            
+            DtVideo vid = s.getDataVideo(nombre, nick);*/
+            try {
+                WSClient.SistemaService service = new WSClient.SistemaService();
+                WSClient.Sistema port = service.getSistemaPort();
+                // TODO initialize WS operation arguments here
+                java.lang.String arg0 = nombre;
+                java.lang.String arg1 = nick;
+                // TODO process result here
+                WSClient.DtVideo result = port.getDataVideo(nombre, nick);
+            } catch (Exception ex) {
+                // TODO handle custom exceptions here
+            }
         %>
+        <%-- end web service invocation --%><hr/>
+
+
         <%
             if (request.getParameter("Like") != null) {
-                s.ValorarVideo(nick, nombre, usuario, true);
+                try {
+                    WSClient.SistemaService service = new WSClient.SistemaService();
+                    WSClient.Sistema port = service.getSistemaPort();
+                    // TODO initialize WS operation arguments here
+                    java.lang.String arg0 = nick;
+                    java.lang.String arg1 = nombre;
+                    java.lang.String arg2 = usuario;
+                    boolean arg3 = true;
+                    port.valorarVideo(arg0, arg1, arg2, arg3);
+                } catch (Exception ex) {
+                    // TODO handle custom exceptions here
+                }
             }
 
             if (request.getParameter("Dislike") != null) {
-                s.ValorarVideo(nick, nombre, usuario, false);
+                try {
+                    WSClient.SistemaService service = new WSClient.SistemaService();
+                    WSClient.Sistema port = service.getSistemaPort();
+                    // TODO initialize WS operation arguments here
+                    java.lang.String arg0 = nick;
+                    java.lang.String arg1 = nombre;
+                    java.lang.String arg2 = usuario;
+                    boolean arg3 = false;
+                    port.valorarVideo(arg0, arg1, arg2, arg3);
+                } catch (Exception ex) {
+                    // TODO handle custom exceptions here
+                }
             }
-            
-            if(request.getParameter("nickC") != null){
-                s.AgregarRespuesta(nick, nombre, request.getParameter("nickC"), request.getParameter("comC"), usuario,request.getParameter("com"));
-            }
-        %>
-        <div>
 
-            <%if (usuario != null) {
+            DtVideo vid = null;
+            if (request.getParameter("nickC") != null) {
+                    WSClient.SistemaService service = new WSClient.SistemaService();
+                    WSClient.Sistema port = service.getSistemaPort();
+                    // TODO initialize WS operation arguments here
+                    java.util.List<WSClient.DtVideo> result = port.listaVideos(nick);
+                    java.lang.String arg0 = nick;
+                    java.lang.String arg1 = nombre;
+                    java.lang.String arg2 = request.getParameter("nickC");
+                    java.lang.String arg3 = request.getParameter("comC");
+                    java.lang.String arg4 = usuario;
+                    java.lang.String arg5 = request.getParameter("com");
+                    port.agregarRespuesta(arg0, arg1, arg2, arg3, arg4, arg5);
+                    vid = port.getDataVideo(arg0, arg1); 
+                    }
+            if (usuario != null) {
                     if (usuario.equalsIgnoreCase(vid.getPropietario())) {%>
             <p class="titulo"><a href="ModDataVid.jsp?NombreVideo=<%=nombre%>">Modificar datos</a></p>  
             <%}
                 }%>
             <%
-                String cat = vid.getCategoria();
-                String dur = vid.getDuracion();
-                String url = vid.getURL();
-                String desc = vid.getDescripcion();
+                String cat = port.getDataVideo().getCategoria();
+                String dur = port.getDataVideo().getDuracion();
+                String url = port.getDataVideo().getURL();
+                String desc = port.getDataVideo().getDescripcion();
                 String Auxurl = null;
-                String prop = vid.getPropietario();
+                String prop = port.getDataVideo().getPropietario();
                 Auxurl = url.substring(17, 28);
-                session.setAttribute("vid", vid);
+                session.setAttribute("vid",vid);
                 session.setAttribute("value", prop);
             %>
             <iframe id="iFrame" class="frame" name="iFrame" width="900" height="500" src="https://www.youtube.com/embed/<%=Auxurl%>" frameborder="0" scrolling="no"></iframe> 
@@ -67,6 +115,8 @@
             <%if (usuario != null) {%>
             <form name="form" method="post">
                 <input type="hidden" name="Like">
+                <a href="../build/generated-sources/jax-ws/WSClient/UTieneValoracionI.java"></a>
+                
                 <%if (s.UTieneValoracionI(nick, nombre, usuario, true) == true) {%>
                 <button class="waves-effect waves-teal btn-flat blue" type="submit" onclick="buttonL()">
                     <i class="material-icons">thumb_up</i>
@@ -218,23 +268,23 @@
                                 <div class="comment-box">
                                     <div class="comment-head">
                                         <h6 class="comment-name"><a href=""><%=com.getNick()%></a></h6>
-                                        <%if (usuario != null) {%>
+                                            <%if (usuario != null) {%>
                                         <a href="Responder.jsp?&value=<%=nombre%>&usr=<%=nick%>&nickC=<%=com.getNick()%>&comC=<%=com.getTexto()%>">
                                             <button class="waves-effect waves-teal btn-flat" type="submit">
                                                 <i class="material-icons">reply</i>
                                             </button>
-                                        <a/>
-                                        <%} else {%>
-                                        <input type="text" name="Comentario" class="validate">
-                                        <a href="Login.jsp" target="_parent">
-                                            <button class="waves-effect waves-teal btn-flat blue" type="submit">Responder
-                                                <i class="material-icons right">send</i>
-                                            </button>
-                                        </a><%}%>
+                                            <a/>
+                                            <%} else {%>
+                                            <input type="text" name="Comentario" class="validate">
+                                            <a href="Login.jsp" target="_parent">
+                                                <button class="waves-effect waves-teal btn-flat blue" type="submit">Responder
+                                                    <i class="material-icons right">send</i>
+                                                </button>
+                                            </a><%}%>
                                     </div>
                                     <div class="comment-content">
                                         <%="@" + resp.getNick() + " " + com.getTexto()%>
-                                        
+
                                     </div>
                                 </div>
                             </li>
@@ -266,6 +316,6 @@
                     responderR.submit();
                 }
             </script>
-        </div>
+        
     </body>
 </html>

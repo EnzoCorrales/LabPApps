@@ -55,17 +55,19 @@
             <li><a href="Login.jsp" class="a1">Mi Perfil</a></li>
             <li><a href="Login.jsp">Subir Video</a></li>
             <li><a href="HomePage.jsp" class="a1">Ver Videos</a></li>
-                <%
-                    FabricaSistema f = new FabricaSistema();
-                    ISistema s = f.getSistema();
-                    Collection<DtCategoria> listadtc = s.ListaCategorias();
-                    Iterator<DtCategoria> it = listadtc.iterator();
-                    while (it.hasNext()) {
-                        DtCategoria dtc = it.next();
-                        String cat = dtc.getCategoria();
+            <%
+                try {
+                    WSClient.SistemaService service = new WSClient.SistemaService();
+                    WSClient.Sistema port = service.getSistemaPort();
+                    // TODO process result here
+                    java.util.List<WSClient.DtCategoria> result = port.listaCategorias();
+                    for (WSClient.DtCategoria cat : result) {%>
+            <li><a href="musica.jsp?value=<%=cat.getCategoria()%>" target="iFrame"><%=cat.getCategoria()%></a></li>
+                <% }
+            } catch (Exception ex) {
+            // TODO handle custom exceptions here
+            }
                 %>
-            <li><a href="musica.jsp?value=<%=cat%>" target="iFrame"><%=cat%></a></li>
-            <% }%>
             <li><a href="Login.jsp">Salir</a></li>
         </ul>
         <div class="Iframes">

@@ -4,9 +4,9 @@
   </services>
   <clients>
     <client name="WebService">
-      <wsdl-url>http://localhost:8000/WebService?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8000/WebService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">WebClient</package-name>
+      <wsdl-url>http://uytube.uy:8000/WebService?wsdl</wsdl-url>
+      <local-wsdl-file>uytube.uy_8000/WebService.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">WSClient</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -23,7 +23,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8000/WebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://uytube.uy:8000/WebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -35,7 +35,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>WebClient</wsimport-option-value>
+          <wsimport-option-value>WSClient</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
