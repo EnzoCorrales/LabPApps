@@ -18,86 +18,89 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>UyTube</title>
     </head>
     <body>
-        <form action="Busqueda" method="post" target="iFrame">
-            <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="Buscar" name="Buscar">
-                    <button type="submit" class="searchButton" >
-                        Buscar
-                    </button>
-                    <div class="Filtros">
-                        <select name="Ordenamiento">
-                            <option value="Opcion">Seleccione una opción</option>
-                            <option value="Alfabeticamente">Alfábeticamente(A-Z a-z)</option>
-                            <option value="Anio">Año(descendente)</option>
-                        </select>
-                        <br/>
-                        <select name="Filtro">
-                            <option value="Opcion">Seleccione una opcion</option>
-                            <option value="Videos">Videos</option>
-                            <option value="Listas">Listas de Reproducción</option>
-                            <option value="Canales">Canales</option>
-                        </select>
+        <header>
+            <form action="Busqueda" method="post" target="iFrame">
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" placeholder="Buscar" name="Buscar">
+                        <button type="submit" class="searchButton" >
+                            <i class="material-icons prefix">search</i>
+                        </button>
+                        <div class="Filtro">
+                            <select name="Ordenamiento" class="Filtros">
+                                <option value="Opcion">Seleccione una opción</option>
+                                <option value="Alfabeticamente">Alfábeticamente(A-Z a-z)</option>
+                                <option value="Anio">Año(descendente)</option>
+                            </select>
+                            <br/>
+                            <select name="Filtro" class="Filtros">
+                                <option value="Opcion">Seleccione una opcion</option>
+                                <option value="Videos">Videos</option>
+                                <option value="Listas">Listas de Reproducción</option>
+                                <option value="Canales">Canales</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
-        <div class="titulos">
-            <h4 class="linea">-</h4>
-            <%
-                FabricaSistema f = new FabricaSistema();
-                ISistema s = f.getSistema();
-                HttpSession sesion = request.getSession(false);
-                String img = null;
-                if (sesion != null) {
-                    String user = (String) sesion.getAttribute("username");
-                    DtUsuario usrdt = s.getDataUsuario(user);
-                    img = usrdt.getImagen();
-                    if (img == null) {
-                        img = "blank-profile-picture-973460_960_720.png";
-                    }
-            %>
-            <h2 class="derecha"><a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="Imagenes/<%=img%>" class="imgPerfil"><%=user%></h2>
-                    <%} else {%>
-                </a>
-                <a href="Login.jsp">
-                    <input type="button" value="Iniciar Sesión"/>
-                </a>
-                <%}%>
-                <a href="Index2.jsp" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
-        </div>
-        <ul>
-            <li><a href="index.jsp?value=todos" target="iFrame" class="a1">Inicio</a></li>  
-            <li><a href="MiPerfil.jsp" target="iFrame" class="a1">Mi Perfil</a></li>
-            <li><a href="AltaVideo.jsp" target="iFrame">Subir Video</a></li>
-            <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
+            </form>
+            <div class="titulos">
+                <h4 class="linea">-</h4>
                 <%
-                    String user = (String) sesion.getAttribute("username");
-                    Collection<DtLR> listas = s.ListaListaReproducion(user);
-                    Iterator<DtLR> it = listas.iterator();
-                    while (it.hasNext()) {
-                        DtLR dtlr = it.next();
-                        String nombreLR = dtlr.getNombre();
-                        String prop = dtlr.getPropietario();
+                    FabricaSistema f = new FabricaSistema();
+                    ISistema s = f.getSistema();
+                    HttpSession sesion = request.getSession(false);
+                    String img = null;
+                    if (sesion != null) {
+                        String user = (String) sesion.getAttribute("username");
+                        DtUsuario usrdt = s.getDataUsuario(user);
+                        img = usrdt.getImagen();
+                        if (img == null) {
+                            img = "blank-profile-picture-973460_960_720.png";
+                        }
                 %>
-            <li><a href="Lista.jsp?value=<%=nombreLR%>&usr=<%=prop%>" target="iFrame"><%=nombreLR%></a></li>
-                <% }%>
-            <%
-                    Collection<DtCategoria> listadtc = s.ListaCategorias();
-                    Iterator<DtCategoria> it2 = listadtc.iterator();
-                    while (it2.hasNext()) {
-                        DtCategoria dtc = it2.next();
-                        String cat = dtc.getCategoria();
-                %>
-            <li><a href="musica.jsp?value=<%=cat%>" target="iFrame"><%=cat%></a></li>
-            <% }%>
-            <li><a href="Login.jsp">Salir</a></li>
-        </ul>
-        <div class="Iframes">
-            <iframe id="iFrame" name="iFrame" width="98%" height="700" src="index.jsp" ></iframe>
+                <h2 class="derecha"><a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="Imagenes/<%=img%>" class="imgPerfil"></h2>
+                        <%} else {%>
+                    </a>
+                    <a href="Login.jsp">
+                        <input type="button" value="Iniciar Sesión"/>
+                    </a>
+                    <%}%>
+                    <a href="Index2.jsp" class="izquierda"><img src="Imagenes/UyTube.png" class="izquierda"></a>
+            </div>
+        </header>
+        <div class="sidenav">
+            <ul>
+                <li><a href="index.jsp?value=todos" target="iFrame" class="a1">Inicio</a></li>  
+                <li><a href="MiPerfil.jsp" target="iFrame" class="a1">Mi Perfil</a></li>
+                <li><a href="AltaVideo.jsp" target="iFrame">Subir Video</a></li>
+                <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
+                    <%
+                        String user = (String) sesion.getAttribute("username");
+                        Collection<DtLR> listas = s.ListaListaReproducion(user);
+                        Iterator<DtLR> it = listas.iterator();
+                        while (it.hasNext()) {
+                            DtLR dtlr = it.next();
+                            String nombreLR = dtlr.getNombre();
+                            String prop = dtlr.getPropietario();
+                    %>
+                <li><a href="Lista.jsp?value=<%=nombreLR%>&usr=<%=prop%>" target="iFrame"><%=nombreLR%></a></li>
+                    <% }%>
+                    <%
+                        Collection<DtCategoria> listadtc = s.ListaCategorias();
+                        Iterator<DtCategoria> it2 = listadtc.iterator();
+                        while (it2.hasNext()) {
+                            DtCategoria dtc = it2.next();
+                            String cat = dtc.getCategoria();
+                    %>
+                <li><a href="musica.jsp?value=<%=cat%>" target="iFrame"><%=cat%></a></li>
+                    <% }%>
+                <li><a href="Login.jsp">Salir</a></li>
+            </ul>
         </div>
+        <iframe frameBorder="0" id="iFrame" name="iFrame" class="Iframes" src="index.jsp" ></iframe>
     </body>
 </html>
