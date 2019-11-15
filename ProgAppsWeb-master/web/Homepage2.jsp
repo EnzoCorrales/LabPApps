@@ -76,7 +76,7 @@
                 </h1>
                 <h4 class="derecha">
                     <a href="Login.jsp">
-                        <input class="inicio" type="button" value="Iniciar Sesión"/>
+                        <input class="derecha" type="button" value="Iniciar Sesión"/>
                     </a>
                 </h4>
                 <form action="Busqueda" method="post" target="iFrame">

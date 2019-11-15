@@ -156,7 +156,6 @@ a {
     top: 25px;
     transform: translate(-50%, -50%);
     z-index: 1;
-    display: visible;
 }
 
 
@@ -214,6 +213,7 @@ a {
     text-align: center;
     cursor: pointer;
     font-size: 20px;
+    right: 20px;
     top:-15px;
     left: 85%;
     padding:0;
@@ -254,7 +254,7 @@ a {
 
     .izquierda{
         position: fixed;
-        margin-left: -8%;
+        margin-left:0;
         max-width: 70px;
         max-height: 70px;
         width: auto;
@@ -300,8 +300,8 @@ a {
         padding: 14px 25px;
         text-align: center;
         text-decoration: none;
-        display: inline-block;
         cursor: pointer;
+        derecha: 0px;
     }
     .searchTerm:focus{
         color: #00B4CC;
@@ -330,10 +330,9 @@ a {
         position: fixed;
         text-align: center;
         cursor: pointer;
-        font-size: 20px;
-        top:-15px;
-        left: 85%;
-        padding:0;
+        top:15px;
+        left: 75%;
+        right: 25%;
     }
 
 }
@@ -354,5 +353,27 @@ a {
 
     .s-sidebar__nav ul {
         top: 1.3em;
+    }
+}
+
+@media (max-width: 320px){
+    .wrap{
+        display: none;  
+    }       
+    .izquierda{
+        display:none;   
+    }
+    .derecha{
+        z-index: 1;
+        left: 65%;
+        top: 5%;
+        bottom: 89%;
+        right: 35%;
+        width: 25%;
+    } 
+
+    .inicio{
+        right: 50px;
+        padding: 2px;
     }
 }
