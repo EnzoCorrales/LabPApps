@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
         <link type="text/css" rel="stylesheet" href="/UyTube2/css/materialize.css"  media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href="LogInStyle.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,6 +22,7 @@
         <title>Log In</title>
     </head>
     <body>
+        <img src="Imagenes/UyTube.png" class="titulos" width="400" height="400">
         <%
             session.invalidate();
             String si = (String) request.getAttribute("conf");
@@ -49,14 +50,14 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <button class="btn btn-large btn-register waves-effect waves-light blue" type="submit" name="action">
+                                <button class="btn btn-large btn-register waves-effect waves-light pink" type="submit" name="action" class="btn-color">
                                     Login
                                 </button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6 m6 l6">
-                                <p class="margin medium-small"><a href="AltaUsr.jsp">Crear cuenta</a></p>
+                                <p class="margin medium-small" ><a href="AltaUsr.jsp" class="btn-color">Crear cuenta</a></p>
                             </div>
                         </div>
                     </form>

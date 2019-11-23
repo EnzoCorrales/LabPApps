@@ -23,36 +23,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>UyTube</title>
-        <link rel="stylesheet" type="text/css" href="style.css"> 
+        <link rel="stylesheet" type="text/css" href="IndexStyle.css">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     </head>
     <body>
-        <div class="tab">
-            <h1 class="nombres">Videos</h1>
-            <div class="content">
-                <%
-                    FabricaSistema f = new FabricaSistema();
-                    ISistema s = f.getSistema();
-                    Collection<DtVideo> dtvid = s.ListaTVideos();
-                    Iterator<DtVideo> it = dtvid.iterator();
-                    String url = null;
-                    String Auxurl = "https://www.youtube.com/embed/iR1sAex__VA";//M5
-                    String name = "null";
-                    String nick = null;
-                    while (it.hasNext()) {
-                        DtVideo dtvids = it.next();
-                        Auxurl = dtvids.getURL();
-                        url = Auxurl.substring(17, 28);
-                        name = dtvids.getNomVideo();
-                        nick = dtvids.getPropietario();
-                %>   
-                 <a class="nombres" href="Video.jsp?value=<%=name%>&usr=<%=nick%>">
-                     <p class="nombres"><%=name%></p>
-                        
-                        <iframe id="iFrame" width="150" class="videos" height="75" src="https://www.youtube.com/embed/<%=url%>"><br></iframe> 
-                            <% }%> 
-                    
-                </a>
+        <div class="row">
+            <%
+                FabricaSistema f = new FabricaSistema();
+                ISistema s = f.getSistema();
+                Collection<DtVideo> dtvid = s.ListaTVideos();
+                Iterator<DtVideo> it = dtvid.iterator();
+                String url = null;
+                String Auxurl = "https://www.youtube.com/embed/iR1sAex__VA";//M5
+                String name = "null";
+                String nick = null;
+                while (it.hasNext()) {
+                    DtVideo dtvids = it.next();
+                    Auxurl = dtvids.getURL();
+                    url = Auxurl.substring(17, 28);
+                    name = dtvids.getNomVideo();
+                    nick = dtvids.getPropietario();
+            %> 
+            <div class="col-sm-2 nopadding">
+                <p align="Left Aligned"><a href="Video.jsp?value=<%=name%>&usr=<%=nick%>"><%=name%></a></p>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="//img.youtube.com/vi/<%=url%>/0.jpg" frameborder="0" scrolling="no"></iframe>
+                </div>
             </div>
+                <% } %>
         </div>
     </body>
 </html>

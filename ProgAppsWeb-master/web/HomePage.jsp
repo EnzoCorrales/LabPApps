@@ -15,24 +15,31 @@
     <head>
         <title>UyTube</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
     <body>
+        <div class="header">
+            <input type="checkbox" id="btn-menu">
+            <label for="btn-menu"><img src="https://res.cloudinary.com/teepublic/image/private/s--a5R8DPne--/t_Resized%20Artwork/c_fit,g_north_west,h_1054,w_1054/co_ffffff,e_outline:53/co_ffffff,e_outline:inner_fill:53/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_jpg,h_630,q_90,w_630/v1545426786/production/designs/3587564_2.jpg" alt="">
+            </label>
+        </div>
         <form action="Busqueda" method="post" target="iFrame">
             <div class="wrap">
                 <div class="search">
                     <input type="text" class="searchTerm" placeholder="Buscar" name="Buscar">
                     <button type="submit" class="searchButton" >
-                        Buscar
+                        <i class="material-icons prefix">search</i>
                     </button>
-                    <div class="Filtros">
-                        <select name="Ordenamiento">
+                    <div class="Filtro">
+                        <select name="Ordenamiento" class="Filtros">
                             <option value="Opcion">Seleccione una opción</option>
                             <option value="Alfabeticamente">Alfábeticamente(A-Z a-z)</option>
                             <option value="Anio">Año(descendente)</option>
                         </select>
                         <br/>
-                        <select name="Filtro">
+                        <select name="Filtro" class="Filtros">
                             <option value="Opcion">Seleccione una opcion</option>
                             <option value="Videos">Videos</option>
                             <option value="Listas">Listas de Reproducción</option>
@@ -43,35 +50,13 @@
             </div>
         </form>
         <div class="titulos">
-            <h4 class="linea">-</h4>
+            <h4 class="linea"></h4>
             <h4 class="derecha">
                 <a href="Login.jsp">
                     <input class="inicio" type="button" value="Iniciar Sesión"/>
                 </a>
             </h4>
-            <a href="HomePage.jsp" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
         </div>
-        <ul>
-            <li><a href="Login.jsp" class="a1">Mi Perfil</a></li>
-            <li><a href="Login.jsp">Subir Video</a></li>
-            <li><a href="HomePage.jsp" class="a1">Ver Videos</a></li>
-            <%
-                try {
-                    WSClient.SistemaService service = new WSClient.SistemaService();
-                    WSClient.Sistema port = service.getSistemaPort();
-                    // TODO process result here
-                    java.util.List<WSClient.DtCategoria> result = port.listaCategorias();
-                    for (WSClient.DtCategoria cat : result) {%>
-            <li><a href="musica.jsp?value=<%=cat.getCategoria()%>" target="iFrame"><%=cat.getCategoria()%></a></li>
-                <% }
-            } catch (Exception ex) {
-            // TODO handle custom exceptions here
-            }
-                %>
-            <li><a href="Login.jsp">Salir</a></li>
-        </ul>
-        <div class="Iframes">
-            <iframe id="iFrame" name="iFrame" width="98%" height="700" src="index.jsp" ></iframe>
-        </div>
+        <iframe frameBorder="0" id="iFrame" name="iFrame" class="Iframes" src="index.jsp" ></iframe>
     </body>
 </html>
