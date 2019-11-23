@@ -259,7 +259,11 @@ public class Busqueda extends HttpServlet {
                                 videos2.add(dtv);
                             }
                         }
-                        Collections.sort(videos2, Collections.reverseOrder());
+                        Collections.sort(videos2, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos2.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -267,7 +271,11 @@ public class Busqueda extends HttpServlet {
                             DtTipo dtt = dtc.getTipo();
                             resultado.add(dtt);
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv2 = videos1.iterator();
                         while (itv2.hasNext()) {
                             DtVideo dtv = itv2.next();
@@ -282,7 +290,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv1 = videos1.iterator();
                         while (itv1.hasNext()) {
                             DtVideo dtv = itv1.next();
@@ -313,7 +325,11 @@ public class Busqueda extends HttpServlet {
                         request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                     }
                     if (filtro.equalsIgnoreCase("Videos")) {
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         resultado.clear();
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
@@ -335,7 +351,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -367,7 +387,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(dtv);
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -403,7 +427,6 @@ public class Busqueda extends HttpServlet {
                         resultado.add(tipo);
                     }
                 }
-
                 Collection<DtLR> lr = port.listaTLR();
                 Iterator<DtLR> it2 = lr.iterator();
                 while (it2.hasNext()) {
@@ -537,7 +560,11 @@ public class Busqueda extends HttpServlet {
                                 videos2.add(dtv);
                             }
                         }
-                        Collections.sort(videos2, Collections.reverseOrder());
+                        Collections.sort(videos2, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos2.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -545,7 +572,11 @@ public class Busqueda extends HttpServlet {
                             DtTipo dtt = dtc.getTipo();
                             resultado.add(dtt);
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv2 = videos1.iterator();
                         while (itv2.hasNext()) {
                             DtVideo dtv = itv2.next();
@@ -560,7 +591,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv1 = videos1.iterator();
                         while (itv1.hasNext()) {
                             DtVideo dtv = itv1.next();
@@ -591,7 +626,11 @@ public class Busqueda extends HttpServlet {
                         request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                     }
                     if (filtro.equalsIgnoreCase("Videos")) {
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         resultado.clear();
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
@@ -612,7 +651,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -645,7 +688,11 @@ public class Busqueda extends HttpServlet {
                             }
                         }
                         request.setAttribute("Resultados", null);
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -823,7 +870,11 @@ public class Busqueda extends HttpServlet {
                                 videos2.add(dtv);
                             }
                         }
-                        Collections.sort(videos2, Collections.reverseOrder());
+                        Collections.sort(videos2, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos2.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -831,7 +882,11 @@ public class Busqueda extends HttpServlet {
                             DtTipo dtt = dtc.getTipo();
                             resultado.add(dtt);
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv2 = videos1.iterator();
                         while (itv2.hasNext()) {
                             DtVideo dtv = itv2.next();
@@ -846,7 +901,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv1 = videos1.iterator();
                         while (itv1.hasNext()) {
                             DtVideo dtv = itv1.next();
@@ -877,7 +936,11 @@ public class Busqueda extends HttpServlet {
                         request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                     }
                     if (filtro.equalsIgnoreCase("Videos")) {
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         resultado.clear();
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
@@ -899,7 +962,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -932,7 +999,11 @@ public class Busqueda extends HttpServlet {
                             }
                         }
                         request.setAttribute("Resultados", null);
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -1102,7 +1173,11 @@ public class Busqueda extends HttpServlet {
                                 videos2.add(dtv);
                             }
                         }
-                        Collections.sort(videos2, Collections.reverseOrder());
+                        Collections.sort(videos2, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos2.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -1110,7 +1185,11 @@ public class Busqueda extends HttpServlet {
                             DtTipo dtt = dtc.getTipo();
                             resultado.add(dtt);
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv2 = videos1.iterator();
                         while (itv2.hasNext()) {
                             DtVideo dtv = itv2.next();
@@ -1125,7 +1204,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv1 = videos1.iterator();
                         while (itv1.hasNext()) {
                             DtVideo dtv = itv1.next();
@@ -1156,7 +1239,11 @@ public class Busqueda extends HttpServlet {
                         request.getRequestDispatcher("Busqueda.jsp").include(request, response);
                     }
                     if (filtro.equalsIgnoreCase("Videos")) {
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         resultado.clear();
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
@@ -1177,7 +1264,11 @@ public class Busqueda extends HttpServlet {
                                 videos1.add(port.ordenoVideosLR(dtlr.getId()));
                             }
                         }
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
@@ -1210,7 +1301,11 @@ public class Busqueda extends HttpServlet {
                             }
                         }
                         request.setAttribute("Resultados", null);
-                        Collections.sort(videos1, Collections.reverseOrder());
+                        Collections.sort(videos1, new Comparator<DtVideo>() {
+                            public int compare(DtVideo t1, DtVideo t2) {
+                                return t1.getDate().compare(t2.getDate());
+                            }
+                        });
                         Iterator<DtVideo> itv = videos1.iterator();
                         while (itv.hasNext()) {
                             DtVideo dtv = itv.next();
