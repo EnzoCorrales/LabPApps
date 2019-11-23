@@ -13,29 +13,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>UyTube</title>
     </head>
     <body>
-        <form action="Busqueda" method="post" target="iFrame">
-            <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="Buscar" name="Buscar">
-                    <button type="submit" class="searchButton" >
-                        Buscar
-                    </button>
-                    <div class="Filtros">
-                        <select name="Ordenamiento">
-                            <option value="Opcion">Seleccione una opción</option>
-                            <option value="Alfabeticamente">Alfábeticamente(A-Z a-z)</option>
-                            <option value="Anio">Año(descendente)</option>
-                        </select>
-                        <br/>
-                        <select name="Filtro">
-                            <option value="Opcion">Seleccione una opcion</option>
-                            <option value="Videos">Videos</option>
-                            <option value="Listas">Listas de Reproducción</option>
-                            <option value="Canales">Canales</option>
-                        </select>
+        <header>
+            <form action="Busqueda" method="post" target="iFrame">
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" placeholder="Buscar" name="Buscar">
+                        <button type="submit" class="searchButton" >
+                            <i class="material-icons prefix">search</i>
+                        </button>
+                        <div class="Filtro">
+                            <select name="Ordenamiento" class="Filtros">
+                                <option value="Opcion">Seleccione una opción</option>
+                                <option value="Alfabeticamente">Alfábeticamente(A-Z a-z)</option>
+                                <option value="Anio">Año(descendente)</option>
+                            </select>
+                            <br/>
+                            <select name="Filtro" class="Filtros">
+                                <option value="Opcion">Seleccione una opcion</option>
+                                <option value="Videos">Videos</option>
+                                <option value="Listas">Listas de Reproducción</option>
+                                <option value="Canales">Canales</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,5 +80,6 @@
         <div class="Iframes">
             <iframe id="iFrame" name="iFrame" width="98%" height="700" src="index.jsp" ></iframe>
         </div>
+        <iframe frameBorder="0" id="iFrame" name="iFrame" class="Iframes" src="index.jsp" ></iframe>
     </body>
 </html>

@@ -10,33 +10,53 @@ and open the template in the editor.
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-body {
-  background: #222;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+html,body {
+
+    background: linear-gradient( white, #ff0f50);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+    overflow-x: hidden;
 }
+
 .container {
-  background: white;
-  padding: 20px 25px;
-  border: 0 solid #26a69a;
-  width: 550px;
-  height: auto;
-  position: relative;
+    align-items: center;
+    background: white;
+    padding: 0vw 2vw;
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-top:1vw;
 }
 .col.s6 > .btn {
-   width: 100%;
+    width: 100%;
+    height: auto;
+    margin-left: 50%;
+    
 }
 
 .row {margin-bottom: 10px;}
 
 .ngl {
-  position: absolute;
-  top: -20px;
-  right: -20px;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+.titulo{
+    max-width: 100%;
+    height:auto;
+}
+
+.btn-color{
+    float: left;
+    color: #ff0f50;
+}
+
+@media only screen and (max-width:620px) {
+    /* For mobile phones: */
+    .container, .titulo, body {
+        width:100%;
+    }
 }

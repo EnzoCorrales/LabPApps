@@ -16,7 +16,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>UyTube</title>
-        <link rel="stylesheet" type="text/css" href="style.css"> 
+        <link rel="stylesheet" type="text/css" href="IndexStyle.css">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     </head>
     <body>
         <div class="tab">
@@ -47,6 +48,7 @@
                     
                 </a>
             </div>
+                <% } %>
         </div>
     </body>
 </html>

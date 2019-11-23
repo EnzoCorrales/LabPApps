@@ -1,0 +1,379 @@
+/* Primary Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 1em;
+    color: #333;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 1.4em;
+}
+
+em {
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+} 
+
+/* Layout */
+.s-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.s-layout__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+/* Sidebar */
+.s-sidebar__trigger {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4em;
+    background: #192b3c;
+}
+
+.s-sidebar__trigger > i {
+    display: inline-block;
+    margin: 1.5em 0 0 1.5em;
+    color: #f07ab0;
+}
+
+.s-sidebar__nav {
+    position: fixed;
+    top: 0;
+    left: -15em;
+    overflow: hidden;
+    transition: all .3s ease-in;
+    width: 15em;
+    height: 100%;
+    background: #243e56;
+    color: rgba(255, 255, 255, 0.7);
+    z-index:3;
+}
+
+.s-sidebar__nav:hover,
+.s-sidebar__nav:focus,
+.s-sidebar__trigger:focus + .s-sidebar__nav,
+.s-sidebar__trigger:hover + .s-sidebar__nav {
+    left: 0;
+}
+
+.s-sidebar__nav ul {
+    position: absolute;
+    top: 4em;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 15em;
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.s-sidebar__nav ul li {
+    width: 100%;
+}
+
+.s-sidebar__nav-link {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 4em;
+}
+
+.s-sidebar__nav-link em {
+    position: absolute;
+    top: 50%;
+    left: 4em;
+    transform: translateY(-50%);
+}
+
+.s-sidebar__nav-link:hover {
+    background: #4d6276;
+}
+
+.s-sidebar__nav-link > i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 4em;
+    height: 4em;
+}
+
+.s-sidebar__nav-link > i::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Iframes{
+    position: absolute;
+    width:100%;
+    height:100%;
+    top:5em;
+    left: 30px;
+    bottom:5em;
+    display: visible;
+    z-index: 2;
+}
+
+.izquierda{
+    display:visible;
+}
+
+.wrap{
+    width: 30%;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: visible;
+}
+
+.wrap2{
+    width: 10%;
+    padding: 0;
+    position: fixed;
+    top: 25px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+
+.search {
+    width: 100%;
+    position: relative;
+    top: 20px;
+    display: flex;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #243e56;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: black;
+}
+.inicio{
+    background-color: #243e56;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.searchTerm:focus{
+    color: #00B4CC;
+}
+
+.searchButton {
+    width: 100px;
+    height: 36px;
+    border: 1px solid #243e56;
+    background: #243e56;
+    text-align: center;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.Filtros{
+    background: #243e56;
+    color: white;
+    border-width: 0px;
+    margin-left: 5px;
+}
+
+.derecha{
+    position: fixed;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    right: 20px;
+    top:-15px;
+    left: 85%;
+    padding:0;
+}
+
+/* Mobile First */
+@media (min-width: 42em) {
+    .s-layout__content {
+    }
+
+    /* Sidebar */
+    .s-sidebar__trigger {
+        width: 4em;
+    }
+
+    .s-sidebar__nav {
+        width: 4em;
+        left: 0;
+    }
+
+    .s-sidebar__nav:hover,
+    .s-sidebar__nav:focus,
+    .s-sidebar__trigger:hover + .s-sidebar__nav,
+    .s-sidebar__trigger:focus + .s-sidebar__nav {
+        width: 15em;
+    }
+    .Iframes{
+        position: absolute;
+        left:15.5em;
+        width:90%;
+        height:100%;
+        top:5em;
+        bottom:5em;
+        padding: 70px 70px;
+        display: visible;
+        z-index: 1;
+    }
+
+    .izquierda{
+        position: fixed;
+        margin-left:0;
+        max-width: 70px;
+        max-height: 70px;
+        width: auto;
+        heigth: -50px;
+        top: 15px;
+        display:visible;
+    }
+
+    .wrap2{
+        display:none;
+    }
+
+    .wrap{
+        width: 30%;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        display: visible;
+    }
+
+    .search {
+        width: 100%;
+        position: relative;
+        top: 20px;
+        display: flex;
+    }
+
+    .searchTerm {
+        width: 100%;
+        border: 3px solid #243e56;
+        border-right: none;
+        padding: 5px;
+        height: 36px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: black;
+    }
+    .inicio{
+        background-color: #243e56;
+        color: white;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        derecha: 0px;
+    }
+    .searchTerm:focus{
+        color: #00B4CC;
+    }
+
+    .searchButton {
+        width: 100px;
+        height: 36px;
+        border: 1px solid #243e56;
+        background: #243e56;
+        text-align: center;
+        color: white;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .Filtros{
+        background: #243e56;
+        color: white;
+        border-width: 0px;
+        margin-left: 5px;
+    }
+
+    .derecha{
+        position: fixed;
+        text-align: center;
+        cursor: pointer;
+        top:15px;
+        left: 75%;
+        right: 25%;
+    }
+
+}
+
+@media (min-width: 68em) {
+    .s-layout__content {
+        margin-left: -50em;
+    }
+
+    /* Sidebar */
+    .s-sidebar__trigger {
+        display: none
+    }
+
+    .s-sidebar__nav {
+        width: 15em;
+    }
+
+    .s-sidebar__nav ul {
+        top: 1.3em;
+    }
+}
+
+@media (max-width: 320px){
+    .wrap{
+        display: none;  
+    }       
+    .izquierda{
+        display:none;   
+    }
+    .derecha{
+        z-index: 1;
+        left: 65%;
+        top: 5%;
+        bottom: 89%;
+        right: 35%;
+        width: 25%;
+    } 
+
+    .inicio{
+        right: 50px;
+        padding: 2px;
+    }
+}
