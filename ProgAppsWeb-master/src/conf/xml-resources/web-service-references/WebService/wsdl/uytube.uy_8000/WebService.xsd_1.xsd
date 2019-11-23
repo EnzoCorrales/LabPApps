@@ -1,0 +1,1457 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e. --><xs:schema xmlns:tns="http://Controladores/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://Controladores/">
+
+<xs:element name="AgregarComentarioNuevo" type="tns:AgregarComentarioNuevo"></xs:element>
+
+<xs:element name="AgregarComentarioNuevoResponse" type="tns:AgregarComentarioNuevoResponse"></xs:element>
+
+<xs:element name="AgregarListaLR" type="tns:AgregarListaLR"></xs:element>
+
+<xs:element name="AgregarListaLRResponse" type="tns:AgregarListaLRResponse"></xs:element>
+
+<xs:element name="AgregarRespuesta" type="tns:AgregarRespuesta"></xs:element>
+
+<xs:element name="AgregarRespuestaResponse" type="tns:AgregarRespuestaResponse"></xs:element>
+
+<xs:element name="AgregarVideoListaReproduccion" type="tns:AgregarVideoListaReproduccion"></xs:element>
+
+<xs:element name="AgregarVideoListaReproduccionResponse" type="tns:AgregarVideoListaReproduccionResponse"></xs:element>
+
+<xs:element name="AltaCategoria" type="tns:AltaCategoria"></xs:element>
+
+<xs:element name="AltaCategoriaResponse" type="tns:AltaCategoriaResponse"></xs:element>
+
+<xs:element name="AltaUsuario" type="tns:AltaUsuario"></xs:element>
+
+<xs:element name="AltaUsuarioResponse" type="tns:AltaUsuarioResponse"></xs:element>
+
+<xs:element name="AltaUsuarioWeb" type="tns:AltaUsuarioWeb"></xs:element>
+
+<xs:element name="AltaUsuarioWebResponse" type="tns:AltaUsuarioWebResponse"></xs:element>
+
+<xs:element name="AltaVideo" type="tns:AltaVideo"></xs:element>
+
+<xs:element name="AltaVideoResponse" type="tns:AltaVideoResponse"></xs:element>
+
+<xs:element name="BajaUsuario" type="tns:BajaUsuario"></xs:element>
+
+<xs:element name="BajaUsuarioResponse" type="tns:BajaUsuarioResponse"></xs:element>
+
+<xs:element name="CantDislikes" type="tns:CantDislikes"></xs:element>
+
+<xs:element name="CantDislikesResponse" type="tns:CantDislikesResponse"></xs:element>
+
+<xs:element name="CantLikes" type="tns:CantLikes"></xs:element>
+
+<xs:element name="CantLikesResponse" type="tns:CantLikesResponse"></xs:element>
+
+<xs:element name="CargarDatosPrueba" type="tns:CargarDatosPrueba"></xs:element>
+
+<xs:element name="CargarDatosPruebaResponse" type="tns:CargarDatosPruebaResponse"></xs:element>
+
+<xs:element name="CrearListaDefecto" type="tns:CrearListaDefecto"></xs:element>
+
+<xs:element name="CrearListaDefectoResponse" type="tns:CrearListaDefectoResponse"></xs:element>
+
+<xs:element name="CrearListaParticular" type="tns:CrearListaParticular"></xs:element>
+
+<xs:element name="CrearListaParticularResponse" type="tns:CrearListaParticularResponse"></xs:element>
+
+<xs:element name="DejarSeguirUsr" type="tns:DejarSeguirUsr"></xs:element>
+
+<xs:element name="DejarSeguirUsrResponse" type="tns:DejarSeguirUsrResponse"></xs:element>
+
+<xs:element name="ExisteCategoria" type="tns:ExisteCategoria"></xs:element>
+
+<xs:element name="ExisteCategoriaResponse" type="tns:ExisteCategoriaResponse"></xs:element>
+
+<xs:element name="ExisteLista" type="tns:ExisteLista"></xs:element>
+
+<xs:element name="ExisteListaDefecto" type="tns:ExisteListaDefecto"></xs:element>
+
+<xs:element name="ExisteListaDefectoResponse" type="tns:ExisteListaDefectoResponse"></xs:element>
+
+<xs:element name="ExisteListaResponse" type="tns:ExisteListaResponse"></xs:element>
+
+<xs:element name="ExisteMail" type="tns:ExisteMail"></xs:element>
+
+<xs:element name="ExisteMailResponse" type="tns:ExisteMailResponse"></xs:element>
+
+<xs:element name="ExisteUsr" type="tns:ExisteUsr"></xs:element>
+
+<xs:element name="ExisteUsrResponse" type="tns:ExisteUsrResponse"></xs:element>
+
+<xs:element name="ExisteVideo" type="tns:ExisteVideo"></xs:element>
+
+<xs:element name="ExisteVideoLR" type="tns:ExisteVideoLR"></xs:element>
+
+<xs:element name="ExisteVideoLRResponse" type="tns:ExisteVideoLRResponse"></xs:element>
+
+<xs:element name="ExisteVideoResponse" type="tns:ExisteVideoResponse"></xs:element>
+
+<xs:element name="HayListasDefecto" type="tns:HayListasDefecto"></xs:element>
+
+<xs:element name="HayListasDefectoResponse" type="tns:HayListasDefectoResponse"></xs:element>
+
+<xs:element name="InicioSesion" type="tns:InicioSesion"></xs:element>
+
+<xs:element name="InicioSesionResponse" type="tns:InicioSesionResponse"></xs:element>
+
+<xs:element name="ListaCanales" type="tns:ListaCanales"></xs:element>
+
+<xs:element name="ListaCanalesResponse" type="tns:ListaCanalesResponse"></xs:element>
+
+<xs:element name="ListaCategorias" type="tns:ListaCategorias"></xs:element>
+
+<xs:element name="ListaCategoriasResponse" type="tns:ListaCategoriasResponse"></xs:element>
+
+<xs:element name="ListaComentarios" type="tns:ListaComentarios"></xs:element>
+
+<xs:element name="ListaComentariosResponse" type="tns:ListaComentariosResponse"></xs:element>
+
+<xs:element name="ListaLRxCategoria" type="tns:ListaLRxCategoria"></xs:element>
+
+<xs:element name="ListaLRxCategoriaResponse" type="tns:ListaLRxCategoriaResponse"></xs:element>
+
+<xs:element name="ListaListaReproducion" type="tns:ListaListaReproducion"></xs:element>
+
+<xs:element name="ListaListaReproducionResponse" type="tns:ListaListaReproducionResponse"></xs:element>
+
+<xs:element name="ListaSeguidores" type="tns:ListaSeguidores"></xs:element>
+
+<xs:element name="ListaSeguidoresResponse" type="tns:ListaSeguidoresResponse"></xs:element>
+
+<xs:element name="ListaSeguidos" type="tns:ListaSeguidos"></xs:element>
+
+<xs:element name="ListaSeguidosResponse" type="tns:ListaSeguidosResponse"></xs:element>
+
+<xs:element name="ListaTLR" type="tns:ListaTLR"></xs:element>
+
+<xs:element name="ListaTLRResponse" type="tns:ListaTLRResponse"></xs:element>
+
+<xs:element name="ListaTVideos" type="tns:ListaTVideos"></xs:element>
+
+<xs:element name="ListaTVideosResponse" type="tns:ListaTVideosResponse"></xs:element>
+
+<xs:element name="ListaUsuarios" type="tns:ListaUsuarios"></xs:element>
+
+<xs:element name="ListaUsuariosResponse" type="tns:ListaUsuariosResponse"></xs:element>
+
+<xs:element name="ListaVideos" type="tns:ListaVideos"></xs:element>
+
+<xs:element name="ListaVideosResponse" type="tns:ListaVideosResponse"></xs:element>
+
+<xs:element name="ListaVideosxCategoria" type="tns:ListaVideosxCategoria"></xs:element>
+
+<xs:element name="ListaVideosxCategoriaResponse" type="tns:ListaVideosxCategoriaResponse"></xs:element>
+
+<xs:element name="ListasLDRVideos" type="tns:ListasLDRVideos"></xs:element>
+
+<xs:element name="ListasLDRVideosResponse" type="tns:ListasLDRVideosResponse"></xs:element>
+
+<xs:element name="LoSigue" type="tns:LoSigue"></xs:element>
+
+<xs:element name="LoSigueResponse" type="tns:LoSigueResponse"></xs:element>
+
+<xs:element name="ModificarApellidoU" type="tns:ModificarApellidoU"></xs:element>
+
+<xs:element name="ModificarApellidoUResponse" type="tns:ModificarApellidoUResponse"></xs:element>
+
+<xs:element name="ModificarCatVideo" type="tns:ModificarCatVideo"></xs:element>
+
+<xs:element name="ModificarCatVideoResponse" type="tns:ModificarCatVideoResponse"></xs:element>
+
+<xs:element name="ModificarDescC" type="tns:ModificarDescC"></xs:element>
+
+<xs:element name="ModificarDescCResponse" type="tns:ModificarDescCResponse"></xs:element>
+
+<xs:element name="ModificarDescVideo" type="tns:ModificarDescVideo"></xs:element>
+
+<xs:element name="ModificarDescVideoResponse" type="tns:ModificarDescVideoResponse"></xs:element>
+
+<xs:element name="ModificarDurVideo" type="tns:ModificarDurVideo"></xs:element>
+
+<xs:element name="ModificarDurVideoResponse" type="tns:ModificarDurVideoResponse"></xs:element>
+
+<xs:element name="ModificarFechaU" type="tns:ModificarFechaU"></xs:element>
+
+<xs:element name="ModificarFechaUResponse" type="tns:ModificarFechaUResponse"></xs:element>
+
+<xs:element name="ModificarFechaVideo" type="tns:ModificarFechaVideo"></xs:element>
+
+<xs:element name="ModificarFechaVideoResponse" type="tns:ModificarFechaVideoResponse"></xs:element>
+
+<xs:element name="ModificarImagenU" type="tns:ModificarImagenU"></xs:element>
+
+<xs:element name="ModificarImagenUResponse" type="tns:ModificarImagenUResponse"></xs:element>
+
+<xs:element name="ModificarLR" type="tns:ModificarLR"></xs:element>
+
+<xs:element name="ModificarLRResponse" type="tns:ModificarLRResponse"></xs:element>
+
+<xs:element name="ModificarNomC" type="tns:ModificarNomC"></xs:element>
+
+<xs:element name="ModificarNomCResponse" type="tns:ModificarNomCResponse"></xs:element>
+
+<xs:element name="ModificarNomVideo" type="tns:ModificarNomVideo"></xs:element>
+
+<xs:element name="ModificarNomVideoResponse" type="tns:ModificarNomVideoResponse"></xs:element>
+
+<xs:element name="ModificarNombreU" type="tns:ModificarNombreU"></xs:element>
+
+<xs:element name="ModificarNombreUResponse" type="tns:ModificarNombreUResponse"></xs:element>
+
+<xs:element name="ModificarPassU" type="tns:ModificarPassU"></xs:element>
+
+<xs:element name="ModificarPassUResponse" type="tns:ModificarPassUResponse"></xs:element>
+
+<xs:element name="ModificarPrivC" type="tns:ModificarPrivC"></xs:element>
+
+<xs:element name="ModificarPrivCResponse" type="tns:ModificarPrivCResponse"></xs:element>
+
+<xs:element name="ModificarPrivLR" type="tns:ModificarPrivLR"></xs:element>
+
+<xs:element name="ModificarPrivLRResponse" type="tns:ModificarPrivLRResponse"></xs:element>
+
+<xs:element name="ModificarPrivVideo" type="tns:ModificarPrivVideo"></xs:element>
+
+<xs:element name="ModificarPrivVideoResponse" type="tns:ModificarPrivVideoResponse"></xs:element>
+
+<xs:element name="ModificarURLVideo" type="tns:ModificarURLVideo"></xs:element>
+
+<xs:element name="ModificarURLVideoResponse" type="tns:ModificarURLVideoResponse"></xs:element>
+
+<xs:element name="OrdenoVideosLR" type="tns:OrdenoVideosLR"></xs:element>
+
+<xs:element name="OrdenoVideosLRResponse" type="tns:OrdenoVideosLRResponse"></xs:element>
+
+<xs:element name="QuitarVideoLR" type="tns:QuitarVideoLR"></xs:element>
+
+<xs:element name="QuitarVideoLRResponse" type="tns:QuitarVideoLRResponse"></xs:element>
+
+<xs:element name="SeguirUsuario" type="tns:SeguirUsuario"></xs:element>
+
+<xs:element name="SeguirUsuarioResponse" type="tns:SeguirUsuarioResponse"></xs:element>
+
+<xs:element name="TieneComentarios" type="tns:TieneComentarios"></xs:element>
+
+<xs:element name="TieneComentariosResponse" type="tns:TieneComentariosResponse"></xs:element>
+
+<xs:element name="TieneLR" type="tns:TieneLR"></xs:element>
+
+<xs:element name="TieneLRResponse" type="tns:TieneLRResponse"></xs:element>
+
+<xs:element name="TieneValoraciones" type="tns:TieneValoraciones"></xs:element>
+
+<xs:element name="TieneValoracionesResponse" type="tns:TieneValoracionesResponse"></xs:element>
+
+<xs:element name="TieneVideos" type="tns:TieneVideos"></xs:element>
+
+<xs:element name="TieneVideosLR" type="tns:TieneVideosLR"></xs:element>
+
+<xs:element name="TieneVideosLRResponse" type="tns:TieneVideosLRResponse"></xs:element>
+
+<xs:element name="TieneVideosResponse" type="tns:TieneVideosResponse"></xs:element>
+
+<xs:element name="UTieneValoracion" type="tns:UTieneValoracion"></xs:element>
+
+<xs:element name="UTieneValoracionI" type="tns:UTieneValoracionI"></xs:element>
+
+<xs:element name="UTieneValoracionIResponse" type="tns:UTieneValoracionIResponse"></xs:element>
+
+<xs:element name="UTieneValoracionResponse" type="tns:UTieneValoracionResponse"></xs:element>
+
+<xs:element name="ValorarVideo" type="tns:ValorarVideo"></xs:element>
+
+<xs:element name="ValorarVideoResponse" type="tns:ValorarVideoResponse"></xs:element>
+
+<xs:element name="VideoRecienteU" type="tns:VideoRecienteU"></xs:element>
+
+<xs:element name="VideoRecienteUResponse" type="tns:VideoRecienteUResponse"></xs:element>
+
+<xs:element name="getDataCanal" type="tns:getDataCanal"></xs:element>
+
+<xs:element name="getDataCanalResponse" type="tns:getDataCanalResponse"></xs:element>
+
+<xs:element name="getDataLR" type="tns:getDataLR"></xs:element>
+
+<xs:element name="getDataLRResponse" type="tns:getDataLRResponse"></xs:element>
+
+<xs:element name="getDataUsuario" type="tns:getDataUsuario"></xs:element>
+
+<xs:element name="getDataUsuarioLR" type="tns:getDataUsuarioLR"></xs:element>
+
+<xs:element name="getDataUsuarioLRResponse" type="tns:getDataUsuarioLRResponse"></xs:element>
+
+<xs:element name="getDataUsuarioResponse" type="tns:getDataUsuarioResponse"></xs:element>
+
+<xs:element name="getDataUsuarioVideo" type="tns:getDataUsuarioVideo"></xs:element>
+
+<xs:element name="getDataUsuarioVideoResponse" type="tns:getDataUsuarioVideoResponse"></xs:element>
+
+<xs:element name="getDataVideo" type="tns:getDataVideo"></xs:element>
+
+<xs:element name="getDataVideoResponse" type="tns:getDataVideoResponse"></xs:element>
+
+<xs:element name="getDataVideosLR" type="tns:getDataVideosLR"></xs:element>
+
+<xs:element name="getDataVideosLRResponse" type="tns:getDataVideosLRResponse"></xs:element>
+
+<xs:element name="getNick" type="tns:getNick"></xs:element>
+
+<xs:element name="getNickResponse" type="tns:getNickResponse"></xs:element>
+
+<xs:element name="getUsuario" type="tns:getUsuario"></xs:element>
+
+<xs:element name="getUsuarioResponse" type="tns:getUsuarioResponse"></xs:element>
+
+<xs:element name="propCanal" type="tns:propCanal"></xs:element>
+
+<xs:element name="propCanal1" type="tns:propCanal1"></xs:element>
+
+<xs:element name="propCanal1Response" type="tns:propCanal1Response"></xs:element>
+
+<xs:element name="propCanalResponse" type="tns:propCanalResponse"></xs:element>
+
+<xs:element name="propLista" type="tns:propLista"></xs:element>
+
+<xs:element name="propListaResponse" type="tns:propListaResponse"></xs:element>
+
+<xs:element name="setContra" type="tns:setContra"></xs:element>
+
+<xs:element name="setContraResponse" type="tns:setContraResponse"></xs:element>
+
+<xs:complexType name="ModificarNomC">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarNomCResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataUsuarioLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataUsuarioLRResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtUsuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtUsuario">
+<xs:sequence>
+<xs:element name="Nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Contrasenia" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Apellido" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Correo" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="fecha" type="tns:fecha" minOccurs="0"></xs:element>
+<xs:element name="Imagen" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="listas" type="tns:dtLR" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="videos" type="tns:dtVideo" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="canal" type="tns:dtCanal" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fecha">
+<xs:sequence>
+<xs:element name="anio" type="xs:int"></xs:element>
+<xs:element name="dia" type="xs:int"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="mes" type="xs:int"></xs:element>
+<xs:element name="user" type="tns:usuario" minOccurs="0"></xs:element>
+<xs:element name="video" type="tns:video" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="usuario">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="canal" type="tns:canal" minOccurs="0"></xs:element>
+<xs:element name="contrasenia" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="fecha" type="tns:fecha" minOccurs="0"></xs:element>
+<xs:element name="imagen" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="listasRep" type="tns:listaDeReproduccion" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="seguidores" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="seguidos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="videos" type="tns:video" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="canal">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="privado" type="xs:boolean"></xs:element>
+<xs:element name="user" type="tns:usuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listaDeReproduccion">
+<xs:sequence>
+<xs:element name="categoria" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="defecto" type="xs:boolean"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="privado" type="xs:boolean"></xs:element>
+<xs:element name="user" type="tns:usuario" minOccurs="0"></xs:element>
+<xs:element name="videos" type="xs:int" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="categoria">
+<xs:sequence>
+<xs:element name="categoria" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="video">
+<xs:sequence>
+<xs:element name="comentarios" type="tns:comentario" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="descVideo" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="dislikes" type="xs:int"></xs:element>
+<xs:element name="durVideo" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="fecPub" type="tns:fecha" minOccurs="0"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="likes" type="xs:int"></xs:element>
+<xs:element name="nomVideo" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="private" type="xs:boolean"></xs:element>
+<xs:element name="url" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="user" type="tns:usuario" minOccurs="0"></xs:element>
+<xs:element name="valoraciones" type="tns:valoracion" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="comentario">
+<xs:sequence>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="padre" type="tns:comentario" minOccurs="0"></xs:element>
+<xs:element name="texto" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="video" type="tns:video" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="valoracion">
+<xs:sequence>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="valoracion" type="xs:boolean"></xs:element>
+<xs:element name="video" type="tns:video" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtLR">
+<xs:sequence>
+<xs:element name="Id" type="xs:int"></xs:element>
+<xs:element name="Nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Propietario" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Defecto" type="xs:boolean"></xs:element>
+<xs:element name="Privado" type="xs:boolean"></xs:element>
+<xs:element name="categorias" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="videos" type="tns:dtVideo" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtVideo">
+<xs:sequence>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element name="Propietario" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nomVideo" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Descripcion" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Categoria" type="tns:dtCategoria" minOccurs="0"></xs:element>
+<xs:element name="Likes" type="xs:int"></xs:element>
+<xs:element name="Dislikes" type="xs:int"></xs:element>
+<xs:element name="Duracion" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="fechaPub" type="tns:fecha" minOccurs="0"></xs:element>
+<xs:element name="date" type="xs:dateTime" minOccurs="0"></xs:element>
+<xs:element name="Url" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Privado" type="xs:boolean"></xs:element>
+<xs:element name="valoraciones" type="tns:dtValoracion" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="comentarios" type="tns:dtComentario" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtCategoria">
+<xs:sequence>
+<xs:element name="Categoria" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtValoracion">
+<xs:sequence>
+<xs:element name="Nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Valoracion" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtComentario">
+<xs:sequence>
+<xs:element name="Id" type="xs:int"></xs:element>
+<xs:element name="Nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Texto" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="respuestas" type="tns:dtComentario" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dtCanal">
+<xs:sequence>
+<xs:element name="Id" type="xs:int"></xs:element>
+<xs:element name="Nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Descripcion" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Privado" type="xs:boolean"></xs:element>
+<xs:element name="Propietario" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteVideoLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+<xs:element name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteVideoLRResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OrdenoVideosLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OrdenoVideosLRResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtVideo" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteListaDefecto">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteListaDefectoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsuario">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneLRResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaTVideos">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaTVideosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtVideo" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="VideoRecienteU">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="VideoRecienteUResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtVideo" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarFechaU">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="tns:fecha" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarFechaUResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarLRResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaUsuarios">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaUsuariosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtUsuario" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="propCanal1">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="propCanal1Response">
+<xs:sequence>
+<xs:element name="return" type="tns:dtUsuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataCanal">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataCanalResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtCanal" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteMail">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteMailResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CantDislikes">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CantDislikesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaTLR">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaTLRResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtLR" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaListaReproducion">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaListaReproducionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtLR" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarDescVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarDescVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CargarDatosPrueba">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CargarDatosPruebaResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneVideosLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneVideosLRResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaUsuario">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg4" type="tns:fecha" minOccurs="0"></xs:element>
+<xs:element name="arg5" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg6" type="xs:boolean"></xs:element>
+<xs:element name="arg7" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg8" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaUsuarioResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="LoSigue">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="LoSigueResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarDurVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarDurVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataVideosLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataVideosLRResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtVideo" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SeguirUsuario">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SeguirUsuarioResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaLRxCategoria">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaLRxCategoriaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtLR" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UTieneValoracionI">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UTieneValoracionIResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="HayListasDefecto">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="HayListasDefectoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneVideos">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneVideosResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarListaLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarListaLRResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearListaDefecto">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearListaDefectoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaVideos">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaVideosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtVideo" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CantLikes">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CantLikesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="propCanal">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="propCanalResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneComentarios">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneComentariosResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneValoraciones">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TieneValoracionesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarVideoListaReproduccion">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarVideoListaReproduccionResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNick">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNickResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaUsuarioWeb">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg4" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg5" type="tns:fecha" minOccurs="0"></xs:element>
+<xs:element name="arg6" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg7" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg8" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg9" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaUsuarioWebResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarApellidoU">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarApellidoUResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarImagenU">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarImagenUResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaCanales">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaCanalesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtCanal" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearListaParticular">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:boolean"></xs:element>
+<xs:element name="arg3" type="xs:string" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearListaParticularResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UTieneValoracion">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UTieneValoracionResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaCategorias">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaCategoriasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtCategoria" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ValorarVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ValorarVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarNombreU">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarNombreUResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListasLDRVideos">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListasLDRVideosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtLR" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataUsuario">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtUsuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteVideoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaSeguidores">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaSeguidoresResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtUsuario" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarRespuesta">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg4" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg5" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarRespuestaResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarNomVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarNomVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarComentarioNuevo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarComentarioNuevoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPrivC">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPrivCResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BajaUsuario">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BajaUsuarioResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg3" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg4" type="tns:fecha" minOccurs="0"></xs:element>
+<xs:element name="arg5" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg6" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarURLVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarURLVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPassU">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPassUResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarDescC">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarDescCResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataVideoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtVideo" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteUsr">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteUsrResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaComentarios">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaComentariosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtComentario" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InicioSesion">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InicioSesionResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaSeguidos">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaSeguidosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtUsuario" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarCatVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarCatVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataUsuarioVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataUsuarioVideoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtUsuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setContra">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setContraResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPrivVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPrivVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDataLRResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtLR" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaCategoria">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AltaCategoriaResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="propLista">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="propListaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DejarSeguirUsr">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DejarSeguirUsrResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteLista">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteListaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteCategoria">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ExisteCategoriaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaVideosxCategoria">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaVideosxCategoriaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:dtVideo" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarFechaVideo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="tns:fecha" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarFechaVideoResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="QuitarVideoLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="QuitarVideoLRResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPrivLR">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg1" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="arg2" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificarPrivLRResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+</xs:schema>

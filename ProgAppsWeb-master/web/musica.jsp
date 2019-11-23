@@ -29,13 +29,16 @@
         <link rel="stylesheet" type="text/css" href="Musica.css">
     </head>
     <body>
-        <%String valor = request.getParameter("value");%>
+        <%String valor = request.getParameter("value");
+            String prop = request.getParameter("list");
+        %>
         <h1><%=valor%></h1>
 
         <%
             FabricaSistema f = new FabricaSistema();
             ISistema s = f.getSistema();
             Collection<DtVideo> dtvids = s.ListaVideosxCategoria(valor);
+            Collection<DtLR> dtlr = s.ListaLRxCategoria(valor);
             if (dtvids != null) {
                 Iterator<DtVideo> it = dtvids.iterator();
                 String url = null;
@@ -43,19 +46,29 @@
                 String name = "null";
                 while (it.hasNext()) {
                     DtVideo dtvid = it.next();
+
                     Auxurl = dtvid.getURL();
                     url = Auxurl.substring(17, 28);
                     name = dtvid.getNomVideo();
                     String cat = dtvid.getCategoria();
-                    if (cat.equalsIgnoreCase(valor)) {%>
+
+        %>
+
         <div>
             <%=name%>
+
         </div>
-        <iframe width="200" height="105" src="https://www.youtube.com/embed/<%=url%>"></iframe>
-            <%
+        <ul>
+            <li><iframe width="200" height="105" src="https://www.youtube.com/embed/<%=url%>"></iframe></li>
+                    <%
+                            }
                         }
-                    }
-                }
-            %>
+                        if (dtlr != null) {
+                            for (DtLR dtlista : dtlr) {%>
+            <li><a href="Lista.jsp?value=<%=dtlista.getNombre()%>&usr=<%=dtlista.getPropietario()%>"><%=dtlista.getNombre()%></a></li> 
+        </ul>
+        <%}
+            }
+        %>
     </body>
 </html>

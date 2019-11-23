@@ -56,25 +56,6 @@
                     <input class="inicio" type="button" value="Iniciar Sesión"/>
                 </a>
             </h4>
-            <a href="HomePage.jsp" class="izquierda"><img src="Imagenes/UyTube.png" class="izquierda"></a>
-        </div>
-        <div class="sidenav">
-            <ul>
-                <li><a href="Login.jsp" class="a1">Mi Perfil</a></li>
-                <li><a href="Login.jsp">Subir Video</a></li>
-                <li><a href="index.html" class="a1">Ver Videos</a></li>
-                    <%
-                        FabricaSistema f = new FabricaSistema();
-                        ISistema s = f.getSistema();
-                        Collection<DtCategoria> listadtc = s.ListaCategorias();
-                        Iterator<DtCategoria> it = listadtc.iterator();
-                        while (it.hasNext()) {
-                            DtCategoria dtc = it.next();
-                            String cat = dtc.getCategoria();
-                    %>
-                <li><a href="musica.jsp?value=<%=cat%>" target="iFrame"><%=cat%></a></li>
-                    <% }%>
-            </ul>
         </div>
         <iframe frameBorder="0" id="iFrame" name="iFrame" class="Iframes" src="index.jsp" ></iframe>
     </body>
