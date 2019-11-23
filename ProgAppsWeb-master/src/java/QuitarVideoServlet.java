@@ -4,14 +4,8 @@
  * and open the template in the editor.
  */
 
-import DT.DtLR;
-import DT.DtVideo;
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -61,12 +55,13 @@ public class QuitarVideoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+
         String nomVideo = request.getParameter("nombre");//nombre del video a eliminar
         String lista = request.getParameter("lista");//lista de la cual se elimina el video
         String usr = request.getParameter("usr");//dueño de la lista que es el usuario logeado
-        FabricaSistema f = new FabricaSistema();
-        ISistema s = f.getSistema();
-        s.QuitarVideoLR(usr, lista, nomVideo);
+        port.quitarVideoLR(usr, lista, nomVideo);
         request.getRequestDispatcher("Lista.jsp").include(request, response);
     }
 

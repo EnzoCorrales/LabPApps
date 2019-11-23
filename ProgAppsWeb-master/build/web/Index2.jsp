@@ -3,15 +3,10 @@
     Created on : Oct 12, 2019, 9:28:31 PM
     Author     : kangaru
 --%>
-<%@page import="DT.DtCategoria"%>
-<%@page import="DT.DtUsuario"%>
+<%@page import="WSClient.DtLR"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="DT.DtLR"%>
 <%@page import="java.util.Collection"%>
-<%@page import="java.util.Collection"%>
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="Controladores.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -48,25 +43,13 @@
         <div class="titulos">
             <h4 class="linea">-</h4>
             <%
-                FabricaSistema f = new FabricaSistema();
-                ISistema s = f.getSistema();
-                HttpSession sesion = request.getSession(false);
-                String img = null;
-                if (sesion != null) {
-                    String user = (String) sesion.getAttribute("username");
-                    DtUsuario usrdt = s.getDataUsuario(user);
-                    img = usrdt.getImagen();
-                    if (img == null) {
-                        img = "blank-profile-picture-973460_960_720.png";
-                    }
+                String usuario = (String) session.getAttribute("username");
+                String nick = request.getParameter("usr");
+                WSClient.SistemaService service = new WSClient.SistemaService();
+                WSClient.Sistema port = service.getSistemaPort();
+                WSClient.DtUsuario v = port.getDataUsuario(usuario);
             %>
-            <h2 class="derecha"><a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="Imagenes/<%=img%>" class="imgPerfil"><%=user%></h2>
-                    <%} else {%>
-                </a>
-                <a href="Login.jsp">
-                    <input type="button" value="Iniciar Sesión"/>
-                </a>
-                <%}%>
+            <h2 class="derecha"><a href="MiPerfil.jsp" target="iFrame" class="derecha"><img src="Imagenes/<%=v.getImagen()%>" class="imgPerfil"><%=usuario%></a></h2>
                 <a href="Index2.jsp" class="izquierda"><img src="Screenshot_2019-10-20 Make A High-Quality Logo In Just 5 Minutes For Under $30 .png" class="izquierda"></a>
         </div>
         <ul>
@@ -75,25 +58,20 @@
             <li><a href="AltaVideo.jsp" target="iFrame">Subir Video</a></li>
             <li><a href="AltaListaDR.jsp" target="iFrame">+ Crear lista</a></li>
                 <%
-                    String user = (String) sesion.getAttribute("username");
-                    Collection<DtLR> listas = s.ListaListaReproducion(user);
-                    Iterator<DtLR> it = listas.iterator();
-                    while (it.hasNext()) {
-                        DtLR dtlr = it.next();
-                        String nombreLR = dtlr.getNombre();
-                        String prop = dtlr.getPropietario();
+                    //String nombreLR = port.getDataLR(nick,usuario).getNombre();
+                   // String prop = port.getDataLR(nick,usuario).getPropietario();
+                   
+                   List<DtLR> Listas = port.listaListaReproducion(usuario);
+                   for(DtLR dtlr : Listas){
                 %>
-            <li><a href="Lista.jsp?value=<%=nombreLR%>&usr=<%=prop%>" target="iFrame"><%=nombreLR%></a></li>
-                <% }%>
-            <%
-                    Collection<DtCategoria> listadtc = s.ListaCategorias();
-                    Iterator<DtCategoria> it2 = listadtc.iterator();
-                    while (it2.hasNext()) {
-                        DtCategoria dtc = it2.next();
-                        String cat = dtc.getCategoria();
+            <li><a href="Lista.jsp?value=<%=dtlr.getNombre()%>&usr=<%=dtlr.getPropietario()%>" target="iFrame"><%=dtlr.getNombre()%></a></li>
+                <%
+                    }
+                    java.util.List<WSClient.DtCategoria> result2 = port.listaCategorias();
+                    for (WSClient.DtCategoria cat : result2) {
                 %>
-            <li><a href="musica.jsp?value=<%=cat%>" target="iFrame"><%=cat%></a></li>
-            <% }%>
+            <li><a href="musica.jsp?value=<%=cat.getCategoria()%>" target="iFrame"><%=cat.getCategoria()%></a></li>
+                <%}%>
             <li><a href="Login.jsp">Salir</a></li>
         </ul>
         <div class="Iframes">

@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -82,10 +79,11 @@ public class Responder extends HttpServlet {
         String nickC = request.getParameter("nickC");
         String comC = request.getParameter("comC");
 
-        FabricaSistema f = new FabricaSistema();
-        ISistema s = f.getSistema();
-
-        s.AgregarRespuesta(nick, nomVideo, nickC, comC, usuario, comentario);
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+            
+        
+        port.agregarRespuesta(nick, nomVideo, nickC, comC, usuario, comentario);
         response.sendRedirect("Video.jsp?value=" + nomVideo + "&usr=" + nick);
 
     }

@@ -4,15 +4,12 @@
     Author     : gabrixstar
 --%>
 
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="DT.DtLR"%>
+<%@page import="WSClient.DtLR"%>
+<%@page import="WSClient.DtVideo"%>
+<%@page import="WSClient.DtCanal"%>
+<%@page import="WSClient.DtUsuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
-<%@page import="DT.DtVideo"%>
-<%@page import="DT.DtCanal"%>
-<%@page import="DT.DtUsuario"%>
-<%@page import="Controladores.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,15 +21,16 @@
     </head>
     <body>
         <%
+            WSClient.SistemaService service = new WSClient.SistemaService();
+            WSClient.Sistema port = service.getSistemaPort();
+            
             HttpSession sesion = request.getSession();
             String nick = (String) sesion.getAttribute("username");
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
             String c = null;
             String img = null;
             if (nick != null) {
-                DtUsuario dtusr = s.getDataUsuario(nick);
-                DtCanal dtcusr = dtusr.getDataCanal();
+                DtUsuario dtusr = port.getDataUsuario(nick);
+                DtCanal dtcusr = dtusr.getCanal();
                 c = dtcusr.getNombre();
                 img = dtusr.getImagen();
                 if(img==null){
@@ -51,8 +49,8 @@
 
                 <div class="content">
                     <%
-                        DtUsuario dtusrr = s.getDataUsuario(nick);
-                        Collection<DtVideo> dtvids = dtusrr.getDtVideos();
+                        DtUsuario dtusrr = port.getDataUsuario(nick);
+                        Collection<DtVideo> dtvids = dtusrr.getVideos();
                         Iterator<DtVideo> it = dtvids.iterator();
                         String url = "https://www.youtube.com/embed/SlPhMPnQ58k";//M5
                         String name = "null";
@@ -66,7 +64,7 @@
                                 while (it.hasNext()) {
                                     DtVideo dtvid = it.next();
                                     if (dtvid != null) {
-                                        url = dtvid.getURL();
+                                        url = dtvid.getUrl();
                                         Auxurl = url.substring(17, 28);
                                         name = dtvid.getNomVideo();
                                         }%>   
@@ -85,7 +83,7 @@
                     <div class="content">
                         <ul>
                             <%
-                                Collection<DtLR> dtlr = s.ListaListaReproducion(nick);
+                                Collection<DtLR> dtlr = port.listaListaReproducion(nick);
                                 Iterator<DtLR> it2 = dtlr.iterator();
                                 String lista = "null";
                                 String prop = "null";
@@ -111,7 +109,7 @@
                     <div class="content">
                         <ul>
                             <%
-                                Collection<DtUsuario> seguidos = s.ListaSeguidos(nick);
+                                Collection<DtUsuario> seguidos = port.listaSeguidos(nick);
                                 Iterator<DtUsuario> it4 = seguidos.iterator();
                                 String seguido = "null";
                                 if (!it4.hasNext()) {
@@ -122,7 +120,7 @@
                                     if (dtusr != null) {
                                         seguido = dtusr.getNick();
                                     }
-                                    DtCanal dtc = dtusr.getDataCanal();
+                                    DtCanal dtc = dtusr.getCanal();
                                     String nomC2 = dtc.getNombre();
 
                             %>   
@@ -138,7 +136,7 @@
                     <div class="content">
                         <ul>    
                             <%
-                                Collection<DtUsuario> seguidores = s.ListaSeguidores(nick);
+                                Collection<DtUsuario> seguidores = port.listaSeguidores(nick);
                                 Iterator<DtUsuario> it5 = seguidores.iterator();
                                 String seguidor = "null";
                                 if (!it5.hasNext()) {
@@ -147,7 +145,7 @@
                                 while (it5.hasNext()) {
                                     DtUsuario dtusr = it5.next();
                                     seguidor = dtusr.getNick();
-                                    DtCanal dtc = dtusr.getDataCanal();
+                                    DtCanal dtc = dtusr.getCanal();
                             %>   
                             <li><a href="PerfilUsr.jsp?usr=<%=seguidor%>"><%=seguidor%></a></li>
                                 <%}%>

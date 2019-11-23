@@ -4,15 +4,11 @@
  * and open the template in the editor.
  */
 
-import DT.DtLR;
-import DT.DtVideo;
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
+import WSClient.DtLR;
+import WSClient.DtVideo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
-import java.util.Collection;
-import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,20 +59,21 @@ public class AgregarVideoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+
         String nomVideo = request.getParameter("nombre");
         String prop = request.getParameter("prop");
-        FabricaSistema f = new FabricaSistema();
-        ISistema s = f.getSistema();
-        DtVideo dtvid = s.getDataVideo(nomVideo, prop);
+        DtVideo dtvid = port.getDataVideo(nomVideo, prop);
         String lista = request.getParameter("lista");
         String usr = request.getParameter("usr");
         DtLR dtlista = null;
         if (usr != null && lista != null) {
-             dtlista = s.getDataLR(usr, lista);
+            dtlista = port.getDataLR(usr, lista);
         }
         if (dtlista != null && dtvid != null) {
-            if (!s.ExisteVideoLR(dtvid.getId(), dtlista.getId())) {
-                s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
+            if (!port.existeVideoLR(dtvid.getId(), dtlista.getId())) {
+                port.agregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
             } else {
@@ -99,17 +96,18 @@ public class AgregarVideoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+
         String nomVideo = request.getParameter("nombre");
         String prop = request.getParameter("prop");
-        FabricaSistema f = new FabricaSistema();
-        ISistema s = f.getSistema();
-        DtVideo dtvid = s.getDataVideo(nomVideo, prop);
+        DtVideo dtvid = port.getDataVideo(nomVideo, prop);
         String lista = request.getParameter("lista");
         String usr = request.getParameter("usr");
-        DtLR dtlista = s.getDataLR(usr, lista);
+        DtLR dtlista = port.getDataLR(usr, lista);
         //if ((nomVideo != null) || (prop != null) || (lista != null) || (usr != null)) {
-        if (!s.ExisteVideoLR(dtvid.getId(), dtlista.getId())) {
-            s.AgregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
+        if (!port.existeVideoLR(dtvid.getId(), dtlista.getId())) {
+            port.agregarVideoListaReproduccion(dtvid.getPropietario(), nomVideo, dtlista.getPropietario(), lista);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         } else {

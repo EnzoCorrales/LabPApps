@@ -1,6 +1,3 @@
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="DT.DtCategoria"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
 <%@page import="Controladores.Sistema"%>
@@ -34,17 +31,23 @@
             <p class="Campo">Categoria:
                 <select name="categorias">
                     <%
-                        FabricaSistema f = new FabricaSistema();
-                        ISistema s = f.getSistema();
-                        Collection<DtCategoria> dtCategorias = s.ListaCategorias();
-                        Iterator<DtCategoria> it = dtCategorias.iterator();
-                        String c = "test";
-                        while (it.hasNext()) {
-                            DtCategoria dtc = it.next();
-                            if (dtc != null) {
-                                c = dtc.getCategoria();
-                            }%>
-                    <option value="<%=c%>"><%=c%></option>
+                         /*FabricaSistema f = new FabricaSistema();
+                         ISistema s = f.getSistema();
+                         Collection<DtCategoria> dtCategorias = s.ListaCategorias();
+                         Iterator<DtCategoria> it = dtCategorias.iterator();
+                         String c = "test";
+                         while (it.hasNext()) {
+                             DtCategoria dtc = it.next();
+                             if (dtc != null) {
+                                 c = dtc.getCategoria();
+                             }*/
+                            WSClient.SistemaService service = new WSClient.SistemaService();
+                            WSClient.Sistema port = service.getSistemaPort();
+                            // TODO process result here
+                            java.util.List<WSClient.DtCategoria> result = port.listaCategorias();
+                            for(WSClient.DtCategoria cat : result){
+                    %>
+                    <option value="<%=cat.getCategoria()%>"><%=cat.getCategoria()%></option>
                     <%}%>
                     <option value="" selected="selected"></option>
                 </select>

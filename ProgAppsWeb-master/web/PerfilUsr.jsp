@@ -5,20 +5,16 @@
 --%>
 
 
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
+<%@page import="WSClient.DtLR"%>
+<%@page import="WSClient.DtVideo"%>
+<%@page import="WSClient.DtCanal"%>
+<%@page import="WSClient.DtUsuario"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.beans.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
-<%@page import="Entidades.Fecha"%>
-<%@page import="DT.DtLR"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
-<%@page import="DT.DtVideo"%>
-<%@page import="DT.DtCanal"%>
-<%@page import="DT.DtUsuario"%>
-<%@page import="Controladores.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,18 +26,19 @@
     </head>
     <body>
         <%
+            WSClient.SistemaService service = new WSClient.SistemaService();
+            WSClient.Sistema port = service.getSistemaPort();
+            
             String prop = request.getParameter("usr");
             String nick = (String) session.getAttribute("username");
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
             String c = null;
             String ape = null;
             String desc = null;
             String img = null;
             int d = 0, m = 0, a = 0;
             if (prop != null) {
-                DtUsuario dtusr = s.getDataUsuario(prop);
-                DtCanal dtcusr = dtusr.getDataCanal();
+                DtUsuario dtusr = port.getDataUsuario(prop);
+                DtCanal dtcusr = dtusr.getCanal();
                 c = dtcusr.getNombre();
                 ape = dtusr.getApellido();
                 desc = dtcusr.getDescripcion();
@@ -56,14 +53,14 @@
                 if (nick != null) {%>
         <form action="SuscribirseServlet" method="post">
             <input type="hidden" id="usr" name="usr" value="<%=prop%>">
-            <% if (!s.LoSigue(nick, prop)) {%>
+            <% if (!port.loSigue(nick, prop)) {%>
             <input name="Suscribirse" type="submit" class="titulos" value="Suscribirse">
             <%}%>
         </form>
 
         <form action="DejarDeSeguirServlet" method="post">
             <input type="hidden" id="usr" name="usr" value="<%=prop%>">
-            <% if (s.LoSigue(nick, prop)) {%>
+            <% if (port.loSigue(nick, prop)) {%>
             <input name="Desuscribirse" type="submit" class="titulos" value="Desuscribirse">
             <%}%>
         </form>
@@ -79,8 +76,8 @@
 
                 <div class="content">
                     <%
-                        DtUsuario dtusrr = s.getDataUsuario(prop);
-                        Collection<DtVideo> dtvids = dtusrr.getDtVideos();
+                        DtUsuario dtusrr = port.getDataUsuario(prop);
+                        Collection<DtVideo> dtvids = dtusrr.getVideos();
                         Iterator<DtVideo> it = dtvids.iterator();
                         String url = "https://www.youtube.com/embed/SlPhMPnQ58k";//M5
                         String name = "null";
@@ -94,7 +91,7 @@
                                 while (it.hasNext()) {
                                     DtVideo dtvid = it.next();
                                     if (dtvid != null) {
-                                        url = dtvid.getURL();
+                                        url = dtvid.getUrl();
                                         Auxurl = url.substring(17, 28);
                                         name = dtvid.getNomVideo();
                                         prop = dtvid.getPropietario();
@@ -116,7 +113,7 @@
                 <div class="content">
                     <ul>
                         <%
-                            Collection<DtLR> dtlr = s.ListaListaReproducion(prop);
+                            Collection<DtLR> dtlr = port.listaListaReproducion(prop);
                             Iterator<DtLR> it2 = dtlr.iterator();
                             String lista = "null";
                             if (!it2.hasNext()) {
@@ -141,7 +138,7 @@
                 <div class="content">
                     <ul>
                         <%
-                            Collection<DtUsuario> seguidos = s.ListaSeguidos(prop);
+                            Collection<DtUsuario> seguidos = port.listaSeguidos(prop);
                             Iterator<DtUsuario> it4 = seguidos.iterator();
                             String seguido = "null";
                             if (!it4.hasNext()) {
@@ -152,7 +149,7 @@
                                 if (dtusr != null) {
                                     seguido = dtusr.getNick();
                                 }
-                                DtCanal dtc = dtusr.getDataCanal();
+                                DtCanal dtc = dtusr.getCanal();
                                 String nomC2 = dtc.getNombre();
                         %>   
                         <li><a href="PerfilUsr.jsp?usr=<%=seguido%>"><%=seguido%></a></li>
@@ -168,7 +165,7 @@
                 <div class="content">
                     <ul>    
                         <%
-                            Collection<DtUsuario> seguidores = s.ListaSeguidores(prop);
+                            Collection<DtUsuario> seguidores = port.listaSeguidores(prop);
                             Iterator<DtUsuario> it5 = seguidores.iterator();
                             String seguidor = "null";
                             if (!it5.hasNext()) {
@@ -179,7 +176,7 @@
                                 //if (dtusr != null) {
                                 seguidor = dtusr.getNick();
                                 //}
-                                DtCanal dtc = dtusr.getDataCanal();
+                                DtCanal dtc = dtusr.getCanal();
                                 String nomC2 = dtc.getNombre();
 
                         %>   
@@ -197,14 +194,14 @@
                     <ul>    
                         <%
                             if (prop != null) {
-                                DtUsuario dtusr = s.getDataUsuario(prop);
-                                DtCanal dtcusr = dtusr.getDataCanal();
+                                DtUsuario dtusr = port.getDataUsuario(prop);
+                                DtCanal dtcusr = dtusr.getCanal();
                                 c = dtcusr.getNombre();
                                 ape = dtusr.getApellido();
                                 desc = dtcusr.getDescripcion();
-                                d = dtusr.getFecha().getDia();
-                                m = dtusr.getFecha().getMes();
-                                a = dtusr.getFecha().getAnio();
+                                d = dtusr.getFechaPub().getDia();
+                                m = dtusr.getFechaPub().getMes();
+                                a = dtusr.getFechaPub().getAnio();
                             }
                         %>   
                         <li><p>Apellido: <%=ape%></p></li>

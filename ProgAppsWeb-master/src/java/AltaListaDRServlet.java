@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 
-import DT.DtCategoria;
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -79,15 +76,16 @@ public class AltaListaDRServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+
         PrintWriter out = response.getWriter();
         HttpSession sesion = request.getSession();
         String user = (String) sesion.getAttribute("username");
-        FabricaSistema fa = new FabricaSistema();
-        ISistema s = fa.getSistema();
         String NLista = request.getParameter("NombreLDRPpart");
         String[] Categoria = request.getParameterValues("Categoria");
         String priv = request.getParameter("privado");
-        Collection<String> cat = new ArrayList<>();
+        List<String> cat = new ArrayList<>();
         boolean es = false;
         if (priv.equalsIgnoreCase("privado")) {
             es = true;
@@ -99,8 +97,8 @@ public class AltaListaDRServlet extends HttpServlet {
             for (String Categoria1 : Categoria) {
                 cat.add(Categoria1);
             }
-            if (!s.ExisteLista(user, NLista)) {
-                s.CrearListaParticular(user, NLista, es, cat);
+            if (!port.existeLista(user, NLista)) {
+                port.crearListaParticular(user, NLista, es, cat);
                 RequestDispatcher rd = request.getRequestDispatcher("MiPerfil.jsp");
                 rd.forward(request, response);
             } else {

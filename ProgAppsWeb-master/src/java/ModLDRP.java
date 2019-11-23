@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 
-import DT.DtLR;
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
+import WSClient.DtLR;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -74,23 +72,24 @@ public class ModLDRP extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+
         String nombre = request.getParameter("lista");
         HttpSession sesion = request.getSession();
         String nick = (String) sesion.getAttribute("username");
-        FabricaSistema f = new FabricaSistema();
-        ISistema s = f.getSistema();
-        DtLR dtl = s.getDataLR(nick, nombre);
+        DtLR dtl = port.getDataLR(nick, nombre);
         String priv = request.getParameter("privado");
-        boolean privado = dtl.getPrivado();
+        boolean privado = dtl.isPrivado();
         if (!priv.equalsIgnoreCase("")) {
             if (priv.equalsIgnoreCase("privado")) {
                 privado = true;
             } else {
                 privado = false;
             }
-            
+
         }
-        s.ModificarPrivLR(nick, nombre, privado);
+        port.modificarPrivLR(nick, nombre, privado);
         RequestDispatcher rd = request.getRequestDispatcher("MiPerfil.jsp");
         rd.forward(request, response);
     }

@@ -4,12 +4,8 @@
     Author     : kangaru
 --%>
 
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="Controladores.Sistema"%>
-<%@page import="Entidades.Fecha"%>
+<%@page import="WSClient.DtTipo"%>
 <%@page import="java.util.*"%>
-<%@page import="DT.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

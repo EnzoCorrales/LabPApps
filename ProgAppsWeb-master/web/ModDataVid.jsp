@@ -4,11 +4,9 @@
     Author     : gabrixstar
 --%>
 
+<%@page import="WSClient.DtCategoria"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="DT.DtCategoria"%>
 <%@page import="java.util.Collection"%>
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -39,10 +37,10 @@
                         if (NomVideo == null) {
                             NomVideo = (String) request.getAttribute("NombreVideo");
                         }
-                        //request.getRequestDispatcher("ModDataVidServlet").forward(request, response);
-                        FabricaSistema f = new FabricaSistema();
-                        ISistema s = f.getSistema();
-                        Collection<DtCategoria> dtCategorias = s.ListaCategorias();
+                        WSClient.SistemaService service = new WSClient.SistemaService();
+                        WSClient.Sistema port = service.getSistemaPort();
+            
+                        Collection<DtCategoria> dtCategorias = port.listaCategorias();
                         Iterator<DtCategoria> it = dtCategorias.iterator();
                         String c = "test";
                         while (it.hasNext()) {

@@ -22,18 +22,6 @@
 <message name="ModificarPassUResponse">
 <part name="parameters" element="tns:ModificarPassUResponse"></part>
 </message>
-<message name="ExisteListaDefecto">
-<part name="parameters" element="tns:ExisteListaDefecto"></part>
-</message>
-<message name="ExisteListaDefectoResponse">
-<part name="parameters" element="tns:ExisteListaDefectoResponse"></part>
-</message>
-<message name="propCanal">
-<part name="parameters" element="tns:propCanal"></part>
-</message>
-<message name="propCanalResponse">
-<part name="parameters" element="tns:propCanalResponse"></part>
-</message>
 <message name="BajaUsuario">
 <part name="parameters" element="tns:BajaUsuario"></part>
 </message>
@@ -105,6 +93,12 @@
 </message>
 <message name="SeguirUsuarioResponse">
 <part name="parameters" element="tns:SeguirUsuarioResponse"></part>
+</message>
+<message name="CosoDtTipo">
+<part name="parameters" element="tns:CosoDtTipo"></part>
+</message>
+<message name="CosoDtTipoResponse">
+<part name="parameters" element="tns:CosoDtTipoResponse"></part>
 </message>
 <message name="DejarSeguirUsr">
 <part name="parameters" element="tns:DejarSeguirUsr"></part>
@@ -484,6 +478,18 @@
 <message name="getDataCanalResponse">
 <part name="parameters" element="tns:getDataCanalResponse"></part>
 </message>
+<message name="ExisteListaDefecto">
+<part name="parameters" element="tns:ExisteListaDefecto"></part>
+</message>
+<message name="ExisteListaDefectoResponse">
+<part name="parameters" element="tns:ExisteListaDefectoResponse"></part>
+</message>
+<message name="propCanal">
+<part name="parameters" element="tns:propCanal"></part>
+</message>
+<message name="propCanalResponse">
+<part name="parameters" element="tns:propCanalResponse"></part>
+</message>
 <portType name="Sistema">
 <operation name="AltaUsuarioWeb">
 <input wsam:Action="http://Controladores/Sistema/AltaUsuarioWebRequest" message="tns:AltaUsuarioWeb"></input>
@@ -496,14 +502,6 @@
 <operation name="ModificarPassU">
 <input wsam:Action="http://Controladores/Sistema/ModificarPassURequest" message="tns:ModificarPassU"></input>
 <output wsam:Action="http://Controladores/Sistema/ModificarPassUResponse" message="tns:ModificarPassUResponse"></output>
-</operation>
-<operation name="ExisteListaDefecto">
-<input wsam:Action="http://Controladores/Sistema/ExisteListaDefectoRequest" message="tns:ExisteListaDefecto"></input>
-<output wsam:Action="http://Controladores/Sistema/ExisteListaDefectoResponse" message="tns:ExisteListaDefectoResponse"></output>
-</operation>
-<operation name="propCanal">
-<input wsam:Action="http://Controladores/Sistema/propCanalRequest" message="tns:propCanal"></input>
-<output wsam:Action="http://Controladores/Sistema/propCanalResponse" message="tns:propCanalResponse"></output>
 </operation>
 <operation name="BajaUsuario">
 <input wsam:Action="http://Controladores/Sistema/BajaUsuarioRequest" message="tns:BajaUsuario"></input>
@@ -552,6 +550,10 @@
 <operation name="SeguirUsuario">
 <input wsam:Action="http://Controladores/Sistema/SeguirUsuarioRequest" message="tns:SeguirUsuario"></input>
 <output wsam:Action="http://Controladores/Sistema/SeguirUsuarioResponse" message="tns:SeguirUsuarioResponse"></output>
+</operation>
+<operation name="CosoDtTipo">
+<input wsam:Action="http://Controladores/Sistema/CosoDtTipoRequest" message="tns:CosoDtTipo"></input>
+<output wsam:Action="http://Controladores/Sistema/CosoDtTipoResponse" message="tns:CosoDtTipoResponse"></output>
 </operation>
 <operation name="DejarSeguirUsr">
 <input wsam:Action="http://Controladores/Sistema/DejarSeguirUsrRequest" message="tns:DejarSeguirUsr"></input>
@@ -805,6 +807,14 @@
 <input wsam:Action="http://Controladores/Sistema/getDataCanalRequest" message="tns:getDataCanal"></input>
 <output wsam:Action="http://Controladores/Sistema/getDataCanalResponse" message="tns:getDataCanalResponse"></output>
 </operation>
+<operation name="ExisteListaDefecto">
+<input wsam:Action="http://Controladores/Sistema/ExisteListaDefectoRequest" message="tns:ExisteListaDefecto"></input>
+<output wsam:Action="http://Controladores/Sistema/ExisteListaDefectoResponse" message="tns:ExisteListaDefectoResponse"></output>
+</operation>
+<operation name="propCanal">
+<input wsam:Action="http://Controladores/Sistema/propCanalRequest" message="tns:propCanal"></input>
+<output wsam:Action="http://Controladores/Sistema/propCanalResponse" message="tns:propCanalResponse"></output>
+</operation>
 </portType>
 <binding name="SistemaPortBinding" type="tns:Sistema">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
@@ -827,24 +837,6 @@
 </output>
 </operation>
 <operation name="ModificarPassU">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="ExisteListaDefecto">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="propCanal">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -953,6 +945,15 @@
 </output>
 </operation>
 <operation name="SeguirUsuario">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="CosoDtTipo">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -1520,6 +1521,24 @@
 </output>
 </operation>
 <operation name="getDataCanal">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="ExisteListaDefecto">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="propCanal">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

@@ -4,10 +4,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Entidades.Fecha;
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
 
+import WSClient.DtFecha;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -99,8 +97,9 @@ public class AltaUsrServlet extends HttpServlet {
 
             // Set overall request size constraint
             //upload.setSizeMax(MAX_REQUEST_SIZE);
-            FabricaSistema fa = new FabricaSistema();
-            ISistema s = fa.getSistema();
+            WSClient.SistemaService service = new WSClient.SistemaService();
+            WSClient.Sistema port = service.getSistemaPort();
+            
             String username = null;
             String nom = null;
             String mail = null;
@@ -111,6 +110,7 @@ public class AltaUsrServlet extends HttpServlet {
             String descC = null;
             String img = "blank-profile-picture-973460_960_720.png";
             String priv = null;
+            int id = 0;
             int dia = 0;
             int mes = 0;
             int anio = 0;
@@ -161,6 +161,9 @@ public class AltaUsrServlet extends HttpServlet {
                         if (item.getFieldName().equalsIgnoreCase("DescCanal")) {
                             descC = item.getString();
                         }
+                        if(item.getFieldName().equalsIgnoreCase("Id")){
+                            id = Integer.parseInt(item.getString());
+                        }
                         if (item.getFieldName().equalsIgnoreCase("Fdia")) {
                             dia = Integer.parseInt(item.getString());
                         }
@@ -176,7 +179,10 @@ public class AltaUsrServlet extends HttpServlet {
 
                     }
                 }
-                Fecha f = new Fecha(dia, mes, anio);
+                DtFecha f = new DtFecha();
+                f.setAnio(anio);
+                f.setMes(mes);
+                f.setDia(dia);
                 boolean privado = true;
                 if (priv != null) {
                     if (priv.equalsIgnoreCase("privado")) {
@@ -191,7 +197,7 @@ public class AltaUsrServlet extends HttpServlet {
                 } else {
 
                     if (username != null && mail != null) {
-                        if (s.ExisteUsr(username) == true || s.ExisteMail(mail) == true) {
+                        if (port.existeUsr(username) == true || port.existeMail(mail) == true) {
                             request.getRequestDispatcher("AltaUsr.jsp").include(request, response);
                             out.print("<p style='color: red; font-size: larger;'>Username o mail ya esta en uso!</p>");
                         } else if (!pass.equalsIgnoreCase(Cpass)) {
@@ -201,7 +207,7 @@ public class AltaUsrServlet extends HttpServlet {
                             if(nomC==null){
                                 nomC=username;
                             }
-                            s.AltaUsuarioWeb(username, nom, ape, mail, pass, f, nomC, descC, img, privado);
+                            port.altaUsuarioWeb(username, nom, ape, mail, pass, f, nomC, descC, img, privado);
                             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                             rd.forward(request, response);
                         }

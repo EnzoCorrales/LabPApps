@@ -4,14 +4,11 @@
     Author     : gabrixstar
 --%>
 
-<%@page import="DT.DtLR"%>
-<%@page import="DT.DtCategoria"%>
+<%@page import="WSClient.DtVideo"%>
+<%@page import="WSClient.DtCategoria"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="DT.DtVideo"%>
 <%@page import="java.util.Collection"%>
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="Controladores.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,21 +33,18 @@
         <h2><%=nombre%> <a href="ModDataLR.jsp?value=<%=nombre%>&usr=<%=nick%>" title="Modificar lista" class="waves-effect waves-teal btn-flat btn-large"><i class="material-icons">edit</i></a></h2>
         Categorias:
         <%
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
-            DtLR dtlr = s.getDataLR(nick, nombre);
-            Collection<String> listacats = dtlr.getCategoria();
-            if (listacats != null) {
-                Iterator<String> itcats = listacats.iterator();
-                while (itcats.hasNext()) {
-                    String cat = itcats.next();%>
-                <%=cat%>/
-                <%}
-        } else {%>
-            no tiene
+            WSClient.SistemaService service = new WSClient.SistemaService();
+            WSClient.Sistema port = service.getSistemaPort();
+            List<DtCategoria> cat = port.listaCategorias();
+            if (cat != null) {
+                for (DtCategoria lista : cat) {%>
+                     <%=lista.getCategoria()%>
+                <%}%>
+        <%}else {%>
+        no tiene
         <%}%>
         <%String logged = (String) session.getAttribute("username");
-            if (logged != null) {
+            if (logged!= null) {
                 if (logged.equalsIgnoreCase(nick)) {%>
         <p><a href="AgregarVideo.jsp?value=<%=nombre%>&usr=<%=nick%>" title="Agregar video" class="ngl btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a></p>
         <%
@@ -60,15 +54,15 @@
         <%
             String Auxurl;
             String name;
-            Collection<DtVideo> videosLR = s.getDataVideosLR(nick, nombre);
+            Collection<DtVideo> videosLR = port.getDataVideosLR(nick, nombre);
             Iterator<DtVideo> it = videosLR.iterator();%>
         <%while (it.hasNext()) {
                 DtVideo dtvid = it.next();
-                Auxurl = dtvid.getURL();
+                Auxurl = dtvid.getUrl();
                 String url = Auxurl.substring(17, 28);
                 name = dtvid.getNomVideo();
                 String prop = dtvid.getPropietario();
-                String cat = dtvid.getCategoria();%>
+                DtCategoria categ = dtvid.getCategoria();%>
         <a href="Video.jsp?value=<%=name%>&usr=<%=prop%>">
             <p><%=name%> <a href="QuitarVideoServlet?lista=<%=nombre%>&usr=<%=logged%>&nombre=<%=name%>" title="Quitar video" class="ngl btn-floating btn-small waves-effect waves-light red"><i class="material-icons">remove</i></a></p>
             <div class="thumbnail">

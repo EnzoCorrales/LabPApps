@@ -5,10 +5,7 @@
 --%>
 
 <%@page import="java.util.Iterator"%>
-<%@page import="DT.DtCategoria"%>
 <%@page import="java.util.Collection"%>
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

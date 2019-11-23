@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-import Controladores.Sistema;
+import WSClient.SistemaService;
+import WSClient.Sistema;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -80,17 +80,21 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String pass = request.getParameter("password");
         
-        Sistema s = Sistema.getInstance();
+        SistemaService service = new SistemaService();
+        Sistema port = service.getSistemaPort();
         
-        if(s.InicioSesion(username, pass) == true){
-            String nick = s.getNick(username);
+        
+        
+        if(port.inicioSesion(username, pass) == true){
+            String nick = port.getNick(username);
             HttpSession sesion = request.getSession();
             if(nick==null)
                 sesion.setAttribute("username", username);
             else
                 sesion.setAttribute("username", nick);
             
-            request.getRequestDispatcher("Index2.jsp").include(request, response);
+            //request.getRequestDispatcher("Index2.jsp").include(request, response);
+            response.sendRedirect(request.getServletContext().getContextPath() + "/Index2.jsp");
         }
         else {
             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
@@ -110,5 +114,41 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private static boolean inicioSesion(java.lang.String arg0, java.lang.String arg1) {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+        return port.inicioSesion(arg0, arg1);
+    }
+
+    private static boolean inicioSesion_1(java.lang.String arg0, java.lang.String arg1) {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+        return port.inicioSesion(arg0, arg1);
+    }
+
+    private static boolean inicioSesion_2(java.lang.String arg0, java.lang.String arg1) {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+        return port.inicioSesion(arg0, arg1);
+    }
+
+    private static boolean inicioSesion_3(java.lang.String arg0, java.lang.String arg1) {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+        return port.inicioSesion(arg0, arg1);
+    }
+
+    private static boolean inicioSesion_4(java.lang.String arg0, java.lang.String arg1) {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+        return port.inicioSesion(arg0, arg1);
+    }
+
+    private static boolean inicioSesion_5(java.lang.String arg0, java.lang.String arg1) {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+        return port.inicioSesion(arg0, arg1);
+    }
 
 }

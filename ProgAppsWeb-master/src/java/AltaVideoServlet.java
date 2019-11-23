@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Controladores.Sistema;
-import Entidades.Fecha;
+import WSClient.DtFecha;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -76,25 +74,30 @@ public class AltaVideoServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
 
-        Sistema s = Sistema.getInstance();
         String nomVideo = request.getParameter("NameVideoIns");
         String dura = request.getParameter("DuracionIns");
         String url = request.getParameter("URLIns");
         String descV = request.getParameter("DescVideo");
+        int id = 0;
         int y = 2019;
         int m = 10;
         int d = 14;
-        Fecha f = new Fecha(d, m, y);
+        DtFecha f = new DtFecha();
+        f.setAnio(y);
+        f.setMes(m);
+        f.setDia(d);
         HttpSession sesion = request.getSession();
         String nick = (String) sesion.getAttribute("username");
         String cate = request.getParameter("categorias");
         if (nomVideo != null) {
-            if (s.ExisteVideo(nick, nomVideo) == true) {
+            if (port.existeVideo(nick, nomVideo) == true) {
                 request.getRequestDispatcher("AltaVideo.jsp").include(request, response);
                 out.print("<p style='color: red; font-size: larger;'>Nombre de video repetido!</p>");
             } else {
-                s.AltaVideo(nomVideo, dura, url, descV, f, nick, cate);
+                port.altaVideo(nomVideo, dura, url, descV, f, nick, cate);
                 RequestDispatcher rd = request.getRequestDispatcher("Index2.jsp");
             }
         } else {
@@ -107,5 +110,3 @@ public class AltaVideoServlet extends HttpServlet {
         public String getServletInfo() {
         return "Short description";
     }*/
-
-

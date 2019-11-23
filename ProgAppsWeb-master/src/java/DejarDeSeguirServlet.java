@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -72,14 +70,14 @@ public class DejarDeSeguirServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
 
-        FabricaSistema fa = new FabricaSistema();
-        ISistema s = fa.getSistema();
         HttpSession session = request.getSession();
         String nick = request.getParameter("usr");
-        System.out.println("ACAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+nick);
+        System.out.println("ACAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + nick);
         String nickV = (String) session.getAttribute("username");
-        s.DejarSeguirUsr(nickV, nick);
+        port.dejarSeguirUsr(nickV, nick);
         request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
     }
 

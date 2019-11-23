@@ -4,11 +4,9 @@
     Author     : gabrixstar
 --%>
 
+<%@page import="WSClient.DtCategoria"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
-<%@page import="DT.DtCategoria"%>
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,9 +25,10 @@
 
                             <li class="Campo">Nombre Lista : <input type="text" name="NombreLDRPpart"></li>
                                 <%
-                                    FabricaSistema f = new FabricaSistema();
-                                    ISistema s = f.getSistema();
-                                    Collection<DtCategoria> cat = s.ListaCategorias();
+                                    WSClient.SistemaService service = new WSClient.SistemaService();
+                                    WSClient.Sistema port = service.getSistemaPort();
+
+                                    Collection<DtCategoria> cat = port.listaCategorias();
                                     Iterator<DtCategoria> it = cat.iterator();
                                     String nom = null;
                                     while (it.hasNext()) {

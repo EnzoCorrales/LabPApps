@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-import DT.DtVideo;
-import Entidades.Fecha;
+import WSClient.DtCategoria;
+import WSClient.DtFecha;
+import WSClient.DtVideo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -75,7 +76,8 @@ public class ModDataVidServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Controladores.Sistema s = Controladores.Sistema.getInstance();
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
 
         String nombre = request.getParameter("NombreVideo");
 
@@ -84,13 +86,18 @@ public class ModDataVidServlet extends HttpServlet {
         String url = request.getParameter("URLIns");
         String descV = request.getParameter("DescVideo");
         String cate = request.getParameter("categorias");
-        Fecha f = null;
+        DtFecha f = null;
+        int id = 0;
         String priv = request.getParameter("privado");
         if (!request.getParameter("Fdia").equalsIgnoreCase("") && !request.getParameter("Fmes").equalsIgnoreCase("") && !request.getParameter("Fanio").equalsIgnoreCase("")) {
+            id = id + 1;
             int dia = Integer.parseInt(request.getParameter("Fdia"));
             int mes = Integer.parseInt(request.getParameter("Fmes"));
             int anio = Integer.parseInt(request.getParameter("Fanio"));
-            f = new Fecha(dia, mes, anio);
+            f = new DtFecha();
+            f.setAnio(anio);
+            f.setMes(mes);
+            f.setDia(dia);
         }
         boolean Auxnom = false;
         boolean Auxdur = false;
@@ -107,10 +114,10 @@ public class ModDataVidServlet extends HttpServlet {
             HttpSession sesion = request.getSession();
             String nick = (String) sesion.getAttribute("username");
             System.out.println(nick);
-            DtVideo dtvid = s.getDataVideo(nombre, nick);
-            String cat = dtvid.getCategoria();
+            DtVideo dtvid = port.getDataVideo(nomVideo, nick);
+            DtCategoria cat = dtvid.getCategoria();
             if (!nomVideo.equalsIgnoreCase("")) {
-                if (!s.ExisteVideo(nick, nomVideo)) {
+                if (!port.existeVideo(nick, nomVideo)) {
                     Auxnom = true;
                 } else {
                     request.setAttribute("NombreVideo", nombre);
@@ -126,58 +133,56 @@ public class ModDataVidServlet extends HttpServlet {
                 }
             }
             if (!url.equalsIgnoreCase("")) {
-                if (!url.equalsIgnoreCase(dtvid.getURL())) {
+                if (!url.equalsIgnoreCase(dtvid.getUrl())) {
                     Auxurl = true;
                 }
             }
             if (!priv.equalsIgnoreCase("")) {
                 Auxpriv = true;
             }
-            
+
             if (!descV.equalsIgnoreCase("")) {
                 if (!descV.equalsIgnoreCase(dtvid.getDescripcion())) {
                     Auxdesc = true;
                 }
             }
             if (f != null) {
-                if (f != dtvid.getFecha()) {
+                if (f != dtvid.getFechaPub()) {
                     Auxf = true;
                 }
             }
             if (!cate.equalsIgnoreCase("")) {
-                if (!cate.equalsIgnoreCase(cat)) {
+                if (!cate.equalsIgnoreCase(cat.getCategoria())) {
                     Auxcat = true;
                 }
             }
-            
-            if(Auxpriv == true){
-                if(priv.equalsIgnoreCase("privado")){
+
+            if (Auxpriv == true) {
+                if (priv.equalsIgnoreCase("privado")) {
                     privado = true;
-                }
-                else
-                {
+                } else {
                     privado = false;
                 }
-                s.ModificarPrivVideo(nick, nombre, privado);
+                port.modificarPrivVideo(nick, nombre, privado);
             }
 
             if (Auxdur == true) {
-                s.ModificarDurVideo(nick, nombre, dura);
+                port.modificarDurVideo(nick, nombre, dura);
             }
             if (Auxdesc == true) {
-                s.ModificarDescVideo(nick, nombre, descV);
+                port.modificarDescVideo(nick, nombre, descV);
             }
             if (Auxurl == true) {
-                s.ModificarURLVideo(nick, nombre, url);
+                port.modificarURLVideo(nick, nombre, url);
             }
             if (Auxf == true) {
-                s.ModificarFechaVideo(nick, nombre, f);
+                port.modificarFechaVideo(nick, nombre, f);
             }
             if (Auxcat == true) {
-                s.ModificarCatVideo(nick, nombre, cate);
+                port.modificarCatVideo(nick, nombre, cate);
             }
             if (Auxnom == true) {
-                s.ModificarNomVideo(nick, nombre, nomVideo);
+                port.modificarNomVideo(nick, nombre, nomVideo);
             }
             RequestDispatcher rd = request.getRequestDispatcher("MiPerfil.jsp");
             rd.forward(request, response);

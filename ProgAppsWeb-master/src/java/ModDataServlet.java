@@ -4,13 +4,7 @@
  * and open the template in the editor.
  */
 
-import DT.DtCanal;
-import DT.DtUsuario;
-import Entidades.Fecha;
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
-import java.io.IOException;
-import java.io.PrintWriter;
+import WSClient.DtFecha;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -102,9 +96,10 @@ public class ModDataServlet extends HttpServlet {
             // Set overall request size constraint
             //upload.setSizeMax(MAX_REQUEST_SIZE);
             HttpSession sesion = request.getSession();
+            WSClient.SistemaService service = new WSClient.SistemaService();
+            WSClient.Sistema port = service.getSistemaPort();
+            
             String nick = (String) sesion.getAttribute("username");
-            FabricaSistema fa = new FabricaSistema();
-            ISistema s = fa.getSistema();
             String nom = null;
             String ape = null;
             String pass = null;
@@ -113,6 +108,7 @@ public class ModDataServlet extends HttpServlet {
             String descC = null;
             String img = null;
             String priv = null;
+            int id = 0;
             int dia = 0;
             int mes = 0;
             int anio = 0;
@@ -184,9 +180,12 @@ public class ModDataServlet extends HttpServlet {
 
                     }
                 }
-                Fecha f = null;
+                DtFecha f = null;
                 if (dia != 0 && mes != 0 && anio != 0) {
-                    f = new Fecha(dia, mes, anio);
+                    f = new DtFecha();
+                    f.setAnio(anio);
+                    f.setDia(dia);
+                    f.setMes(mes);
                     Auxf = true;
                 }
                 boolean privado = true;
@@ -219,10 +218,10 @@ public class ModDataServlet extends HttpServlet {
                 }
 
                 if (Auxnom == true) {
-                    s.ModificarNombreU(nick, nom);
+                    port.modificarNombreU(nick, nom);
                 }
                 if (Auxape == true) {
-                    s.ModificarApellidoU(nick, ape);
+                    port.modificarApellidoU(nick, ape);
                 }
                 if (Auxpass == true) {
                     if (!pass.equalsIgnoreCase(Cpass)) {
@@ -230,23 +229,23 @@ public class ModDataServlet extends HttpServlet {
                         out.print("<p style='color: red; font-size: larger;'>Contraseñas no coinciden</p>");
 
                     } else {
-                        s.ModificarNombreU(nick, pass);
+                        port.modificarNombreU(nick, pass);
                     }
                 }
                 if (Auxnomc == true) {
-                    s.ModificarNomC(nick, nomC);
+                    port.modificarNomC(nick, nomC);
                 }
                 if (Auxdesc == true) {
-                    s.ModificarDescC(nick, descC);
+                    port.modificarDescC(nick, descC);
                 }
                 if (Auximg == true) {
-                    s.ModificarImagenU(nick, img);
+                    port.modificarImagenU(nick, img);
                 }
                 if (Auxf == true) {
-                    s.ModificarFechaU(nick, f);
+                    port.modificarFechaU(nick, f);
                 }
                 if (Auxpriv == true) {
-                    s.ModificarPrivC(nick, privado);
+                    port.modificarPrivC(nick, privado);
                 }
                 RequestDispatcher rd = request.getRequestDispatcher("ModDataUsr.jsp");
                 rd.forward(request, response);

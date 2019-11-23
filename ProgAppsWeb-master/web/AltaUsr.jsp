@@ -4,12 +4,7 @@
     Author     : gabrixstar
 --%>
 
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="Entidades.Fecha"%>
-<%@page import="Controladores.Sistema"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DT.DtCategoria"%>
 <%@page import="java.util.Collection"%>
 <%@page import="java.util.List"%>
 <%@page import="java.lang.String"%>

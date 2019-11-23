@@ -4,16 +4,8 @@
  * and open the template in the editor.
  */
 
-import Controladores.Sistema;
-import DT.DtUsuario;
-import DT.DtVideo;
-import Entidades.Fecha;
-import Fabrica.FabricaSistema;
-import Interfaz.ISistema;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -78,12 +70,14 @@ public class SuscribirseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FabricaSistema fa = new FabricaSistema();
-        ISistema s = fa.getSistema();
+        WSClient.SistemaService service = new WSClient.SistemaService();
+        WSClient.Sistema port = service.getSistemaPort();
+            
+        
         HttpSession session = request.getSession();
         String nick = request.getParameter("usr");
         String nickV = (String) session.getAttribute("username");
-        s.SeguirUsuario(nickV, nick);
+        port.seguirUsuario(nickV, nick);
         request.getRequestDispatcher("MiPerfil.jsp").include(request, response);
     }
 

@@ -4,12 +4,9 @@
     Author     : gabrixstar
 --%>
 
+<%@page import="WSClient.DtVideo"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="DT.DtVideo"%>
 <%@page import="java.util.Collection"%>
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="Controladores.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,13 +27,16 @@
                 String url;
                 String Auxurl;
                 String name;
-                FabricaSistema f = new FabricaSistema();
-                ISistema s = f.getSistema();
-                Collection<DtVideo> videosLR = s.getDataVideosLR(nick, valor);
+                
+                WSClient.SistemaService service = new WSClient.SistemaService();
+                WSClient.Sistema port = service.getSistemaPort();
+            
+                
+                Collection<DtVideo> videosLR = port.getDataVideosLR(nick, valor);
                 Iterator<DtVideo> it = videosLR.iterator();
                 while (it.hasNext()) {
                     DtVideo dtvid = it.next();
-                    Auxurl = dtvid.getURL();
+                    Auxurl = dtvid.getUrl();
                     url = Auxurl.substring(17, 28);
                     name = dtvid.getNomVideo();%>
                     <p><%=name%></p><iframe width="200" height="105" src="https://www.youtube.com/embed/<%=url%>"></iframe>

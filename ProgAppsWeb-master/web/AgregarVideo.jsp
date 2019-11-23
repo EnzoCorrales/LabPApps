@@ -4,11 +4,9 @@
     Author     : tecnologo
 --%>
 
+<%@page import="WSClient.DtVideo"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
-<%@page import="DT.DtVideo"%>
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,16 +25,17 @@
             <div class="row">
                 <!--<div class="col-md-4">-->
                 <%
-                    FabricaSistema f = new FabricaSistema();
-                    ISistema s = f.getSistema();
-                    Collection<DtVideo> videos = s.ListaTVideos();
+                    WSClient.SistemaService service = new WSClient.SistemaService();
+                    WSClient.Sistema port = service.getSistemaPort();
+
+                    Collection<DtVideo> videos = port.listaTVideos();
                     Iterator<DtVideo> it = videos.iterator();
                     String url;
                     String Auxurl;
                     while (it.hasNext()) {
                         DtVideo dtvid = it.next();
                         String nombrevid = dtvid.getNomVideo();
-                        url = dtvid.getURL();
+                        url = dtvid.getUrl();
                         Auxurl = url.substring(17, 28);
                         String prop = dtvid.getPropietario();%>
                 <div>

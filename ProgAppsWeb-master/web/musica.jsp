@@ -4,22 +4,15 @@
     Author     : tecnologo
 --%>
 
-<%@page import="Interfaz.ISistema"%>
-<%@page import="Fabrica.FabricaSistema"%>
-<%@page import="DT.DtCategoria"%>
-<%@page import="Entidades.Categoria"%>
+<%@page import="WSClient.DtCategoria"%>
+<%@page import="WSClient.DtLR"%>
+<%@page import="WSClient.DtVideo"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.beans.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
-<%@page import="Entidades.Fecha"%>
-<%@page import="DT.DtLR"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
-<%@page import="DT.DtVideo"%>
-<%@page import="DT.DtCanal"%>
-<%@page import="DT.DtUsuario"%>
-<%@page import="Controladores.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,10 +28,11 @@
         <h1><%=valor%></h1>
 
         <%
-            FabricaSistema f = new FabricaSistema();
-            ISistema s = f.getSistema();
-            Collection<DtVideo> dtvids = s.ListaVideosxCategoria(valor);
-            Collection<DtLR> dtlr = s.ListaLRxCategoria(valor);
+            WSClient.SistemaService service = new WSClient.SistemaService();
+            WSClient.Sistema port = service.getSistemaPort();
+            
+            Collection<DtVideo> dtvids = port.listaVideosxCategoria(valor);
+            Collection<DtLR> dtlr = port.listaLRxCategoria(valor);
             if (dtvids != null) {
                 Iterator<DtVideo> it = dtvids.iterator();
                 String url = null;
@@ -47,10 +41,10 @@
                 while (it.hasNext()) {
                     DtVideo dtvid = it.next();
 
-                    Auxurl = dtvid.getURL();
+                    Auxurl = dtvid.getUrl();
                     url = Auxurl.substring(17, 28);
                     name = dtvid.getNomVideo();
-                    String cat = dtvid.getCategoria();
+                    DtCategoria cat = dtvid.getCategoria();
 
         %>
 
