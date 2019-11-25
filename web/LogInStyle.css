@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21/10/2019, 07:57:58 AM
+    Author     : luke
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html,body {
+
+    background: linear-gradient( white, #ff0f50);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.container {
+    align-items: center;
+    background: white;
+    padding: 0vw 2vw;
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-top:1vw;
+}
+.col.s6 > .btn {
+    width: 100%;
+    height: auto;
+    margin-left: 50%;
+    
+}
+
+.row {margin-bottom: 10px;}
+
+.ngl {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+.titulo{
+    max-width: 100%;
+    height:auto;
+}
+
+.btn-color{
+    float: left;
+    color: #ff0f50;
+}
+
+@media only screen and (max-width:620px) {
+    /* For mobile phones: */
+    .container, .titulo, body {
+        width:100%;
+    }
+}
